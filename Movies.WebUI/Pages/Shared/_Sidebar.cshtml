@@ -1,0 +1,97 @@
+﻿<header>
+    <div class="logoicons">
+        <a asp-area="" asp-page="/Index">
+            <img src="~/Img/moviec-low-resolution-logo-color-on-transparent-background (2).png" alt="logo" style="width: 120px; height: 30px;">
+        </a>
+    </div>
+    <div class="dropdown">
+        <button class=" dropbtn bi bi-person-fill px-1" onclick="myFunction()"></button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="#" id="open-modal" class="btn-open-modal"> Sign In</a>
+            <a href="#" id="open-modal-signup" class="btn-open-modal">Sign Up</a>
+            <a asp-area="" asp-page="/AccauntSettings/Index">ACCAUNT SETTINGS </a>
+            <!-- <a href="#">LOGOUT</a> -->
+        </div>
+        <!-- Modal Sign In -->
+        <div class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2 class="modal-title">Sign In</h2>
+                <form class="formModal">
+                    <label for="username" class="labelModal">Username</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password" class="labelModal">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <div class="form-group">
+                        <input type="checkbox" id="remember-me" name="remember-me">
+                        <label for="remember-me" class="remember-me mx-2">Remember me</label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn-signin">Sign In</button>
+                </form>
+                <p>Don't have an account? <a href="#" class="sign-up">Sign Up</a></p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Sign Up -->
+        <div class="modal-overlay-sigup">
+            <div class="modal-content-sigup">
+                <span class="close-button-sigup">&times;</span>
+                <h2 class="modal-title-sigup">Sign Up</h2>
+                <form class="formModal">
+                    <label for="username" class="labelModal-signup">Username</label>
+                    <input type="text" id="username" name="username" required>
+
+                    <label for="Email" class="labelModal-signup">Email</label>
+                    <input type="text" name="Email" required>
+
+                    <label for="password" class="labelModal-signup">Password</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <label for="password" class="changePassword-signup">Change Password</label>
+                    <input type="password" name="password" required>
+                    <div class="form-group">
+                        <input type="checkbox" name="remember-me">
+                        <label for="remember-me" class="remember-me mx-2">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn-signup">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="search-box ">
+        <input class="search-txt" placeholder="Search"><i class="bi bi-search "></i>
+    </div>
+    <div class="Accaunt">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+
+    </div>
+    <nav class="nav-bar">
+        <ul class="mt-3">
+            <li>
+                <a asp-area="" asp-page="/Index" class="active">HOME</a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/MovieFiltr/Index">MOVIES</a>
+            </li>
+            <li>
+                <a href="#">SHOWS</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="pages">PAGES</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" asp-area="" asp-page="/About/Index">About Us</a>
+                    <a class="dropdown-item" asp-area="" asp-page="/ContactUs/Index">Contact Us</a>
+                    <a class="dropdown-item" asp-area="" asp-page="/PricingPlans/Index">Pricing Plans</a>
+                    <a class="dropdown-item" asp-area="" asp-page="/Error404/Index">404</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>

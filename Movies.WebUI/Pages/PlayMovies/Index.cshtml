@@ -1,0 +1,199 @@
+﻿@page
+@model Movies.WebUI.Pages.PlayMovies.IndexModel
+@{
+}
+
+    <link rel="stylesheet" href="~/css/PlayMovies.css">
+
+    <video controls>
+        <source src="~/Video/Record_2023_01_30_12_53_59_274.mp4" type="video/mp4">
+        Your browser does not support the html video tag.
+    </video>
+    <div class="container PMovies">
+        <div class="MoviesFoto">
+            <img src="~/Img/ryunosuke-kikuno-cqtw4QCfbQg-unsplash.jpg" alt="foto" class="img-fluid">
+        </div>
+        <div class="text mt-5">
+            <h1>THE DARK KNIGHT RISES</h1>
+            <div class="SpanMovies my-5">
+                <span><i class="bi bi-person-fill"></i>18+</span>
+                <span><i class="bi bi-clock"></i>2hr 45min</span>
+                <span><i class="bi bi-emoji-smile"></i>2021</span>
+                <span><i class="bi bi-activity"></i>Action</span>
+                <span><i class="bi bi-globe"></i>United States</span>
+            </div>
+            <div class="MoviesP">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                    dolore eu
+                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                </p>
+                <h4 class="my-5">Director:Ceyhun Qafarov</h4>
+            </div>
+            <div class="BMovies">
+                <button type="button" class="btn px-5 "><i class="bi bi-play-fill me-2 "></i>Play</button>
+                <button type="button" class="btn px-5"><i class="bi bi-plus me-2"></i>MY List</button>
+                <button type="button" class="btn px-5" data-bs-toggle="modal" data-bs-target="#trailer">
+                    <i class="bi bi-camera-video-fill me-2"></i>
+                    Trailer
+                </button>
+                <button type="button" class="btn px-4" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <i class="bi bi-share-fill me-2"></i>
+                    Share
+                </button>
+
+                <!-- The Modal Share-->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title fw-bolder">Share</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                </button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body d-flex justify-content-around">
+                                <i class="bi bi-facebook"></i>
+                                <i class="bi bi-twitter"></i>
+                                <i class="bi bi-telegram"></i>
+                                <i class="bi bi-instagram"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- The Modal Trailer-->
+                <div class="modal" id="trailer">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title fw-bolder">Trailer</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <video controls>
+                                    <source src="~/Video/Record_2023_01_30_12_53_59_274.mp4" type="video/mp4">
+                                    Your browser does not support the html video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--RELATED MOVIES-->
+    <div class="container">
+        <div class="RelatedMovies">
+            <h2 class="text-white fw-bolder">RELATED MOVIES</h2>
+            <hr id="hr_color">
+            <div class="images">
+                <div class=" image featured active text-white">
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/erik-mclean-7sgU1jV8-iw-unsplash.jpg" alt="" id="image" class="img-fluid">
+                            <div class="icon-container me-2">
+                                <a href=""><i class="bi bi-play-circle "></i></a>
+                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
+                                <a href=""><i class="bi bi-info-circle"></i></a>
+                            </div>
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/ouael-ben-salah-1bK4CXuXIGE-unsplash.jpg" alt="" id="image" class="img-fluid">
+                            <div class="icon-container me-2">
+                                <a href=""><i class="bi bi-play-circle "></i></a>
+                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
+                                <a href=""><i class="bi bi-info-circle"></i></a>
+                            </div>
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/ashlee-marie-uCHCdZ1fYiQ-unsplash (1).jpg" alt="" id="image" class="img-fluid">
+                            <div class="icon-container me-2">
+                                <a href=""><i class="bi bi-play-circle "></i></a>
+                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
+                                <a href=""><i class="bi bi-info-circle"></i></a>
+                            </div>
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/format-arw-PXjQaGxi4JA-unsplash.jpg" alt="" id="image" class="img-fluid">
+                            <div class="icon-container me-2">
+                                <a href=""><i class="bi bi-play-circle "></i></a>
+                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
+                                <a href=""><i class="bi bi-info-circle"></i></a>
+                            </div>
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/nate-johnston-4CRTpLLsuJ8-unsplash.jpg" alt="" id="image" class="img-fluid">
+                            <div class="icon-container me-2">
+                                <a href=""><i class="bi bi-play-circle "></i></a>
+                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
+                                <a href=""><i class="bi bi-info-circle"></i></a>
+                            </div>
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+            integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.img-div div').hover(function () {
+
+                $(this).children().css({ 'transform': 'scale(1.2)', 'transition': 'transform 0.5s', 'z-index': '1' });
+
+            }, function () {
+                $(this).children().css({ 'transform': 'scale(1)', 'z-index': '0' });
+            });
+
+            $('.img-div > div').mouseover(function () {
+                $(this).addClass("active");
+            });
+
+            $('.img-div > div').mouseleave(function () {
+                $(this).removeClass("active");
+            });
+        });
+    </script>
