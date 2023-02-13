@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/ContactUs.css">
+
+<div class="container">
+    <form action="/action_page.php">
+        <div class="header mb-4">
+            <h1>Contact Us</h1>
+        </div>
+        <div class="mb-3 mt-3">
+            <label for="fullname" class="mb-3">Full Name</label>
+            <input type="text" class="form-control" id="fullname" placeholder="Enter Full Name" name="fullname">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="mb-3">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
+        </div>
+        <div class="mb-3 mt-3">
+            <label for="Message" class="mb-3">Message</label>
+            <textarea class="form-control" rows="5" id="message" name="text" placeholder="Your Message"></textarea>
+        </div>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>

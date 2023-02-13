@@ -7,6 +7,7 @@ namespace Movies.WebUI.Pages.AccauntSettings
     {
         public void OnGet()
         {
+
         }
     }
 }
