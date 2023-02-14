@@ -94,6 +94,71 @@ $(".carousel").owlCarousel({
     }
 });
 
+//todo  TOP 10 BOX OFFICE Carusel
+
+$(".boxoffice").owlCarousel({
+    margin: 20,
+    loop: true,
+    autoplayHoverPause: true,
+    responsive: {
+        0: {
+            items: 1,
+            nav: false
+        },
+        600: {
+            items: 2,
+            nav: false
+        },
+        1000: {
+            items: 5,
+            nav: false
+        },
+    }
+});
+
+//todo  TRENDING NOW Carusel
+
+$(".trendingNow").owlCarousel({
+    margin: 20,
+    loop: true,
+    autoplayHoverPause: true,
+    responsive: {
+        0: {
+            items: 1,
+            nav: false
+        },
+        600: {
+            items: 2,
+            nav: false
+        },
+        1000: {
+            items: 5,
+            nav: false
+        },
+    }
+});
+
+//todo  SUGGESTED FOR YOU Carusel
+
+$(".suggestedFor").owlCarousel({
+    margin: 20,
+    loop: true,
+    autoplayHoverPause: true,
+    responsive: {
+        0: {
+            items: 1,
+            nav: false
+        },
+        600: {
+            items: 2,
+            nav: false
+        },
+        1000: {
+            items: 5,
+            nav: false
+        },
+    }
+});
 //todo  TOP 10 BOX OFFICE
 
 var swiper = new Swiper(".mySwiper", {

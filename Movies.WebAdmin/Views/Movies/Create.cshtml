@@ -1,0 +1,72 @@
+﻿@model MovieC
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center display-3">Create Product</h1>
+<hr />
+
+<div class="mx-auto d-block">
+    <form enctype="multipart/form-data" class="mx-auto" method="post" asp-action="Create">
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group col">
+                <label asp-for="Name" class="control-label ">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group col">
+                <label asp-for="Age" class="control-label ">Age</label>
+                <input asp-for="Age" class="form-control" placeholder="Age">
+            </div>
+            <div class="form-group col">
+                <label asp-for="MovieTime" class="control-label ">Movie Time</label>
+                <input asp-for="MovieTime" class="form-control" placeholder="MovieTime">
+            </div>
+            <div class="form-group col">
+                <label asp-for="Description" class="control-label ">Description</label>
+                <input asp-for="Description" class="form-control" placeholder="Description">
+            </div>
+            <div class="form-group col">
+                <label asp-for="Year" class="control-label ">Year</label>
+                <input asp-for="Year" class="form-control" placeholder="Year">
+            </div>
+            <div class="form-group col">
+                <label asp-for="Country" class="control-label ">Country</label>
+                <input asp-for="Country" class="form-control" placeholder="Country">
+            </div>
+            <div class="form-group col">
+                <label asp-for="Director" class="control-label ">Director</label>
+                <input asp-for="Director" class="form-control" placeholder="Director">
+            </div>
+            <div class="form-group col">
+                <label asp-for="Genre" class="control-label ">Genre</label>
+                <input asp-for="Genre" class="form-control" placeholder="Genre">
+            </div>
+        </div>
+        <div class="form-group col">
+            <div class="form-group">
+                <label asp-for="@Model.Img" class="control-label"></label>
+                <input type="file" name="files" class="form-control"  />
+                <span asp-validation-for="@Model.Img" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.MovieVideo" class="control-label"></label>
+                <input type="file" name="files" class="form-control" />
+                <span asp-validation-for="@Model.MovieVideo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Trailer" class="control-label"></label>
+                <input type="file" name="files" class="form-control" />
+                <span asp-validation-for="@Model.Trailer" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group mt-4 text-center">
+            <input type="submit" value="Create" class="btn btn-outline-success btn-lg" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a class="btn btn-outline-info btn-lg text-decoration-none  float-end" asp-action="Index">Back to List</a>
+</div>

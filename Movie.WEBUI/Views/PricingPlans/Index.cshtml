@@ -3,7 +3,16 @@
     ViewData["Title"] = "Index";
 }
 
-<link rel="stylesheet" href="~/css/PricingPlans.css">
+@section addcss{
+    <link href="~/css/pricingplans.css" rel="stylesheet" />
+
+    <style>
+        body{
+            flex-direction: column;
+        }
+    </style>
+}
+
 
 <div class="top-banner">
     <p class="current-plan">Your current Plan</p>
@@ -70,6 +79,10 @@
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="~/js/PricingPlans.js"></script>
+
+@section Scripts{
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/js/PricingPlans.js"></script>
+}
+
 

@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Movies.DAL.Data;
+
 namespace Movies.WebAdmin
 {
     public class Program
@@ -8,6 +11,10 @@ namespace Movies.WebAdmin
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
+            });
 
             var app = builder.Build();
 

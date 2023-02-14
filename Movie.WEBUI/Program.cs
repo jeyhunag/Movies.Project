@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Movies.DAL.Data;
+
 namespace Movie.WEBUI
 {
 	public class Program
@@ -9,7 +12,12 @@ namespace Movie.WEBUI
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 
-			var app = builder.Build();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
+            });
+
+            var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())
