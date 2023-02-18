@@ -17,17 +17,16 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="~/css/style.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="~/css/style.css"/>
+    <title>@ViewData["Title"] - Movies-CO</title>
     @RenderSection("addcss",false)
 </head>
 <body>
 
     <partial name="_Sidebar" />
-    @RenderBody()
+        @RenderBody()
     <partial name="_Footer" />
-
-
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
             integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -35,7 +34,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
             integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/js/Index.js"></script>
+    <script src="~/js/Index.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

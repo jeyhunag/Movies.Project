@@ -4,10 +4,20 @@
 
 @section addcss{
     <link rel="stylesheet" href="~/css/AccauntSettings.css">
+    <script src="~/js/AccauntSettings.js"></script>
     <style>
         .form-group {
             flex-direction: column !important;
             align-items: flex-start !important;
+        }
+
+        #buttonSaveCancel{
+            display:inline-block !important;
+        }
+
+        .main-content{
+            margin-top: 100px;
+            margin-bottom: 150px;
         }
     </style>
 }
@@ -25,9 +35,6 @@
                             <ul class="nav nav-pills mb-3">
                                 <li class="nav-item profile-settings">
                                     <a class="nav-link profile-settings" href="#">Profile Settings</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" id="account-settings">Account Settings</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -62,7 +69,7 @@
                                         <h5 class="mb-3 mt-3 pb-3 section-border">General Information</h5>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group AccauntSettings">
                                                     <label for="username">Username</label>
                                                     <input class="form-control my-3" name="username" type="text"
                                                            placeholder="Enter your Username" id="username">
@@ -70,7 +77,7 @@
                                             </div>
                                             <!-- Col End -->
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group AccauntSettings">
                                                     <label>Email Address</label>
                                                     <input type="email" class="form-control my-3" name="email"
                                                            placeholder="Enter your email" id="emailAddress">
@@ -81,7 +88,7 @@
                                         <!-- Row End -->
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group AccauntSettings">
                                                     <label>First Name</label>
                                                     <input class="form-control my-3" name="first-name" type="text"
                                                            placeholder="Enter your First Name" id="firstName">
@@ -90,7 +97,7 @@
 
                                             <!-- Col End -->
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group AccauntSettings">
                                                     <label>Last Name</label>
                                                     <input class="form-control my-3" name="last-name" type="text"
                                                            placeholder="Enter your Last Name" id="lastName">
@@ -102,7 +109,7 @@
                                         <h5 class="mb-3 mt-3 pb-3 section-border">Change Password</h5>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group AccauntSettings">
                                                     <label>Current Password</label>
                                                     <input type="password" class="form-control my-3"
                                                            name="current-password"
@@ -113,7 +120,7 @@
 
                                             <!-- Col End -->
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group AccauntSettings">
                                                     <label>New Password</label>
                                                     <input type="password" class="form-control my-3" name="new-password"
                                                            placeholder="Enter your New Password" id="newPassword">
@@ -124,7 +131,7 @@
                                         </div>
                                         <!-- Row End -->
                                         <h5 class="mb-3 mt-3 pb-3 section-border">Personal Information</h5>
-                                        <div id="sandbox-container" class="form-group">
+                                        <div id="sandbox-container" class="form-group AccauntSettings">
                                             <label>Date of Birth</label>
                                             <input type="text" class="form-control my-3" name="date-of-birth"
                                                    placeholder="Enter your Date of Birth" id="dateofbirth">
@@ -132,7 +139,7 @@
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group AccauntSettings">
                                                     <label>Gender</label>
                                                     <select class="form-control my-3" name="select-plan"
                                                             aria-label="Default select example" id="select-gender">
@@ -144,7 +151,7 @@
 
                                             <!-- Col End -->
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group AccauntSettings">
                                                     <label>Language</label>
                                                     <select class="form-control my-3" name="select-plan"
                                                             aria-label="Default select example" id="select-language">
@@ -164,7 +171,7 @@
                                         </div>
 
                                         <!-- Row End -->
-                                        <div class="form-group d-flex align-items-center mt-3">
+                                        <div class="form-group  mt-3" id="buttonSaveCancel">
                                             <a href="#" class="hvr-sweep-to-right btn px-3">Save</a>
                                             <a href="#" class="hvr-sweep-to-right btn ms-3">Cancel</a>
                                         </div>
@@ -180,4 +187,4 @@
     </div>
 </div>
 
-<script src="~/js/AccauntSettings.js"></script>
+
