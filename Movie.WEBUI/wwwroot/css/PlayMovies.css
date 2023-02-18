@@ -222,37 +222,7 @@ h4 {
     display: flex !important;
 }
 
-/* Modal Share */
-.modal {
-    top: 150px;
-}
 
-.modal-title {
-    color: #202020;
-}
-
-.btn-close {
-    color: grey !important;
-    font-weight: bolder !important;
-    background-color: white !important;
-}
-
-.modal-body>i {
-    font-size: 40px !important;
-    color: #202020;
-}
-
-/* Modal Trailer */
-
-.modal-content{
-    border-radius: 5px;
-    width: 600px;
-}
-.modal-body>video {
-    top: 0;
-    width: 100% !important;
-    height: 100% !important;
-}
 
 /* @media only screen and (max-width: 992px) {
     .PMovies {

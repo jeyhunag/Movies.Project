@@ -2,10 +2,8 @@
     ViewData["Title"] = "Index";
 }
 @section addcss{
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/Movies.css">
+
+    <link href="~/css/movies.css" rel="stylesheet" />
     <style>
         .card-container {
             margin-bottom:100px !important;
@@ -19,12 +17,22 @@
             color: black;
             background: white;
         }
+
+        .moviePageDropdown {
+            display: inline-flex;
+            background: red;
+            color: black;
+        }
+
+        .dropdown-menu{
+            margin-top:10px;
+        }
     </style>
 }
 
     <div class="container">
         <div class="Filtir">
-        <div class="dropdown" id="moviePageDropdown">
+        <div class="dropdown moviePageDropdown">
                 <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
                     Genres
                 </button>
@@ -49,7 +57,7 @@
                 </ul>
             </div>
 
-        <div class="dropdown moviePageDropdown" id="moviePageDropdown">
+        <div class="dropdown moviePageDropdown moviePageDropdown">
                 <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
                     Categories
                 </button>
@@ -61,7 +69,7 @@
                 </ul>
             </div>
 
-        <div class="dropdown " id="moviePageDropdown">
+        <div class="dropdown moviePageDropdown">
                 <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
                     Dubbing
                 </button>
