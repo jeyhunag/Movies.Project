@@ -1,22 +1,19 @@
-
-.header h1 {
+﻿
+.form-contact .header h1 {
     display: flex;
     text-align: center;
     justify-content: center;
 }
 
-.header h1 {
+.form-contact .header h1 {
     font-size: 60px;
     font-weight: bolder;
     color: red;
 }
 
-form {
-    width: 500px;
-    margin: 170px auto;
-}
 
-.form-control {
+
+.form-control-contact {
     border-color: white;
     background-color: #1D1C1C;
     padding: 8px;
@@ -24,20 +21,21 @@ form {
     color: grey;
 }
 
-.form-control:focus {
-    background-color: white;
-    color: black;
-    box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.36);
-    border-color: red;
-}
+    .form-control-contact:focus {
+        background-color: white;
+        color: black;
+        box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.36);
+        border-color: red;
+    }
 
-.container form button {
+.container .form-contact .button-contact {
     padding: 8px 40px;
     background-color: red;
     border-radius: 0;
     color: white;
 }
-.container form button:hover {
-    background-color: red;
-    color: white;
-}
+
+    .container .form-contact .button-contact:hover {
+        background-color: red;
+        color: white;
+    }
