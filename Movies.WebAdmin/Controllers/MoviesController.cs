@@ -10,20 +10,22 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Movies.Controllers
 {
     public class MoviesController : Controller
     {
-        //private readonly ILogger<MoviesController> _logger;
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly string _imgPath = @"img\";
+        private readonly string _videoPath = @"Video\";
+        private readonly string _trailerPath = @"Video\";
 
-        public MoviesController(AppDbContext context, IWebHostEnvironment webHostEnvironment/*, ILogger<MoviesController> logger*/)
+        public MoviesController(AppDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
-            //_logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -33,69 +35,162 @@ namespace Movies.Controllers
 
         public IActionResult Create()
         {
-      
+          
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [RequestSizeLimit(10_000_000_000)]
-        public async Task<IActionResult> Create([FromForm] MovieC movieC, List<IFormFile> files)
-        {
+    
 
+        [HttpPost]
+        public async Task<IActionResult> Create(MovieC movie, IFormFile imageFile, IFormFile videoFile, IFormFile trailerFile)
+        {
+         
             if (ModelState.IsValid)
             {
-                var fileName = Path.GetFileName(movieC.file.FileName);
-                var uniqueFileName = Guid.NewGuid().ToString() + "_" + fileName;
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", uniqueFileName);
-
-                // Check if the uploaded file is an image or video
-                if (movieC.file.ContentType.StartsWith("image/"))
+                
+                if (imageFile != null && imageFile.Length > 0)
                 {
-                    // Save the image file
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    var imagePath = _imgPath + imageFile.FileName;
+                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
-                        await movieC.file.CopyToAsync(stream);
+                        await imageFile.CopyToAsync(stream);
+                        movie.Img = imagePath;
                     }
-
-                    movieC.Img = "/uploads/" + uniqueFileName; // Set the image file path
                 }
-                else if (movieC.file.ContentType == "video/mp4")
+
+                
+                if (videoFile != null && videoFile.Length > 0)
                 {
-                    // Save the video file
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    var videoPath = _videoPath + videoFile.FileName;
+                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
-                        await movieC.file.CopyToAsync(stream);
+                        await videoFile.CopyToAsync(stream);
+                        movie.MovieVideo = videoPath;
                     }
-
-                    movieC.MovieVideo = "16:9"; // Set the video proportions
                 }
-                else if (movieC.file.ContentType == "video/mp4")
+
+             
+                if (trailerFile != null && trailerFile.Length > 0)
                 {
-                    // Save the video file
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    var trailerPath = _trailerPath + trailerFile.FileName;
+                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, trailerPath);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
-                        await movieC.file.CopyToAsync(stream);
+                        await trailerFile.CopyToAsync(stream);
+                        movie.Trailer = trailerPath;
                     }
-
-                    movieC.Trailer = "16:9"; // Set the video proportions
-                }
-                else
-                {
-                    // Invalid file type
-                    ModelState.AddModelError("File", "The file must be an image or MP4 video.");
-                    return View(movieC);
                 }
 
-                // Add the model to the database
-                _context.Add(movieC);
+                
+                _context.Movies.Add(movie);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
 
-            return View(movieC);
+            return View(movie);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var movie = await _context.Movies.FindAsync(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, MovieC movie, IFormFile imageFile, IFormFile videoFile, IFormFile trailerFile)
+        {
+            if (id != movie.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (imageFile != null && imageFile.Length > 0)
+                    {
+                        var imagePath = _imgPath + imageFile.FileName;
+                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                        using (var stream = new FileStream(fullPath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(stream);
+                            movie.Img = imagePath;
+                        }
+                    }
+
+                    if (videoFile != null && videoFile.Length > 0)
+                    {
+                        var videoPath = _videoPath + videoFile.FileName;
+                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
+                        using (var stream = new FileStream(fullPath, FileMode.Create))
+                        {
+                            await videoFile.CopyToAsync(stream);
+                            movie.MovieVideo = videoPath;
+                        }
+                    }
+
+                    if (trailerFile != null && trailerFile.Length > 0)
+                    {
+                        var trailerPath = _trailerPath + trailerFile.FileName;
+                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, trailerPath);
+                        using (var stream = new FileStream(fullPath, FileMode.Create))
+                        {
+                            await trailerFile.CopyToAsync(stream);
+                            movie.Trailer = trailerPath;
+                        }
+                    }
+
+                    _context.Update(movie);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!MovieExists(movie.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(movie);
+        }
+
+        private bool MovieExists(int id)
+        {
+            throw new NotImplementedException("Yalnis melumat daxil etdiniz.");
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            MovieC movie = _context.Movies.Where(p => p.Id == id).FirstOrDefault();
+            _context.Movies.Remove(movie);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
     }
+
 }
+

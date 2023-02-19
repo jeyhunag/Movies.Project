@@ -19,12 +19,10 @@ namespace Movies.DAL.DbModel
         public string Description { get; set; }
         public string Director { get; set; }
         public string Genre { get; set; }
-        public string Img { get; set; }
-        public string MovieVideo { get; set; }
-        public string Trailer { get; set; }
-        [NotMapped]
-        public IFormFile file { get; set; }
+        public string? Img { get; set; }
+        public string? MovieVideo { get; set; }
+        public string? Trailer { get; set; }
 
-        public virtual ICollection<MoviesDocument> MoviesDocuments { get; set; }
+        public virtual ICollection<MoviesDocument>? MoviesDocuments { get; set; }
     }
 }

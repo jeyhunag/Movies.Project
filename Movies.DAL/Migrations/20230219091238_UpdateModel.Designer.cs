@@ -12,8 +12,8 @@ using Movies.DAL.Data;
 namespace Movies.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230214134959_UpdateMoviesClass")]
-    partial class UpdateMoviesClass
+    [Migration("20230219091238_UpdateModel")]
+    partial class UpdateModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

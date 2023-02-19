@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Movies.DAL.Migrations
 {
-    public partial class UpdateMoviesClass : Migration
+    public partial class UpdateModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
