@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
+using Movies.BLL.Services.Interfaces;
+using Movies.BLL.Services;
 using Movies.DAL.Data;
+using Movies.DAL.Repostory.Interfaces;
+using Movies.DAL.Repostory;
+using Movies.BLL.Mapping;
 
 namespace Movies.WebAdmin
 {
@@ -16,18 +21,21 @@ namespace Movies.WebAdmin
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
-            builder.Services.Configure<IISServerOptions>(options =>
-            {
-                options.MaxRequestBodySize = 838860800;
-            });
+            //builder.Services.Configure<IISServerOptions>(options =>
+            //{
+            //    options.MaxRequestBodySize = 838860800;
+            //});
 
-            builder.Services.Configure<KestrelServerOptions>(options =>
-            {
-                options.Limits.MaxRequestBodySize = 838860800;
-            });
-
+            //builder.Services.Configure<KestrelServerOptions>(options =>
+            //{
+            //    options.Limits.MaxRequestBodySize = 838860800;
+            //});
+            builder.Services.AddAutoMapper(typeof(CustomMapping));
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -1,0 +1,40 @@
+﻿@model AboutDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center display-3">Create About</h1>
+<hr />
+
+<div class="mx-auto d-block">
+    <form enctype="multipart/form-data" class="mx-auto" method="post" asp-action="Create">
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group col">
+                <label asp-for="Position" class="control-label ">Position</label>
+                <input asp-for="Position" class="form-control" placeholder="Position">
+            </div>
+            <div class="form-group col">
+                <label asp-for="Description" class="control-label ">Description</label>
+                <input asp-for="Description" class="form-control" placeholder="Description">
+            </div>
+
+        </div>
+        <div class="form-group col">
+            <div class="form-group">
+                <label asp-for="@Model.Img" class="control-label"></label>
+                <input type="file" name="imageFile" class="form-control" />
+                <span asp-validation-for="@Model.Img" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group mt-4 text-center">
+            <input type="submit" value="Create" class="btn btn-outline-success btn-lg" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a class="btn btn-outline-info btn-lg text-decoration-none  float-end" asp-action="Index">Back to List</a>
+</div>
+

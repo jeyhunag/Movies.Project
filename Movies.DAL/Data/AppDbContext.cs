@@ -16,6 +16,11 @@ namespace Movies.DAL.Data
         }
 
         public  DbSet<MovieC> Movies { get; set; }
+        public  DbSet<LanguageCategory> LanguageCategories { get; set; }
+        public  DbSet<CountryCategory> CountryCategories { get; set; }
+        public  DbSet<GenresCategory> GenresCategories { get; set; }
+        public  DbSet<About> Abouts { get; set; }
+        public  DbSet<Contact> Contacts { get; set; }
         public  DbSet<MoviesDocument> MoviesDocuments { get; set; }
     }
 }

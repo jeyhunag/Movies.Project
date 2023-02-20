@@ -33,9 +33,12 @@ namespace Movies.Controllers
             return View(await _context.Movies.ToListAsync());
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
-          
+            ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name");
+            ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name");
+            ViewData["LanguageCategoryId"] = new SelectList(_context.LanguageCategories, "Id", "Name");
             return View();
         }
 
@@ -89,7 +92,9 @@ namespace Movies.Controllers
 
                 return RedirectToAction("Index");
             }
-
+            ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name", movie.CountryCategoryId);
+            ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name", movie.GenresCategoryId);
+            ViewData["LanguageCategoryId"] = new SelectList(_context.LanguageCategories, "Id", "Name", movie.LanguageCategoryId);
             return View(movie);
         }
 
@@ -106,7 +111,9 @@ namespace Movies.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name");
+            ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name");
+            ViewData["LanguageCategoryId"] = new SelectList(_context.LanguageCategories, "Id", "Name");
             return View(movie);
         }
 
@@ -172,13 +179,13 @@ namespace Movies.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name", movie.CountryCategoryId);
+            ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name", movie.GenresCategoryId);
+            ViewData["LanguageCategoryId"] = new SelectList(_context.LanguageCategories, "Id", "Name", movie.LanguageCategoryId);
             return View(movie);
         }
 
-        private bool MovieExists(int id)
-        {
-            throw new NotImplementedException("Yalnis melumat daxil etdiniz.");
-        }
+
 
         public IActionResult Delete(int? id)
         {
@@ -189,7 +196,10 @@ namespace Movies.Controllers
             return RedirectToAction("Index");
         }
 
-
+        private bool MovieExists(int id)
+        {
+            throw new NotImplementedException("Yalnis melumat daxil etdiniz.");
+        }
     }
 
 }
