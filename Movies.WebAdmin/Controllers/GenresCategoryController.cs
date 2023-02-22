@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Movies.BLL.Services;
 using Movies.BLL.Services.Interfaces;
 using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
+using Serilog;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace Movies.WebAdmin.Controllers
@@ -10,12 +12,15 @@ namespace Movies.WebAdmin.Controllers
     public class GenresCategoryController : Controller
     {
         private readonly IGenericService<GenresCategoryDto, GenresCategory> _service;
-        public GenresCategoryController(IGenericService<GenresCategoryDto, GenresCategory> service)
+        private readonly ILogger<GenericService<GenresCategoryDto, GenresCategory>> _logger;
+        public GenresCategoryController(IGenericService<GenresCategoryDto, GenresCategory> service, ILogger<GenericService<GenresCategoryDto, GenresCategory>> logger)
         {
             _service = service;
+            _logger = logger;
         }
         public async Task<IActionResult> Index()
         {
+            _logger.LogInformation("Giris");
             var genresCategories = await _service.GetListAsync();
             return View(genresCategories);
         }
@@ -29,33 +34,43 @@ namespace Movies.WebAdmin.Controllers
         [HttpPost]
         public IActionResult Update(GenresCategoryDto itemDto)
         {
-            var genresCategories = _service.Update(itemDto);
-            if (genresCategories != null)
+            if (ModelState.IsValid)
             {
-                TempData["success"] = "Kateqoriya uğurla dəyişdirildi.";
-                return RedirectToAction("Index");
+
+                _logger.LogInformation("Update edildi:");
+                var genresCategories = _service.Update(itemDto);
+
+                if (genresCategories != null)
+                {
+                    TempData["success"] = "Kateqoriya uğurla dəyişdirildi.";
+                    return RedirectToAction("Index");
+                }
             }
-            return View(genresCategories);
+
+            return View(itemDto);
 
         }
 
         public async Task<IActionResult> Create()
         {
-
+            _logger.LogInformation("Melumat daxil oldu");
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(GenresCategoryDto itemDto)
         {
-
-            var genresCategories = await _service.AddAsync(itemDto);
-            if (genresCategories != null)
+            if (ModelState.IsValid)
             {
-                TempData["success"] = "Kateqoriya uğurla əlavə edildi.";
-                return RedirectToAction("Index");
+                var genresCategories = await _service.AddAsync(itemDto);
+                if (genresCategories != null)
+                {
+                    TempData["success"] = "Kateqoriya uğurla əlavə edildi.";
+                    return RedirectToAction("Index");
+                }
             }
-            return View(genresCategories);
+          
+            return View(itemDto);
         }
 
         public async Task<IActionResult> Delete(int id)

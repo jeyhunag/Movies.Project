@@ -1,23 +1,27 @@
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
-using Movies.BLL.Services.Interfaces;
-using Movies.BLL.Services;
 using Movies.DAL.Data;
-using Movies.DAL.Repostory.Interfaces;
-using Movies.DAL.Repostory;
 using Movies.BLL.Mapping;
+using Movies.WebAdmin.Helper.Extensions;
+using Movies.WebAdmin.Helper.FlluentExtensions;
+using Serilog;
+using Serilog.Events;
 
 namespace Movies.WebAdmin
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+      
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
-       
+            builder.Services.AddControllersWithViews();/*.AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<Program>());*/
+
+            builder.Services.AddFluentServices();
+
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
@@ -34,8 +38,20 @@ namespace Movies.WebAdmin
             //    options.Limits.MaxRequestBodySize = 838860800;
             //});
             builder.Services.AddAutoMapper(typeof(CustomMapping));
-            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
+            
+            builder.Services.AddServices();
+            builder.Services.AddRepositories();
+
+            var _logger = new LoggerConfiguration().MinimumLevel.Information().WriteTo.Console()
+                .WriteTo.File(@"Log/all-daily.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+            builder.Logging.AddSerilog(_logger);
+
+            var _loggerImportant = new LoggerConfiguration().MinimumLevel.Error().WriteTo.Console()
+                .WriteTo.File(@"Log/important-logs.txt", restrictedToMinimumLevel: LogEventLevel.Warning)
+                .CreateLogger();
+            builder.Logging.AddSerilog(_loggerImportant);
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -45,6 +61,8 @@ namespace Movies.WebAdmin
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

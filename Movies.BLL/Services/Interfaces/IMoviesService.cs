@@ -1,0 +1,20 @@
+﻿using Movies.DAL.DbModel;
+using Movies.DAL.Dtos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Movies.BLL.Services.Interfaces
+{
+    public interface IMoviesService: IGenericService<MovieCDto, MovieC>
+    {
+        public Task<List<CountryCategoryDto>> GetCategoriesAsync();
+        //public Task<List<GenresCategoryDto>> GetCategoriesAsync();
+        //public Task<List<LanguageCategoryDto>> GetCategoriesAsync();
+
+        public Task<List<MovieCDto>> GetMoviesByCategoryIdAsync(int id);
+        public Task<MovieCDto> GetMoviesDetailByIdAsync(int id);
+    }
+}

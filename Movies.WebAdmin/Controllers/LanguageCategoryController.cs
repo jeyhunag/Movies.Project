@@ -27,13 +27,17 @@ namespace Movies.WebAdmin.Controllers
         [HttpPost]
         public IActionResult Update(LanguageCategoryDto itemDto)
         {
-            var languageCategories = _service.Update(itemDto);
-            if (languageCategories != null)
+            if (ModelState.IsValid)
             {
-                TempData["success"] = "Kateqoriya uğurla dəyişdirildi.";
-                return RedirectToAction("Index");
+                var languageCategories = _service.Update(itemDto);
+                if (languageCategories != null)
+                {
+                    TempData["success"] = "Kateqoriya uğurla dəyişdirildi.";
+                    return RedirectToAction("Index");
+                }
             }
-            return View(languageCategories);
+     
+            return View(itemDto);
 
         }
 
@@ -46,14 +50,17 @@ namespace Movies.WebAdmin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(LanguageCategoryDto itemDto)
         {
-
-            var languageCategories = await _service.AddAsync(itemDto);
-            if (languageCategories != null)
+            if (ModelState.IsValid)
             {
-                TempData["success"] = "Kateqoriya uğurla əlavə edildi.";
-                return RedirectToAction("Index");
+                var languageCategories = await _service.AddAsync(itemDto);
+                if (languageCategories != null)
+                {
+                    TempData["success"] = "Kateqoriya uğurla əlavə edildi.";
+                    return RedirectToAction("Index");
+                }
             }
-            return View(languageCategories);
+        
+            return View(itemDto);
         }
 
         public async Task<IActionResult> Delete(int id)

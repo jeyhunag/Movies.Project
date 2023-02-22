@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Movies.BLL.Services.Interfaces;
 using Movies.DAL.Dtos;
 using Movies.DAL.Repostory.Interfaces;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,21 +17,29 @@ namespace Movies.BLL.Services
     {
         private readonly IGenericRepository<TEntity> _genericRepository;
         protected readonly IMapper _mapper;
-        public GenericService(IGenericRepository<TEntity> genericRepository, IMapper mapper)
+        private readonly ILogger<GenericService<TDto, TEntity>> _logger;
+        public GenericService(IGenericRepository<TEntity> genericRepository, IMapper mapper, ILogger<GenericService<TDto, TEntity>> logger)
         {
             _genericRepository = genericRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<TDto> AddAsync(TDto item)
         {
-
-            TEntity entity = _mapper.Map<TEntity>(item);
-            TEntity dbEntity = await _genericRepository.AddAsync(entity);
-            return _mapper.Map<TDto>(dbEntity);
-
-
-
+            try
+            {
+                TEntity entity = _mapper.Map<TEntity>(item);
+                TEntity dbEntity = await _genericRepository.AddAsync(entity);
+                return _mapper.Map<TDto>(dbEntity);
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex.Message);
+                _logger.LogError(ex.StackTrace);
+                //throw  new YourCustomException();
+                throw;
+            }
         }
 
         public void Delete(int id)
@@ -53,10 +62,22 @@ namespace Movies.BLL.Services
 
         public TDto Update(TDto item)
         {
-            TEntity entity = _mapper.Map<TEntity>(item);
-            TEntity dbEntity = _genericRepository.Update(entity);
+            try
+            {
+                TEntity entity = _mapper.Map<TEntity>(item);
+                TEntity dbEntity = _genericRepository.Update(entity);
+                return _mapper.Map<TDto>(dbEntity);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                //_logger.LogError(ex.StackTrace);
+                //throw  new YourCustomException();
+                throw;
+            }
+           
 
-            return _mapper.Map<TDto>(dbEntity);
+            
         }
     }
 }
