@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Movies.BLL.Exceptions;
 using Movies.BLL.Services.Interfaces;
 using Movies.DAL.Dtos;
 using Movies.DAL.Repostory.Interfaces;
@@ -29,6 +30,7 @@ namespace Movies.BLL.Services
         {
             try
             {
+                Log.Information("Open");
                 TEntity entity = _mapper.Map<TEntity>(item);
                 TEntity dbEntity = await _genericRepository.AddAsync(entity);
                 return _mapper.Map<TDto>(dbEntity);
@@ -36,21 +38,36 @@ namespace Movies.BLL.Services
             catch (Exception ex)
             {
                 //_logger.LogError(ex.Message);
-                _logger.LogError(ex.StackTrace);
-                //throw  new YourCustomException();
-                throw;
+                //_logger.LogError(ex.StackTrace);
+                Log.Error(ex.Message);
+                Log.Error(ex.StackTrace);
+                throw new CustomException("BLL də əlavə edillərkən xəta yarandı. Xahiş olunur adminsitrator ilə əlaqə saxla.");
+
             }
         }
 
         public void Delete(int id)
         {
             _genericRepository.Delete(id);
+            Log.Information("Delete");
         }
 
         public async Task<TDto> GetByIdAsync(int id)
         {
-            TEntity entity = await _genericRepository.GetByIdAsync(id);
-            return _mapper.Map<TDto>(entity);
+            try
+            {
+                TEntity entity = await _genericRepository.GetByIdAsync(id);
+                return _mapper.Map<TDto>(entity);
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex.Message);
+                //_logger.LogError(ex.StackTrace);
+                Log.Error(ex.Message);
+                Log.Error(ex.StackTrace);
+                throw new CustomException("BLL də əlavə edillərkən xəta yarandı. Xahiş olunur adminsitrator ilə əlaqə saxla.");
+            }
+           
         }
 
         public async Task<List<TDto>> GetListAsync()
@@ -66,18 +83,15 @@ namespace Movies.BLL.Services
             {
                 TEntity entity = _mapper.Map<TEntity>(item);
                 TEntity dbEntity = _genericRepository.Update(entity);
+                Log.Information("Update edildi.");
                 return _mapper.Map<TDto>(dbEntity);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
-                //_logger.LogError(ex.StackTrace);
-                //throw  new YourCustomException();
-                throw;
+                Log.Error(ex.Message);
+                Log.Error(ex.StackTrace);
+                throw new CustomException("BLL də əlavə edillərkən xəta yarandı. Xahiş olunur adminsitrator ilə əlaqə saxla.");
             }
-           
-
-            
         }
     }
 }

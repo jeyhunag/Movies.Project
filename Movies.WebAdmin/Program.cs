@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Server.Kestrel.Core;
+﻿using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Movies.DAL.Data;
 using Movies.BLL.Mapping;
@@ -6,6 +6,10 @@ using Movies.WebAdmin.Helper.Extensions;
 using Movies.WebAdmin.Helper.FlluentExtensions;
 using Serilog;
 using Serilog.Events;
+using Microsoft.Extensions.Logging;
+using Movies.WebAdmin.Helper.LogExtensions;
+using Movies.DAL.DbModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace Movies.WebAdmin
 {
@@ -20,13 +24,29 @@ namespace Movies.WebAdmin
             // Add services to the container.
             builder.Services.AddControllersWithViews();/*.AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<Program>());*/
 
+            //Fluent Validations Extensions
             builder.Services.AddFluentServices();
-
+            
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
+
+            //Identity AppRole,AppUser
+            builder.Services.AddIdentity<AppUser, AppRole>(opts =>
+            {
+
+                opts.User.RequireUniqueEmail = true;
+                opts.User.AllowedUserNameCharacters = "abcçdefgğhıijklmnoöpqrsştuüvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._";
+
+                opts.Password.RequiredLength = 4;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
             //builder.Services.Configure<IISServerOptions>(options =>
             //{
@@ -37,20 +57,21 @@ namespace Movies.WebAdmin
             //{
             //    options.Limits.MaxRequestBodySize = 838860800;
             //});
+
+            //All Logger Extensions
+            builder.Services.AddAllLogServices();
+
+            //Importand Logger Extensions
+            //builder.Services.AddImpotandLogServices();
+
+            //Mapping
             builder.Services.AddAutoMapper(typeof(CustomMapping));
-            
+
+            //Generic Services Extensions
             builder.Services.AddServices();
+
+            //Generic Repostory Extensions
             builder.Services.AddRepositories();
-
-            var _logger = new LoggerConfiguration().MinimumLevel.Information().WriteTo.Console()
-                .WriteTo.File(@"Log/all-daily.txt", rollingInterval: RollingInterval.Day)
-                .CreateLogger();
-            builder.Logging.AddSerilog(_logger);
-
-            var _loggerImportant = new LoggerConfiguration().MinimumLevel.Error().WriteTo.Console()
-                .WriteTo.File(@"Log/important-logs.txt", restrictedToMinimumLevel: LogEventLevel.Warning)
-                .CreateLogger();
-            builder.Logging.AddSerilog(_loggerImportant);
 
             var app = builder.Build();
 
@@ -73,9 +94,10 @@ namespace Movies.WebAdmin
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=LogIn}/{id?}");
 
             app.Run();
+
         }
     }
 }

@@ -12,15 +12,13 @@ namespace Movies.WebAdmin.Controllers
     public class GenresCategoryController : Controller
     {
         private readonly IGenericService<GenresCategoryDto, GenresCategory> _service;
-        private readonly ILogger<GenericService<GenresCategoryDto, GenresCategory>> _logger;
-        public GenresCategoryController(IGenericService<GenresCategoryDto, GenresCategory> service, ILogger<GenericService<GenresCategoryDto, GenresCategory>> logger)
+        public GenresCategoryController(IGenericService<GenresCategoryDto, GenresCategory> service)
         {
             _service = service;
-            _logger = logger;
         }
         public async Task<IActionResult> Index()
         {
-            _logger.LogInformation("Giris");
+
             var genresCategories = await _service.GetListAsync();
             return View(genresCategories);
         }
@@ -32,12 +30,10 @@ namespace Movies.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(GenresCategoryDto itemDto)
+        public async Task<IActionResult> Update(GenresCategoryDto itemDto)
         {
             if (ModelState.IsValid)
             {
-
-                _logger.LogInformation("Update edildi:");
                 var genresCategories = _service.Update(itemDto);
 
                 if (genresCategories != null)
@@ -53,7 +49,6 @@ namespace Movies.WebAdmin.Controllers
 
         public async Task<IActionResult> Create()
         {
-            _logger.LogInformation("Melumat daxil oldu");
             return View();
         }
 

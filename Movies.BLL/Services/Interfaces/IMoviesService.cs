@@ -10,9 +10,9 @@ namespace Movies.BLL.Services.Interfaces
 {
     public interface IMoviesService: IGenericService<MovieCDto, MovieC>
     {
-        public Task<List<CountryCategoryDto>> GetCategoriesAsync();
-        //public Task<List<GenresCategoryDto>> GetCategoriesAsync();
-        //public Task<List<LanguageCategoryDto>> GetCategoriesAsync();
+        public Task<List<CountryCategoryDto>> GetCountryCategoriesAsync();
+        public Task<List<GenresCategoryDto>> GetGenresCategoriesAsync();
+        public Task<List<LanguageCategoryDto>> GetLangaugeCategoriesAsync();
 
         public Task<List<MovieCDto>> GetMoviesByCategoryIdAsync(int id);
         public Task<MovieCDto> GetMoviesDetailByIdAsync(int id);

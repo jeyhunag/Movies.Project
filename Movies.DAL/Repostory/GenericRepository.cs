@@ -24,6 +24,7 @@ namespace Movies.DAL.Repostory
 
             await _entities.AddAsync(item);
             _dbContext.SaveChanges();
+            item.InsertDate = DateTime.Now;
             return item;
         }
 
@@ -31,6 +32,7 @@ namespace Movies.DAL.Repostory
         {
             var dbItem = _entities.Find(id);
             _entities.Remove(dbItem);
+            dbItem.DeletedDate = DateTime.Now;  
             _dbContext.SaveChanges();
         }
 
@@ -50,7 +52,7 @@ namespace Movies.DAL.Repostory
         {
             var dbEntity = _entities.Find(item.Id);
             item.InsertDate = dbEntity.InsertDate;
-            item.UpdateDate = DateTime.Now;        
+            item.UpdateDate = DateTime.Now;
             _entities.Update(item);
             _dbContext.SaveChanges();
             return item;

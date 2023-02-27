@@ -42,15 +42,15 @@ namespace Movies.Controllers
             return View();
         }
 
-    
+
 
         [HttpPost]
         public async Task<IActionResult> Create(MovieC movie, IFormFile imageFile, IFormFile videoFile, IFormFile trailerFile)
         {
-         
+
             if (ModelState.IsValid)
             {
-                
+
                 if (imageFile != null && imageFile.Length > 0)
                 {
                     var imagePath = _imgPath + imageFile.FileName;
@@ -62,7 +62,7 @@ namespace Movies.Controllers
                     }
                 }
 
-                
+
                 if (videoFile != null && videoFile.Length > 0)
                 {
                     var videoPath = _videoPath + videoFile.FileName;
@@ -74,7 +74,7 @@ namespace Movies.Controllers
                     }
                 }
 
-             
+
                 if (trailerFile != null && trailerFile.Length > 0)
                 {
                     var trailerPath = _trailerPath + trailerFile.FileName;
@@ -86,7 +86,7 @@ namespace Movies.Controllers
                     }
                 }
 
-                
+
                 _context.Movies.Add(movie);
                 await _context.SaveChangesAsync();
 
@@ -203,4 +203,3 @@ namespace Movies.Controllers
     }
 
 }
-

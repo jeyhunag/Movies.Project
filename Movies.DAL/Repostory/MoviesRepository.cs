@@ -17,9 +17,12 @@ namespace Movies.DAL.Repostory
 
         public async Task<List<MovieC>> GetByCategoryIdAsync(int id)
         {
-            IQueryable<MovieC> movie = _dbContext.Movies.Where(p => p.CountryCategoryId == id);
+            IQueryable<MovieC> movie = _dbContext.Movies.Where(p => p.CountryCategoryId == id && 
+            p.LanguageCategoryId==id && p.GenresCategoryId==id);
+        
 
             return movie.ToList();
+
         }
     }
 }
