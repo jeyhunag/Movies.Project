@@ -1,4 +1,5 @@
-﻿ <!-- Partial _Sidebar -->
+﻿@model SignInViewModel
+<!-- Partial _Sidebar -->
 <header>
     <div class="logoicons">
         <a asp-area="" asp-controller="Home" asp-action="Index">
@@ -8,21 +9,29 @@
     <div class="dropdown">
         <button class=" dropbtn bi bi-person-fill px-1" onclick="myFunction()"></button>
         <div id="myDropdown" class="dropdown-content">
-            <a href="#" id="open-modal" class="btn-open-modal"> Sign In</a>
-            <a href="#" id="open-modal-signup" class="btn-open-modal">Sign Up</a>
-            <a asp-area="" asp-controller="AccauntSettings" asp-action="Index">ACCAUNT SETTINGS </a>
-            <!-- <a href="#">LOGOUT</a> -->
+            @if (User.Identity.IsAuthenticated)
+            {
+                //<a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Log Out</a>
+                <a asp-area="" asp-controller="AccauntSettings" asp-action="Index">ACCAUNT SETTINGS </a>
+            }
+            else
+            {
+                <a @*asp-area="" asp-controller="Account" asp-action="Signin"*@ id="open-modal" class="btn-open-modal"> Sign In</a>
+                <a @*asp-area="" asp-controller="Account" asp-action="SignUp"*@ id="open-modal-signup" class="btn-open-modal">Sign Up</a>
+            }
         </div>
         <!-- Modal Sign In -->
         <div class="modal-overlay">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
                 <h2 class="modal-title">Sign In</h2>
-                <form class="formModal">
-                    <label for="username" class="labelModal">Username</label>
-                    <input type="text" id="username" name="username" required>
-                    <label for="password" class="labelModal">Password</label>
-                    <input type="password" id="password" name="password" required>
+                <form class="formModal" asp-action="SignIn">
+                    <label asp-for="UserName" for="username" class="labelModal">Username</label>
+                    <input asp-for="UserName" type="text" id="username" name="username" required>
+
+                    <label asp-for="Password" for="password" class="labelModal">Password</label>
+                    <input asp-for="Password" type="password" id="password" name="password" required>
+
                     <div class="form-group">
                         <input type="checkbox" id="remember-me" name="remember-me">
                         <label for="remember-me" class="remember-me mx-2">Remember me</label>

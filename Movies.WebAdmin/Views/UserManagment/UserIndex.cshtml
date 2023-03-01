@@ -30,16 +30,15 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th class="text-center">#</th>
                                 <th>Image</th>
-                                <th>Id</th>
+                                <th>#</th>
                                 <th>UserName</th>
                                 <th>Gender</th>
                                 <th>Name</th>
                                 <th>Surname</th>
                                 <th>Email</th>
                                 <th>Country</th>
-                                <th class="text-center">Action</th>
+                                <th>Update| Delete | Role</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,23 +48,24 @@
                                 {
                                     <tr>
                                         <td class="img-fluid">
-                                            <img src="~/Img/@item.Img" style="width:80px; height:50px; border-radius: 30%;">
+                                         <img style="width:40px; height: 50px" src="~/@item.Img" />
                                         </td>
-                                        <td class="text-center">@item.Id</td>
-                                        <td class="text-center">@item.Name</td>
-                                        <td class="text-center">@item.Surname</td>
-                                        <td class="text-center">@item.Gender</td>
-                                        <td class="text-center">@item.UserName</td>
-                                        <td class="text-center">@item.Email</td>
-                                        <td class="text-center">@item.Country</td>
+                                        <td>@item.Id</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Surname</td>
+                                        <td>@item.Gender</td>
+                                        <td>@item.UserName</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.Country</td>
                                         <td class="text-center" role="group">
                                             <a asp-controller="UserManagment" asp-action="UserDelete" asp-route-id="@item.Id" class="btn btn-danger" aria-current="page">  <i class="bi bi-trash-fill"></i>Delete</a>
-                                            <a asp-controller="UserManagment" asp-action="UserUpdate" asp-route-id="@item.Id" class="btn btn-primary" aria-current="page"> <i class="bi bi-pencil-square"></i>DəUpdate</a>
+                                            <a asp-controller="UserManagment" asp-action="UserUpdate" asp-route-id="@item.Id" class="btn btn-primary" aria-current="page"> <i class="bi bi-pencil-square"></i>Update</a>
                                             <a asp-controller="UserManagment" asp-action="RoleAssign" asp-route-id="@item.Id" class="btn btn-secondary" aria-current="page"> <i class="bi bi-person-gear"></i>CreateRole</a>
 
-                                            <a class="btn btn-info" onclick="showModal('@item.Id')" id="nav-btn"><i class="bi bi-info-circle"></i>Info</a>
-
-
+                                            
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info" onclick="showModal('@item.Id')" id="nav-btn"><i class="bi bi-info-circle"></i>RoleAssign</a>
                                         </td>
                                     </tr>
                                 }

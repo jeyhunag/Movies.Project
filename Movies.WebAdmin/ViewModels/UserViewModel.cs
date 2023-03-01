@@ -10,7 +10,6 @@ namespace Movies.WebAdmin.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public string Email { get; set; }
-        [DisplayName("Adı")]
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string? Img { get; set; }

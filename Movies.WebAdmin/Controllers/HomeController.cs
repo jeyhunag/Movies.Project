@@ -86,6 +86,12 @@ namespace Movies.WebAdmin.Controllers
             return View(loginViewModel);
         }
 
+        public IActionResult AccessDenied()
+        {
+
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

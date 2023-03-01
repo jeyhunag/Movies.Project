@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Movies.WebAdmin.Helper.LogExtensions;
 using Movies.DAL.DbModel;
 using Microsoft.AspNetCore.Identity;
+using Movies.WebAdmin.Helper.IdentityExtensions;
+using Movies.WebAdmin.Helper.CookieExtensions;
 
 namespace Movies.WebAdmin
 {
@@ -33,20 +35,13 @@ namespace Movies.WebAdmin
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
-            //Identity AppRole,AppUser
-            builder.Services.AddIdentity<AppUser, AppRole>(opts =>
-            {
+            //Identity AppRole,AppUser Security 
+            builder.Services.AddIdentityServices();
 
-                opts.User.RequireUniqueEmail = true;
-                opts.User.AllowedUserNameCharacters = "abcçdefgğhıijklmnoöpqrsştuüvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._";
+            //Cookie Service
+            builder.Services.AddCookieServices();
 
-                opts.Password.RequiredLength = 4;
-                opts.Password.RequireNonAlphanumeric = false;
-                opts.Password.RequireLowercase = false;
-                opts.Password.RequireUppercase = false;
-                opts.Password.RequireDigit = false;
 
-            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
             //builder.Services.Configure<IISServerOptions>(options =>
             //{
@@ -89,7 +84,7 @@ namespace Movies.WebAdmin
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

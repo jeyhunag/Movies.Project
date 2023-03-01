@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Movies.DAL.Data;
+using Movies.WebAdmin.Helper.Extensions;
+using Movies.WebAdmin.Helper.IdentityExtensions;
 
 namespace Movie.WEBUI
 {
@@ -17,10 +19,19 @@ namespace Movie.WEBUI
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
             });
 
-            var app = builder.Build();
+           
+            //Identity AppRole,AppUser Security 
+            builder.Services.AddIdentityServices();
 
-			// Configure the HTTP request pipeline.
-			if (!app.Environment.IsDevelopment())
+            //Generic Services Extensions
+            builder.Services.AddServices();
+
+            //Generic Repostory Extensions
+            builder.Services.AddRepositories();
+
+            var app = builder.Build();
+            // Configure the HTTP request pipeline.
+            if (!app.Environment.IsDevelopment())
 			{
 				app.UseExceptionHandler("/Home/Error");
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
@@ -31,8 +42,8 @@ namespace Movie.WEBUI
 			app.UseStaticFiles();
 
 			app.UseRouting();
-
-			app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
 			app.MapControllerRoute(
 				name: "default",

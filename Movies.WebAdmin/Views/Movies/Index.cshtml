@@ -5,13 +5,13 @@
 
 
 
-<h1 class="text-center display-3 " style="color:#FF7636;">Movie</h1>
+<h1 class="text-center display-3 " >Movie</h1>
 <p class="float-end">
     <a class="ui inverted violet  buttonbtn-lg " asp-action="Create"><i class="hand point right icon pe-5 fs-4"></i>Create New</a>
 </p>
 <table class="table table-hover ms-5">
     <thead>
-        <tr class="table-primary" style="color:#FF7636;">
+        <tr class="table-primary">
             <th>Image</th>
             <th>Id</th>
             <th>Name</th>
@@ -35,7 +35,7 @@
 
             <tr class="table-primary">
                 <td class="img-fluid">
-                    <img src="~/Img/@item.Img" style="width:80px; height:50px; border-radius: 30%;">
+                    <img style="width:60px; height: 70px" src="~/@item.Img" />
                 </td>
                 <td>@item.Id</td>
                 <td>@item.Name</td>
@@ -48,10 +48,10 @@
                 <td>@item.GenresCategoryId</td>
                 <td>@item.LanguageCategoryId</td>
                 <td class="img-fluid">
-                    <img src="~/Img/@item.MovieVideo" style="width:80px; height:50px; border-radius: 30%;">
+                    <img style="width:60px; height: 70px" src="~/@item.MovieVideo" />
                 </td>
                 <td class="img-fluid">
-                    <img src="~/Img/@item.Trailer" style="width:80px; height:50px; border-radius: 30%;">
+                    <img style="width:60px; height: 70px" src="~/@item.Trailer" />
                 </td>
 
                 <td>

@@ -1,0 +1,30 @@
+﻿@model SignUpViewModel
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<div class="modal-overlay-sigup">
+    <div class="modal-content-sigup">
+        <span class="close-button-sigup">&times;</span>
+        <h2 class="modal-title-sigup">Sign Up</h2>
+        <form class="formModal" asp-action="SignUp">
+            <label asp-for="UserName" for="username" class="labelModal-signup">Username</label>
+            <input asp-for="UserName" type="text" id="username" name="username" required>
+
+            <label asp-for="Email" for="Email" class="labelModal-signup">Email</label>
+            <input asp-for="Email" type="text" name="Email" required>
+
+            <label asp-for="Password" for="password" class="labelModal-signup">Password</label>
+            <input asp-for="Password" type="password" id="password" name="password" required>
+
+            <label asp-for="PasswordConfirm" for="password" class="changePassword-signup">Change Password</label>
+            <input asp-for="PasswordConfirm" type="password" name="password" required>
+            <div class="form-group">
+                <input type="checkbox" name="remember-me">
+                <label for="remember-me" class="remember-me mx-2">Remember me</label>
+            </div>
+            <button type="submit" class="btn-signup">Sign In</button>
+        </form>
+    </div>
+</div>
+
