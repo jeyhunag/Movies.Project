@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Movies.BLL.Mapping;
 using Movies.DAL.Data;
 using Movies.WebAdmin.Helper.Extensions;
 using Movies.WebAdmin.Helper.IdentityExtensions;
@@ -14,12 +15,15 @@ namespace Movie.WEBUI
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 
+
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
-           
+            //Mapping
+            builder.Services.AddAutoMapper(typeof(CustomMapping));
             //Identity AppRole,AppUser Security 
             builder.Services.AddIdentityServices();
 

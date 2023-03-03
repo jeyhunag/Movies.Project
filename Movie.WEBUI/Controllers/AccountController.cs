@@ -18,40 +18,45 @@ namespace Movie.WEBUI.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        public IActionResult SignIn()
+
+        public async Task<IActionResult> SignIn()
         {
             return View();
         }
-
+        [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignInViewModel model, string returnUrl)
+        public async Task<IActionResult> SignIn(SignInViewModel signInViewModel)
         {
+            String UserName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var appUser = await _userManager.FindByNameAsync(signInViewModel.UserName);
+                if (appUser == null)
+                {
+                    ModelState.AddModelError("", "Username or password is incorrect");
+                    goto showSameView;
+                }
+                var result = await _signInManager.PasswordSignInAsync(appUser, signInViewModel.Password, true, true);
+
                 if (result.Succeeded)
                 {
-                    return RedirectToLocal(returnUrl);
+
+                    string? redirect = Request.Query["returnUrl"];
+                    if (string.IsNullOrWhiteSpace(redirect))
+                        return RedirectToAction("Index", "Home");
+
                 }
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                else
+                {
+                    ModelState.AddModelError("", "Username or password is incorrect");
+                    goto showSameView;
+                }
             }
-
-            return View(model);
+        showSameView:
+            return View(signInViewModel);
         }
 
-        private IActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
-            }
-        }
-
-        public IActionResult SignUp()
+        public async Task<IActionResult> SignUp()
         {
             return View();
         }
@@ -75,6 +80,13 @@ namespace Movie.WEBUI.Controllers
             }
 
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("SignIn");
         }
 
     }

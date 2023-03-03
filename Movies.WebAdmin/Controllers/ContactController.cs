@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Movies.BLL.Services.Interfaces;
 using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
@@ -14,15 +15,17 @@ namespace Movies.WebAdmin.Controllers
         }
         public async Task<IActionResult> Index()
         {
+
             var contact = await _service.GetListAsync();
             return View(contact);
         }
 
+      
         public async Task<IActionResult> Delete(int id)
         {
-            var contact = await _service.GetByIdAsync(id);
+            var category = await _service.GetByIdAsync(id);
 
-            return View(contact);
+            return View(category);
 
         }
         [HttpPost]

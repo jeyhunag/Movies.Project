@@ -74,9 +74,9 @@ namespace Movies.WebAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id, AboutDto aboutDto, IFormFile imageFile)
+        public async Task<IActionResult> Update(int id, AboutDto about, IFormFile imageFile)
         {
-            if (id != aboutDto.Id)
+            if (id != about.Id)
             {
                 return NotFound();
             }
@@ -92,16 +92,15 @@ namespace Movies.WebAdmin.Controllers
                         using (var stream = new FileStream(fullPath, FileMode.Create))
                         {
                             await imageFile.CopyToAsync(stream);
-                            aboutDto.Img = imagePath;
+                            about.Img = imagePath;
                         }
                     }
 
-                    var about = await _service.AddAsync(aboutDto);
-              
+                    _service.Update(about);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AboutExists(aboutDto.Id))
+                    if (!AboutExists(about.Id))
                     {
                         return NotFound();
                     }
@@ -113,9 +112,8 @@ namespace Movies.WebAdmin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(aboutDto);
+            return View(about);
         }
-
         public async Task<IActionResult> Delete(int id)
         {
             var about = await _service.GetByIdAsync(id);

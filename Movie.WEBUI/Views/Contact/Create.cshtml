@@ -1,0 +1,39 @@
+﻿@model ContactDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+@section addcss{
+
+    <link href="~/css/contactus.css" rel="stylesheet" />
+
+    <style>
+        .form-contact {
+            width: 500px !important;
+            margin: 170px auto !important;
+        }
+    </style>
+}
+
+
+<div class="container">
+    <form class="form-contact" method="post" asp-action="Create">
+        <div class="header mb-4">
+            <h1>Contact Us</h1>
+        </div>
+        <div class="mb-3 mt-3">
+            <label asp-for="FullName" for="fullname" class="mb-3">Full Name</label>
+            <input asp-for="FullName" type="text" class="form-control form-control-contact" id="fullname" placeholder=" Full Name" name="fullname">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email" for="email" class="mb-3">Email</label>
+            <input asp-for="Email" type="email" class="form-control form-control-contact" id="email" placeholder=" Email" name="email">
+        </div>
+        <div class="mb-3 mt-3">
+            <label asp-for="Message" for="Message" class="mb-3">Message</label>
+            <textarea asp-for="Message" class="form-control form-control-contact" rows="5" id="message" name="Message" placeholder="Your Message"></textarea>
+        </div>
+        <button type="submit" class="btn button-contact">Submit</button>
+    </form>
+</div>
+
