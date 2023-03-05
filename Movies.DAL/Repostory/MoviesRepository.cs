@@ -20,7 +20,6 @@ namespace Movies.DAL.Repostory
             IQueryable<MovieC> movie = _dbContext.Movies.Where(p => p.CountryCategoryId == id && 
             p.LanguageCategoryId==id && p.GenresCategoryId==id);
         
-
             return movie.ToList();
 
         }

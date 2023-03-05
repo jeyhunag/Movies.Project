@@ -21,10 +21,10 @@ namespace Movies.DAL.Repostory
         }
         public async Task<TEntity> AddAsync(TEntity item)
         {
-
+            item.InsertDate = DateTime.Now;
             await _entities.AddAsync(item);
             _dbContext.SaveChanges();
-            item.InsertDate = DateTime.Now;
+           
             return item;
         }
 

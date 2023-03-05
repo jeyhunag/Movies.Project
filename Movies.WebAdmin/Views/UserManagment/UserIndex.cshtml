@@ -61,11 +61,11 @@
                                             <a asp-controller="UserManagment" asp-action="UserDelete" asp-route-id="@item.Id" class="btn btn-danger" aria-current="page">  <i class="bi bi-trash-fill"></i>Delete</a>
                                             <a asp-controller="UserManagment" asp-action="UserUpdate" asp-route-id="@item.Id" class="btn btn-primary" aria-current="page"> <i class="bi bi-pencil-square"></i>Update</a>
                                             <a asp-controller="UserManagment" asp-action="RoleAssign" asp-route-id="@item.Id" class="btn btn-secondary" aria-current="page"> <i class="bi bi-person-gear"></i>CreateRole</a>
-
+                                            <a class="btn btn-info" onclick="showModal('@item.Id')" id="nav-btn"><i class="bi bi-info-circle"></i>RoleAssign</a>
                                             
                                         </td>
                                         <td>
-                                            <a class="btn btn-info" onclick="showModal('@item.Id')" id="nav-btn"><i class="bi bi-info-circle"></i>RoleAssign</a>
+                                            
                                         </td>
                                     </tr>
                                 }

@@ -12,6 +12,8 @@ namespace Movies.WebAdmin.Helper.Extensions
                 throw new ArgumentNullException(nameof(services));
             }
             services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
+            services.AddScoped<IMoviesService, MoviesService>();
+
             return services;
 
         }

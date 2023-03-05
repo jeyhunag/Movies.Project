@@ -7,10 +7,18 @@ namespace Movies.WebAdmin.Helper.LogExtensions
     {
         public static IServiceCollection AddImpotandLogServices(this IServiceCollection services)
         {
-            Log.Logger = new LoggerConfiguration().MinimumLevel.Error().WriteTo.Console()
-                .WriteTo.File(@"Log/important-logs.txt", rollingInterval: RollingInterval.Day)
-                .CreateLogger();
-         
+            //Log.Logger = new LoggerConfiguration().MinimumLevel.Error()
+            //    .WriteTo.File(@"Log/important-logs.txt", rollingInterval: RollingInterval.Day)
+            //    .CreateLogger();
+
+            Log.Logger = new LoggerConfiguration()
+               .MinimumLevel.Information()
+               .WriteTo.File(path: "Log/debug.txt", rollingInterval: RollingInterval.Day)
+               .WriteTo.File(path: "Log/info.txt", restrictedToMinimumLevel: LogEventLevel.Information, rollingInterval: RollingInterval.Day)
+               .WriteTo.File(path: "Log/error.txt", restrictedToMinimumLevel: LogEventLevel.Error, rollingInterval: RollingInterval.Day)
+               .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Warning)
+               .CreateLogger();
+
             return services;
         }
     }

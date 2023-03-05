@@ -30,17 +30,16 @@ namespace Movies.BLL.Services
         {
             try
             {
-                Log.Information("Open");
+                _logger.LogInformation("Open");
+                
                 TEntity entity = _mapper.Map<TEntity>(item);
                 TEntity dbEntity = await _genericRepository.AddAsync(entity);
                 return _mapper.Map<TDto>(dbEntity);
             }
             catch (Exception ex)
             {
-                //_logger.LogError(ex.Message);
-                //_logger.LogError(ex.StackTrace);
-                Log.Error(ex.Message);
-                Log.Error(ex.StackTrace);
+                _logger.LogError(ex.Message);
+                _logger.LogError(ex.StackTrace);
                 throw new CustomException("BLL də əlavə edillərkən xəta yarandı. Xahiş olunur adminsitrator ilə əlaqə saxla.");
 
             }
@@ -49,7 +48,7 @@ namespace Movies.BLL.Services
         public void Delete(int id)
         {
             _genericRepository.Delete(id);
-            Log.Information("Delete");
+            _logger.LogInformation("Delete");
         }
 
         public async Task<TDto> GetByIdAsync(int id)
@@ -61,10 +60,8 @@ namespace Movies.BLL.Services
             }
             catch (Exception ex)
             {
-                //_logger.LogError(ex.Message);
-                //_logger.LogError(ex.StackTrace);
-                Log.Error(ex.Message);
-                Log.Error(ex.StackTrace);
+                _logger.LogError(ex.Message);
+                _logger.LogError(ex.StackTrace);
                 throw new CustomException("BLL də əlavə edillərkən xəta yarandı. Xahiş olunur adminsitrator ilə əlaqə saxla.");
             }
            
@@ -81,15 +78,16 @@ namespace Movies.BLL.Services
         {
             try
             {
+                _logger.LogInformation("Update edildi.");
                 TEntity entity = _mapper.Map<TEntity>(item);
                 TEntity dbEntity = _genericRepository.Update(entity);
-                Log.Information("Update edildi.");
+               
                 return _mapper.Map<TDto>(dbEntity);
             }
             catch (Exception ex)
             {
-                Log.Error(ex.Message);
-                Log.Error(ex.StackTrace);
+                _logger.LogError(ex.Message);
+                _logger.LogError(ex.StackTrace);
                 throw new CustomException("BLL də əlavə edillərkən xəta yarandı. Xahiş olunur adminsitrator ilə əlaqə saxla.");
             }
         }

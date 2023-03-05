@@ -48,8 +48,8 @@ namespace Movies.Controllers
         public async Task<IActionResult> Create(MovieC movie, IFormFile imageFile, IFormFile videoFile, IFormFile trailerFile)
         {
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
 
                 if (imageFile != null && imageFile.Length > 0)
                 {
@@ -91,7 +91,7 @@ namespace Movies.Controllers
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index");
-            }
+            //}
             ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name", movie.CountryCategoryId);
             ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name", movie.GenresCategoryId);
             ViewData["LanguageCategoryId"] = new SelectList(_context.LanguageCategories, "Id", "Name", movie.LanguageCategoryId);
@@ -203,4 +203,3 @@ namespace Movies.Controllers
     }
 
 }
-

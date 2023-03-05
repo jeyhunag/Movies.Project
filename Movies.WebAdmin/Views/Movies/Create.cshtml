@@ -34,6 +34,9 @@
             <div class="form-group col">
                 <label asp-for="CountryCategoryId" class="control-label"> Category</label>
                 <select asp-for="CountryCategoryId" class="form-control" asp-items="ViewBag.CountryCategoryId"></select>
+           @*     <label asp-for="CountryCategoryId" class="control-label"> Category</label>
+                <select asp-for="CountryCategoryId" class="form-control"
+                        asp-items="@(new SelectList(Model.CountryCategoryDtos, nameof(CountryCategoryDto.Id) ,nameof(CountryCategoryDto.Name)))"></select>*@
             </div>
             <div class="form-group col">
                 <label asp-for="Director" class="control-label ">Director</label>
@@ -42,10 +45,14 @@
             <div class="form-group col">
                 <label asp-for="GenresCategoryId" class="control-label"> Category</label>
                 <select asp-for="GenresCategoryId" class="form-control" asp-items="ViewBag.GenresCategoryId"></select>
+@*                <select asp-for="GenresCategoryId" class="form-control"
+                        asp-items="@(new SelectList(Model.GenresCategoryDtos, nameof(GenresCategoryDto.Id) ,nameof(GenresCategoryDto.Name)))"></select>*@
             </div>
             <div class="form-group col">
                 <label asp-for="LanguageCategoryId" class="control-label"> Category</label>
                 <select asp-for="LanguageCategoryId" class="form-control" asp-items="ViewBag.LanguageCategoryId"></select>
+               @* <select asp-for="LanguageCategoryId" class="form-control"
+                        asp-items="@(new SelectList(Model.LanguageCategoryDtos, nameof(LanguageCategoryDto.Id) ,nameof(LanguageCategoryDto.Name)))"></select>*@
             </div>
         </div>
         <div class="form-group col">

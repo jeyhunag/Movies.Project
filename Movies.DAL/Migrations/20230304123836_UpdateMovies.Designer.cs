@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movies.DAL.Data;
 
@@ -11,9 +12,10 @@ using Movies.DAL.Data;
 namespace Movies.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230304123836_UpdateMovies")]
+    partial class UpdateMovies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -433,9 +435,6 @@ namespace Movies.DAL.Migrations
                     b.Property<string>("Trailer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrendId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
@@ -449,8 +448,6 @@ namespace Movies.DAL.Migrations
                     b.HasIndex("GenresCategoryId");
 
                     b.HasIndex("LanguageCategoryId");
-
-                    b.HasIndex("TrendId");
 
                     b.ToTable("Movies");
                 });
@@ -484,32 +481,6 @@ namespace Movies.DAL.Migrations
                     b.HasIndex("MovieCId");
 
                     b.ToTable("MoviesDocuments");
-                });
-
-            modelBuilder.Entity("Movies.DAL.DbModel.Trends", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Trends");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -583,17 +554,11 @@ namespace Movies.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Movies.DAL.DbModel.Trends", "Trend")
-                        .WithMany("Movie")
-                        .HasForeignKey("TrendId");
-
                     b.Navigation("CountryCategory");
 
                     b.Navigation("GenresCategory");
 
                     b.Navigation("LanguageCategory");
-
-                    b.Navigation("Trend");
                 });
 
             modelBuilder.Entity("Movies.DAL.DbModel.MoviesDocument", b =>
@@ -625,11 +590,6 @@ namespace Movies.DAL.Migrations
             modelBuilder.Entity("Movies.DAL.DbModel.MovieC", b =>
                 {
                     b.Navigation("MoviesDocuments");
-                });
-
-            modelBuilder.Entity("Movies.DAL.DbModel.Trends", b =>
-                {
-                    b.Navigation("Movie");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@model ProfileViewModel
+@{
+    ViewData["Title"] = "ProfileSettings";
 }
 
 @section addcss{
@@ -11,11 +12,11 @@
             align-items: flex-start !important;
         }
 
-        #buttonSaveCancel{
-            display:inline-block !important;
+        #buttonSaveCancel {
+            display: inline-block !important;
         }
 
-        .main-content{
+        .main-content {
             margin-top: 100px;
             margin-bottom: 150px;
         }
@@ -40,7 +41,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane animated  show active">
                                     <!-- Start Form -->
-                                    <form id="profile-settings-form" action="#">
+                                    <form id="profile-settings-form" method="post" enctype="multipart/form-data" asp-action="ProfileSettings">
                                         <div class="error-container"></div>
                                         <div class="row">
                                             <div class="col-md-2">
@@ -57,11 +58,6 @@
                                             <!-- Col End -->
                                             <div class="col-md-10">
                                                 <h2>John Doe</h2>
-                                                <p>
-                                                    Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                    industry. Lorem Ipsum has been the industry's standard dummy
-                                                    text ever since the 1500s.
-                                                </p>
                                             </div>
                                             <!-- Col End -->
                                         </div>
@@ -70,16 +66,16 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label for="username">Username</label>
-                                                    <input class="form-control my-3" name="username" type="text"
+                                                    <label asp-for="UserName" >Username</label>
+                                                    <input asp-for="UserName" class="form-control my-3" name="username" type="text"
                                                            placeholder="Enter your Username" id="username">
                                                 </div>
                                             </div>
                                             <!-- Col End -->
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label>Email Address</label>
-                                                    <input type="email" class="form-control my-3" name="email"
+                                                    <label asp-for="Email">Email Address</label>
+                                                    <input asp-for="Email" type="email" class="form-control my-3" name="email"
                                                            placeholder="Enter your email" id="emailAddress">
                                                 </div>
                                             </div>
@@ -89,8 +85,8 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label>First Name</label>
-                                                    <input class="form-control my-3" name="first-name" type="text"
+                                                    <label asp-for="Name">First Name</label>
+                                                    <input asp-for="Name" class="form-control my-3" name="Surname" type="text"
                                                            placeholder="Enter your Name" id="Name">
                                                 </div>
                                             </div>
@@ -98,8 +94,8 @@
                                             <!-- Col End -->
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label>Surname</label>
-                                                    <input class="form-control my-3" name="last-name" type="text"
+                                                    <label asp-for="Surname">Surname</label>
+                                                    <input asp-for="Surname" class="form-control my-3" name="Surname" type="text"
                                                            placeholder="Enter your Surname" id="lastName">
                                                 </div>
                                             </div>
@@ -110,9 +106,9 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label>Current Password</label>
-                                                    <input type="password" class="form-control my-3"
-                                                           name="current-password"
+                                                    <label  asp-for="Password">Current Password</label>
+                                                    <input asp-for="Password" type="password" class="form-control my-3"
+                                                           name="Password"
                                                            placeholder="Enter your Current Password"
                                                            id="currentPassword">
                                                 </div>
@@ -121,8 +117,8 @@
                                             <!-- Col End -->
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label>New Password</label>
-                                                    <input type="password" class="form-control my-3" name="new-password"
+                                                    <label asp-for="NewPassword">New Password</label>
+                                                    <input asp-for="NewPassword" type="password" class="form-control my-3" name="Password"
                                                            placeholder="Enter your New Password" id="newPassword">
                                                 </div>
                                             </div>
@@ -132,16 +128,18 @@
                                         <!-- Row End -->
                                         <h5 class="mb-3 mt-3 pb-3 section-border">Personal Information</h5>
                                         <div id="sandbox-container" class="form-group AccauntSettings">
-                                            <label>Date of Birth</label>
-                                            <input type="text" class="form-control my-3" name="date-of-birth"
+                                            <label asp-for="DateOfBirth">Date of Birth</label>
+                                            <input asp-for="DateOfBirth" type="text" class="form-control my-3" name="DateOfBirth"
                                                    placeholder="Enter your Date of Birth" id="dateofbirth">
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label>Gender</label>
-                                                    <select class="form-control my-3" name="select-plan"
+                                                    <label asp-for="Gender">
+                                                        Gender</label>
+                                                        
+                                                        <select asp-for="Gender" class="form-control my-3" name="Gender"
                                                             aria-label="Default select example" id="select-gender">
                                                         <option value="1" selected="selected">Male</option>
                                                         <option value="2">Female</option>
@@ -152,19 +150,9 @@
                                             <!-- Col End -->
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label>Country</label>
-                                                    <select class="form-control my-3" name="select-plan"
+                                                    <label asp-for="Country">Country</label>
+                                                    <input asp-for="Country" class="form-control my-3" name="Country"
                                                             aria-label="Default select example" id="select-language">
-                                                        <option value="1">Arabic</option>
-                                                        <option value="2" selected="selected">English</option>
-                                                        <option value="3">German</option>
-                                                        <option value="4">Spanish</option>
-                                                        <option value="5">French</option>
-                                                        <option value="6">Italian</option>
-                                                        <option value="7">Russian</option>
-                                                        <option value="8">Japanese</option>
-                                                        <option value="9">Chinese</option>
-                                                    </select>
                                                 </div>
                                             </div>
                                             <!-- Col End -->
@@ -186,5 +174,3 @@
         </section>
     </div>
 </div>
-
-

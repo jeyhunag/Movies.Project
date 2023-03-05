@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Movie.WEBUI.ViewModels;
 using Movie.WEBUI.wwwroot.ViewModels;
 using Movies.DAL.DbModel;
 
@@ -9,20 +11,23 @@ namespace Movie.WEBUI.Controllers
     public class AccountController : Controller
     {
 
-        private readonly ILogger<HomeController> _logger;
         private UserManager<AppUser> _userManager;
         private SignInManager<AppUser> _signInManager;
-        public AccountController(ILogger<HomeController> logger, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly string _imgPath = @"img\";
+        public AccountController( UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebHostEnvironment webHostEnvironment)
         {
-            _logger = logger;
             _userManager = userManager;
             _signInManager = signInManager;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<IActionResult> SignIn()
         {
             return View();
         }
+
+
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> SignIn(SignInViewModel signInViewModel)
@@ -52,10 +57,10 @@ namespace Movie.WEBUI.Controllers
                     goto showSameView;
                 }
             }
-        showSameView:
+                     showSameView:
             return View(signInViewModel);
         }
-
+        [HttpGet]
         public async Task<IActionResult> SignUp()
         {
             return View();
@@ -81,6 +86,75 @@ namespace Movie.WEBUI.Controllers
 
             return View(model);
         }
+
+        public async Task<IActionResult> ProfileSettings(string id)
+        {
+            AppUser user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            ProfileViewModel viewModel = new ProfileViewModel
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Surname = user.Surname,
+                Country = user.Country,
+                Img = user.Img,
+                DateOfBirth = user.DateOfBirth,
+                Email = user.Email,
+                UserName = user.UserName,
+                Gender = user.Gender
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProfileSettings(ProfileViewModel viewModel, IFormFile imageFile)
+        {
+            //if (ModelState.IsValid)
+            //{
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var imagePath = _imgPath + imageFile.FileName;
+                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(stream);
+                    viewModel.Img = imagePath;
+                }
+            }
+
+            AppUser user = await _userManager.FindByIdAsync(viewModel.Id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Name = viewModel.Name;
+            user.Surname = viewModel.Surname;
+            user.Country = viewModel.Country;
+            user.Img = viewModel.Img;
+            user.DateOfBirth = viewModel.DateOfBirth;
+            user.Email = viewModel.Email;
+            user.UserName = viewModel.UserName;
+            user.Gender = viewModel.Gender;
+
+            IdentityResult result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("UserIndex");
+            }
+            //}
+
+            return View(viewModel);
+        }
+
 
         [AllowAnonymous]
         public async Task<IActionResult> Logout()

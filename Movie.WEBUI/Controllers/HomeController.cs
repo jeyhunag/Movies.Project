@@ -1,21 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Movie.WEBUI.Models;
+using Movie.WEBUI.ViewModels;
+using Movies.DAL.Data;
 using System.Diagnostics;
 
 namespace Movie.WEBUI.Controllers
 {
 	public class HomeController : Controller
 	{
+		readonly AppDbContext db;
 		private readonly ILogger<HomeController> _logger;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, AppDbContext db)
 		{
 			_logger = logger;
+			this.db = db;
 		}
 
 		public IActionResult Index()
 		{
-			return View();
+			var vm = new HomeViewModel();
+			vm.Trends = db.Trends.ToList();
+			vm.GenresCategories= db.GenresCategories.ToList();	
+			return View(vm);
 		}
 
 		public IActionResult Privacy()

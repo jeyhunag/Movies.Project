@@ -21,7 +21,9 @@ namespace Movies.WebAdmin
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-      
+            builder.Host.UseSerilog();
+            
+         
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();/*.AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<Program>());*/
@@ -34,6 +36,7 @@ namespace Movies.WebAdmin
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
+            
 
             //Identity AppRole,AppUser Security 
             builder.Services.AddIdentityServices();
@@ -57,7 +60,7 @@ namespace Movies.WebAdmin
             builder.Services.AddAllLogServices();
 
             //Importand Logger Extensions
-            //builder.Services.AddImpotandLogServices();
+           builder.Services.AddImpotandLogServices();
 
             //Mapping
             builder.Services.AddAutoMapper(typeof(CustomMapping));
@@ -68,8 +71,8 @@ namespace Movies.WebAdmin
             //Generic Repostory Extensions
             builder.Services.AddRepositories();
 
-            var app = builder.Build();
 
+            var app = builder.Build();
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

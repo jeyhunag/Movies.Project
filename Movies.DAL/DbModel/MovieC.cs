@@ -26,7 +26,8 @@ namespace Movies.DAL.DbModel
         public CountryCategory CountryCategory { get; set; }
         public int LanguageCategoryId { get; set; }
         public LanguageCategory LanguageCategory { get; set; }
-
+        public int? TrendId { get; set; }
+        public Trends Trend { get; set; }
         public virtual ICollection<MoviesDocument>? MoviesDocuments { get; set; }
     }
 }

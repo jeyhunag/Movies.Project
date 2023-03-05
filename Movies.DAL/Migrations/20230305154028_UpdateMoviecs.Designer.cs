@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movies.DAL.Data;
 
@@ -11,9 +12,10 @@ using Movies.DAL.Data;
 namespace Movies.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230305154028_UpdateMoviecs")]
+    partial class UpdateMoviecs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -433,7 +435,7 @@ namespace Movies.DAL.Migrations
                     b.Property<string>("Trailer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrendId")
+                    b.Property<int>("TrendId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -585,7 +587,9 @@ namespace Movies.DAL.Migrations
 
                     b.HasOne("Movies.DAL.DbModel.Trends", "Trend")
                         .WithMany("Movie")
-                        .HasForeignKey("TrendId");
+                        .HasForeignKey("TrendId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("CountryCategory");
 

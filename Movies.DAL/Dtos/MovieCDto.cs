@@ -14,6 +14,9 @@ namespace Movies.DAL.Dtos
         public TimeSpan MovieTime { get; set; }
         public int Year { get; set; }
         public string Description { get; set; }
+        public string CountryCategoryId { get; set; }
+        public string GenresCategoryId { get; set; }
+        public string LanguageCategoryId { get; set; }
         public string Director { get; set; }
         public string? Img { get; set; }
         public string? MovieVideo { get; set; }

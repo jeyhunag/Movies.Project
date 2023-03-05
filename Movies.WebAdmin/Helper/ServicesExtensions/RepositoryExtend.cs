@@ -1,5 +1,7 @@
 ﻿using Movies.DAL.Repostory.Interfaces;
 using Movies.DAL.Repostory;
+using Movies.BLL.Services.Interfaces;
+using Movies.BLL.Services;
 
 namespace Movies.WebAdmin.Helper.Extensions
 {
@@ -12,6 +14,7 @@ namespace Movies.WebAdmin.Helper.Extensions
                 throw new ArgumentNullException(nameof(services));
             }
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IMoviesRepository, MoviesRepository>();
             return services;
 
         }

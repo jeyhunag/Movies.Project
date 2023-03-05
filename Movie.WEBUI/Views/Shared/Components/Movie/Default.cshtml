@@ -1,0 +1,20 @@
+﻿@using Movies.DAL.DbModel;
+@model IEnumerable<MovieC>
+
+@foreach (var item in Model)
+{
+    <div class="img-div">
+        <div>
+            <img src="~/@item.Img" alt="" id="image" class="img-fluid">
+            <div class="icon-container me-2">
+                <a href=""><i class="bi bi-play-circle "></i></a>
+                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
+                <a href=""><i class="bi bi-info-circle"></i></a>
+            </div>
+        </div>
+        <h4 class="text-white">@item.Name</h4>
+        <p class="text-white">@item.Year</p>
+        <p class="mx-2 text-white">@item.Age</p>
+        <p class="text-white">@item.GenresCategory.Name</p>
+    </div>
+}

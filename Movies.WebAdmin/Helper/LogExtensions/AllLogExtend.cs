@@ -11,7 +11,7 @@ namespace Movies.WebAdmin.Helper.LogExtensions
         public static IServiceCollection AddAllLogServices(this IServiceCollection services)
         {
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
+                .MinimumLevel.Debug()
                 .WriteTo.File(@"Log/all-daily.txt", rollingInterval: RollingInterval.Day)
                
                 .CreateLogger();

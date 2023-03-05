@@ -1,4 +1,4 @@
-﻿@model SignInViewModel
+﻿@*@model SignInViewModel*@
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +44,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Log Out</a>
-                    <a asp-area="" asp-controller="AccauntSettings" asp-action="Index">ACCAUNT SETTINGS </a>
+                    <a asp-area="" asp-controller="Account" asp-action="ProfileSettings">Profile Settings </a>
                 }
                 else
                 {
@@ -52,7 +52,7 @@
                     <a id="open-modal-signup" class="btn-open-modal">Sign Up</a>
                 }
             </div>
-            <!-- Modal Sign In -->
+@*            <!-- Modal Sign In -->
             <div class="modal-overlay">
                 <div class="modal-content">
                     <span class="close-button">&times;</span>
@@ -78,13 +78,13 @@
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-            </div>
-            <!-- Modal Sign Up -->
+            </div>*@
+@*            <!-- Modal Sign Up -->
             <div class="modal-overlay-sigup">
                 <div class="modal-content-sigup">
                     <span class="close-button-sigup">&times;</span>
                     <h2 class="modal-title-sigup">Sign Up</h2>
-                @*    <form class="formModal" method="post" asp-controller="account" asp-action="SignUp">
+                    <form class="formModal" method="post" asp-controller="account" asp-action="SignUp">
                         <label asp-for="UserName" class="labelModal-signup">Username</label>
                         <input asp-for="UserName" type="text" id="username" name="UserName" required>
 
@@ -102,10 +102,10 @@
                             <label for="remember-me" class="remember-me mx-2">Remember me</label>
                         </div>
                         <button type="submit" class="btn-signup">Sign In</button>
-                    </form>*@
+                    </form>
                 </div>
-            </div>
-        </div>*
+            </div>*@
+        </div>
         <div class="search-box ">
             <input class="search-txt" placeholder="Search"><i class="bi bi-search "></i>
         </div>

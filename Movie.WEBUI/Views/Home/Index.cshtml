@@ -1,6 +1,281 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<partial name="_MainHeader" />
+
+
 <link href="~/css/owl-carusel.css" rel="stylesheet" />
+
+
+<main>
+    <div class="hero-slider owl-carousel owl-theme ">
+        <!--Esas Carusel-->
+        <!--item-->
+        <div class="slider-item" style="background: url(/Img/306943.jpg); background-size: cover; ">
+            <div class="slider-content-main">
+                <div class="slider-content">
+                    <span class="badge mb-4">New</span>
+                    <h1>Night Train</h1>
+                    <p>
+                        In the center of the plot is the story of the confrontation between a single
+                        mother who barely makes ends meet and is forced to buy medicines for her sick son on the
+                        black market, and an FBI agent who is hunting her and trying to catch her red-handed.
+                    </p>
+                    <div class="SpanMovies my-5">
+                        <span><i class="bi bi-person-fill"></i>18+</span>
+                        <span><i class="bi bi-clock"></i>2hr 45min</span>
+                        <span><i class="bi bi-emoji-smile"></i>2021</span>
+                        <span><i class="bi bi-activity"></i>Action</span>
+                        <span><i class="bi bi-globe"></i>United States</span>
+                    </div>
+                    <div class="slider-action">
+                        <a asp-area="" asp-page="/PlayMovies/Index" class="slider-btn-1">Play Now</a>
+                        <a href="# " class="slider-btn-2">My List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--item-->
+        <div class="slider-item img-fluid" style="background: url(/Img/724132.jpg); background-size: cover;">
+            <div class="slider-content-main">
+                <div class="slider-content ">
+                    <h1>Responsiv slider</h1>
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore laudantium ab, soluta
+                        delectus
+                        nihil quo officiis error quaerat optio est voluptates ullam suscipit reprehenderit eveniet
+                        eaque
+                        tempore labore debitis autem eos vel architecto quas saepe unde? Corrupti laboriosam quam
+                        iure,
+                    </p>
+                    <div class="slider-action">
+                        <a href="#" class="slider-btn-1">Get Started </a>
+                        <a href="# " class="slider-btn-2">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="moviesCarusel">
+            <!--Featured,Movies,Shows Carusel-->
+            <div class="row">
+                <div class="movie-category">
+                    <ul class="featured-movies-shows">
+                  
+                          @foreach (var item in Model.Trends)
+                        {
+                            <li class="featured_li active px-3" data-category="@item.Name">@item.Name</li>
+
+                        }
+                    </ul>
+                    <div class="images container ">
+
+
+
+                        @foreach (var item in Model.Trends)
+                        {
+                            <div class=" image @item.Name active text-white">
+
+                                @await Component.InvokeAsync("Movie", new{trendId = item.Id})
+
+                            </div>
+
+                        }
+
+                    
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="wrapper">
+            <!--Popular Movies Carusel-->
+            <h2>P0PULAR MOVIES</h2>
+            <hr id="hr_color">
+            <div class="carousel owl-carousel">
+
+
+
+                @await Component.InvokeAsync("Movie")
+
+
+
+
+            </div>
+        </div>
+        <div class="TrendingNow ">
+            <!--TOP 10 BOX OFFICE Carusel-->
+            <h2 class="text-white fw-bolder">TOP 10 BOX OFFICE</h2>
+            <hr id="hr_color">
+            <div class="images">
+                <div class=" image featured active text-white">
+
+                    @await Component.InvokeAsync("Movie")
+
+                </div>
+            </div>
+        </div>
+        <div class="TrendingNow ">
+            <!--TRENDING NOW Carusel-->
+            <h2 class="text-white fw-bolder">TRENDING NOW</h2>
+            <hr id="hr_color">
+            <div class="images">
+                <div class=" image featured active text-white">
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/erik-mclean-7sgU1jV8-iw-unsplash.jpg" alt="" id="image" class="img-fluid">
+                            <div class="icon-container me-2">
+                                <a href=""><i class="bi bi-play-circle "></i></a>
+                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
+                                <a href=""><i class="bi bi-info-circle"></i></a>
+                            </div>
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/nate-johnston-4CRTpLLsuJ8-unsplash.jpg" alt="" id="image" class="img-fluid">
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/ouael-ben-salah-1bK4CXuXIGE-unsplash.jpg" alt="" id="image" class="img-fluid">
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/pramod-tiwari-wjivthmSbo8-unsplash.jpg" alt="" id="image" class="img-fluid">
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/wolfgang-hasselmann-goxLeuy5ZJ0-unsplash.jpg" alt="" id="image" class="img-fluid">
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid BestSeries">
+        <!--Best Series Carusel-->
+        <div class="container">
+            <h3>Featured</h3>
+            <h1>Best Series</h1>
+            <div id="moviesCarusel">
+                <!--Drama,Action,Romance Carusel-->
+                <div class="movie-category">
+                    <ul class="BestSeries_li text-center">
+                        @foreach(var item in Model.GenresCategories)
+                        {
+                            @if(item.Id == 1 )
+                            {
+                                <li class="featured_li active px-3" data-category="@item.Name">@item.Name</li>
+                            }
+                            else
+                            {
+                                <li class="featured_li px-3" data-category="@item.Name">@item.Name</li>
+                            }
+
+                        }
+                     
+                    </ul>
+                    <div class="images container ">
+                       
+                        @foreach(var item in Model.GenresCategories)
+                        {
+                            <div class=" image @item.Name active text-white">
+                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
+                            </div>
+                        }
+                       
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container Suggested">
+        <!--SUGGESTED FOR YOU Carusel-->
+        <div>
+            <h2 class="text-white fw-bolder">SUGGESTED FOR YOU</h2>
+            <hr id="hr_color">
+            <div class="images">
+                <div class=" image featured active text-white">
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/ashlee-marie-uCHCdZ1fYiQ-unsplash.jpg" alt="" id="image" class="img-fluid">
+                            <div class="icon-container me-2">
+                                <a href=""><i class="bi bi-play-circle "></i></a>
+                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
+                                <a href=""><i class="bi bi-info-circle"></i></a>
+                            </div>
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/erik-mclean-7sgU1jV8-iw-unsplash.jpg" alt="" id="image" class="img-fluid">
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/nate-johnston-4CRTpLLsuJ8-unsplash.jpg" alt="" id="image" class="img-fluid">
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/ryunosuke-kikuno-cqtw4QCfbQg-unsplash.jpg" alt="" id="image" class="img-fluid">
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                    <div class="img-div">
+                        <div>
+                            <img src="~/Img/william-topa-tVm6pFQ0jho-unsplash.jpg" alt="" id="image" class="img-fluid">
+                        </div>
+                        <h4 class="text-white">movie</h4>
+                        <p class="text-white">2022</p>
+                        <p class="mx-2 text-white">+18</p>
+                        <p class="text-white">Action</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
