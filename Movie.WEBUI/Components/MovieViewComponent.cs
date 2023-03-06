@@ -14,7 +14,7 @@ namespace Movie.WEBUI.Components
         }
 
 
-        public Task<IViewComponentResult> InvokeAsync(int trendId, int categoryId)
+        public Task<IViewComponentResult> InvokeAsync(int trendId, int categoryId, bool top =false)
         {
             var movies = db.Movies.Include(p=>p.GenresCategory).Include(p => p.CountryCategory).Include(p=>p.Trend).Include(p => p.LanguageCategory).ToList();
 
@@ -25,7 +25,11 @@ namespace Movie.WEBUI.Components
 
             if (categoryId > 0)
             {
-                movies = movies.Where(p => p.GenresCategoryId == categoryId).ToList();
+                movies = movies.Where(p => p.GenresCategoryId == categoryId).Take(5).ToList();
+            }
+            if(top == true)
+            {
+               movies = movies.Where(p => p.Top == true).ToList();
             }
 
             return Task.FromResult<IViewComponentResult>(View(movies));

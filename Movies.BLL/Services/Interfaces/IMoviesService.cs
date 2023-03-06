@@ -13,6 +13,7 @@ namespace Movies.BLL.Services.Interfaces
         public Task<List<CountryCategoryDto>> GetCountryCategoriesAsync();
         public Task<List<GenresCategoryDto>> GetGenresCategoriesAsync();
         public Task<List<LanguageCategoryDto>> GetLangaugeCategoriesAsync();
+        public Task<List<TrandCategoryDto>> GeTTrandsCategoriesAsync();
 
         public Task<List<MovieCDto>> GetMoviesByCategoryIdAsync(int id);
         public Task<MovieCDto> GetMoviesDetailByIdAsync(int id);

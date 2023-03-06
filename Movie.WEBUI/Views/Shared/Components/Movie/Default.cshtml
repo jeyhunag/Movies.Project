@@ -1,9 +1,9 @@
-﻿@using Movies.DAL.DbModel;
+﻿
 @model IEnumerable<MovieC>
 
 @foreach (var item in Model)
 {
-    <div class="img-div">
+    <div class="img-div " style="display:flex; justify-content: space-between;">
         <div>
             <img src="~/@item.Img" alt="" id="image" class="img-fluid">
             <div class="icon-container me-2">

@@ -63,49 +63,41 @@
             <div class="row">
                 <div class="movie-category">
                     <ul class="featured-movies-shows">
-                  
-                          @foreach (var item in Model.Trends)
-                        {
-                            <li class="featured_li active px-3" data-category="@item.Name">@item.Name</li>
 
+                        @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Driver")))
+                        {
+                            <li class="featured_li active px-3 me-4 " data-category="@item.Name">@item.Name</li>
                         }
+
                     </ul>
                     <div class="images container ">
 
-
-
-                        @foreach (var item in Model.Trends)
+                        @foreach (var item in Model.GenresCategories.Take(5).Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Driver")))
                         {
-                            <div class=" image @item.Name active text-white">
 
-                                @await Component.InvokeAsync("Movie", new{trendId = item.Id})
-
+                            <div class="image @item.Name active text-white ">
+                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
                             </div>
 
                         }
 
-                    
+
 
                     </div>
                 </div>
             </div>
-
-
         </div>
         <div class="wrapper">
             <!--Popular Movies Carusel-->
             <h2>P0PULAR MOVIES</h2>
             <hr id="hr_color">
-            <div class="carousel owl-carousel">
 
+            <div class="carousel owl-carousel ">
 
-
-                @await Component.InvokeAsync("Movie")
-
-
-
+                @await Component.InvokeAsync("Movie", new{top = true})
 
             </div>
+
         </div>
         <div class="TrendingNow ">
             <!--TOP 10 BOX OFFICE Carusel-->
@@ -114,7 +106,7 @@
             <div class="images">
                 <div class=" image featured active text-white">
 
-                    @await Component.InvokeAsync("Movie")
+                    @await Component.InvokeAsync("Movie", new{top = true})
 
                 </div>
             </div>
@@ -139,42 +131,7 @@
                         <p class="mx-2 text-white">+18</p>
                         <p class="text-white">Action</p>
                     </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/nate-johnston-4CRTpLLsuJ8-unsplash.jpg" alt="" id="image" class="img-fluid">
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/ouael-ben-salah-1bK4CXuXIGE-unsplash.jpg" alt="" id="image" class="img-fluid">
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/pramod-tiwari-wjivthmSbo8-unsplash.jpg" alt="" id="image" class="img-fluid">
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/wolfgang-hasselmann-goxLeuy5ZJ0-unsplash.jpg" alt="" id="image" class="img-fluid">
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -188,9 +145,9 @@
                 <!--Drama,Action,Romance Carusel-->
                 <div class="movie-category">
                     <ul class="BestSeries_li text-center">
-                        @foreach(var item in Model.GenresCategories)
+                        @foreach (var item in Model.GenresCategories)
                         {
-                            @if(item.Id == 1 )
+                            @if (item.Id == 1)
                             {
                                 <li class="featured_li active px-3" data-category="@item.Name">@item.Name</li>
                             }
@@ -200,17 +157,17 @@
                             }
 
                         }
-                     
+
                     </ul>
                     <div class="images container ">
-                       
-                        @foreach(var item in Model.GenresCategories)
+
+                        @foreach (var item in Model.GenresCategories)
                         {
                             <div class=" image @item.Name active text-white">
                                 @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
                             </div>
                         }
-                       
+
 
                     </div>
                 </div>
@@ -238,42 +195,7 @@
                         <p class="mx-2 text-white">+18</p>
                         <p class="text-white">Action</p>
                     </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/erik-mclean-7sgU1jV8-iw-unsplash.jpg" alt="" id="image" class="img-fluid">
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/nate-johnston-4CRTpLLsuJ8-unsplash.jpg" alt="" id="image" class="img-fluid">
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/ryunosuke-kikuno-cqtw4QCfbQg-unsplash.jpg" alt="" id="image" class="img-fluid">
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/william-topa-tVm6pFQ0jho-unsplash.jpg" alt="" id="image" class="img-fluid">
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
+
                 </div>
             </div>
         </div>

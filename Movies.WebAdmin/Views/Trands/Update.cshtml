@@ -1,0 +1,25 @@
+﻿@model TrandCategoryDto
+@{
+    ViewData["Title"] = "Update";
+}
+<h1 class="text-center"> Trands Category</h1>
+<hr />
+
+<div class="mx-auto d-block">
+    <form class="mx-auto"  asp-action="Update">
+        <div class="row">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group col">
+                <label asp-for="Name" for="Name" class="control-label ">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Name">
+            </div>
+        </div>
+        <div class="form-group mt-4 text-center">
+            <input type="submit" value="Create" class="btn btn-outline-success btn-lg" />
+        </div>
+    </form>
+</div>
+<div>
+    <a class="btn btn-outline-info btn-lg text-decoration-none  float-end" asp-action="Index">Back to List</a>
+</div>

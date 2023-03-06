@@ -17,6 +17,7 @@ namespace Movies.BLL.Mapping
             CreateMap<GenresCategory, GenresCategoryDto>().ReverseMap();
             CreateMap<CountryCategory, CountryCategoryDto>().ReverseMap();
             CreateMap<LanguageCategory, LanguageCategoryDto>().ReverseMap();
+            CreateMap<Trends, TrandCategoryDto>().ReverseMap();
             CreateMap<MoviesDocument, MoviesDocumentDto>().ReverseMap();
             CreateMap<About, AboutDto>().ReverseMap();
             CreateMap<Contact, ContactDto>().ReverseMap();

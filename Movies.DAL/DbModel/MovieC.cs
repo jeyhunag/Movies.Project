@@ -29,5 +29,6 @@ namespace Movies.DAL.DbModel
         public int? TrendId { get; set; }
         public Trends Trend { get; set; }
         public virtual ICollection<MoviesDocument>? MoviesDocuments { get; set; }
+        public bool Top { get; set; }
     }
 }

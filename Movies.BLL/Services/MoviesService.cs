@@ -18,6 +18,7 @@ namespace Movies.BLL.Services
         private readonly IGenericRepository<GenresCategory> _genresRepository;
         private readonly IGenericRepository<LanguageCategory> _languageRepository;
         private readonly IGenericRepository<CountryCategory> _countryRepository;
+        private readonly IGenericRepository<Trends> _trandsRepository;
         private readonly IGenericRepository<MoviesDocument> _documentRepository;
 
         public MoviesService(IGenericRepository<MovieC> genericRepository,
@@ -25,12 +26,14 @@ namespace Movies.BLL.Services
             IGenericRepository<GenresCategory> genresRepository,
             IGenericRepository<LanguageCategory> languageRepository,
             IGenericRepository<CountryCategory> countryRepository,
+            IGenericRepository<Trends> trandsRepository,
             IMoviesRepository moviesRepository,
             IGenericRepository<MoviesDocument> documentRepository)
             : base(genericRepository, mapper, logger)
         {
             _genresRepository = genresRepository;
             _languageRepository = languageRepository;
+            _trandsRepository = trandsRepository;
             _countryRepository= countryRepository;
             _documentRepository= documentRepository;
             _moviesRepository= moviesRepository;
@@ -60,7 +63,14 @@ namespace Movies.BLL.Services
 
             return categoryDtos;
         }
+        public async Task<List<TrandCategoryDto>> GeTTrandsCategoriesAsync()
+        {
+            var trandsCategories = await _trandsRepository.GetListAsync();
 
+            var categoryDtos = _mapper.Map<List<TrandCategoryDto>>(trandsCategories);
+
+            return categoryDtos;
+        }
         public async Task<List<MovieCDto>> GetMoviesByCategoryIdAsync(int id)
         {
             var movies = await _moviesRepository.GetByCategoryIdAsync(id);
@@ -80,5 +90,7 @@ namespace Movies.BLL.Services
 
             return moviestDto;
         }
+
+     
     }
 }
