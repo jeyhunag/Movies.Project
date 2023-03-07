@@ -445,6 +445,9 @@ namespace Movies.DAL.Migrations
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
+                    b.Property<bool>("isneww")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CountryCategoryId");

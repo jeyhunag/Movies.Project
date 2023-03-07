@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<MovieC> 
+@{
     ViewData["Title"] = "Index";
 }
 @section addcss{
@@ -74,230 +75,35 @@
         <a id="search" href="#">Search</a>
     </div> transition: all 2s ease-in !important;
     <div class="card-container ">
-        <div class="card mt-3 mb-5">
-            <div class="poster">
-                <img src="~/Img/724132.jpg" alt="">
-            </div>
-            <div class="details">
-                <a href=""><i class="bi bi-play-circle"></i></a>
-                <h2>Movie</h2>
-                <h3>Directed</h3>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <span>4/5</span>
+        @foreach (var item in Model)
+        {
+            <div class="card mt-3 mb-5">
+                <div class="poster">
+                    <img src="~/@item.Img" alt="#">
                 </div>
-                <div class="tags">
-                    <span>2023</span>
-                    <span>Action</span>
-                </div>
-                <div class="info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quibusdam minus fuga debitis cum
-                    vitae?
-                    Laudantium
-                    aut amet eius alias, commodi sunt vero.
-                </div>
-            </div>
-        </div>
-        <div class="card mt-3 mb-5">
-            <div class="poster">
-                <img src="~/Img/ashlee-marie-uCHCdZ1fYiQ-unsplash (1).jpg" alt="">
-            </div>
-            <div class="details">
-                <a href=""><i class="bi bi-play-circle"></i></a>
-                <h2>Movie</h2>
-                <h3>Directed</h3>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <span>4/5</span>
-                </div>
-                <div class="tags">
-                    <span>2023</span>
-                    <span>Action</span>
-                </div>
-                <div class="info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quibusdam minus fuga debitis cum
-                    vitae?
-                    Laudantium
-                    aut amet eius alias, commodi sunt vero.
+                <div class="details">
+                    <a href="#"><i class="bi bi-play-circle"></i></a>
+                    <h2>@item.Name</h2>
+                    <h3>@item.Director</h3>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <span>4/5</span>
+                    </div>
+                    <div class="tags">
+                        <span>@item.Year</span>
+                        <span>@item.GenresCategory</span>
+                    </div>
+                    <div class="info">
+                        @item.Description
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card mt-3 mb-5">
-            <div class="poster">
-                <img src="~/Img/erik-mclean-7sgU1jV8-iw-unsplash.jpg" alt="#">
-            </div>
-            <div class="details">
-                <a href=""><i class="bi bi-play-circle"></i></a>
-                <h2>Movie</h2>
-                <h3>Directed</h3>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <span>4/5</span>
-                </div>
-                <div class="tags">
-                    <span>2023</span>
-                    <span>Action</span>
-                </div>
-                <div class="info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quibusdam minus fuga debitis cum
-                    vitae?
-                    Laudantium
-                    aut amet eius alias, commodi sunt vero.
-                </div>
-            </div>
-        </div>
-        <div class="card mt-3 mb-5">
-            <div class="poster">
-                <img src="~/Img/nate-johnston-4CRTpLLsuJ8-unsplash.jpg" alt="">
-            </div>
-            <div class="details">
-                <a href=""><i class="bi bi-play-circle"></i></a>
-                <h2>Movie</h2>
-                <h3>Directed</h3>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <span>4/5</span>
-                </div>
-                <div class="tags">
-                    <span>2023</span>
-                    <span>Action</span>
-                </div>
-                <div class="info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quibusdam minus fuga debitis cum
-                    vitae?
-                    Laudantium
-                    aut amet eius alias, commodi sunt vero.
-                </div>
-            </div>
-        </div>
-        <div class="card mt-3 mb-5">
-            <div class="poster">
-                <img src="~/Img/ouael-ben-salah-1bK4CXuXIGE-unsplash.jpg" alt="">
-            </div>
-            <div class="details">
-                <a href=""><i class="bi bi-play-circle"></i></a>
-                <h2>Movie</h2>
-                <h3>Directed</h3>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <span>4/5</span>
-                </div>
-                <div class="tags">
-                    <span>2023</span>
-                    <span>Action</span>
-                </div>
-                <div class="info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quibusdam minus fuga debitis cum
-                    vitae?
-                    Laudantium
-                    aut amet eius alias, commodi sunt vero.
-                </div>
-            </div>
-        </div>
-        <div class="card mt-3 mb-5">
-            <div class="poster">
-                <img src="~/Img/pramod-tiwari-wjivthmSbo8-unsplash.jpg" alt="">
-            </div>
-            <div class="details">
-                <a href=""><i class="bi bi-play-circle"></i></a>
-                <h2>Movie</h2>
-                <h3>Directed</h3>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <span>4/5</span>
-                </div>
-                <div class="tags">
-                    <span>2023</span>
-                    <span>Action</span>
-                </div>
-                <div class="info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quibusdam minus fuga debitis cum
-                    vitae?
-                    Laudantium
-                    aut amet eius alias, commodi sunt vero.
-                </div>
-            </div>
-        </div>
-        <div class="card mt-3 mb-5">
-            <div class="poster">
-                <img src="~/Img/wolfgang-hasselmann-goxLeuy5ZJ0-unsplash.jpg" alt="#">
-            </div>
-            <div class="details">
-                <a href=""><i class="bi bi-play-circle"></i></a>
-                <h2>Movie</h2>
-                <h3>Directed</h3>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <span>4/5</span>
-                </div>
-                <div class="tags">
-                    <span>2023</span>
-                    <span>Action</span>
-                </div>
-                <div class="info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quibusdam minus fuga debitis cum
-                    vitae?
-                    Laudantium
-                    aut amet eius alias, commodi sunt vero.
-                </div>
-            </div>
-        </div>
-        <div class="card mt-3 mb-5">
-            <div class="poster">
-                <img src="~/Img/pramod-tiwari-wjivthmSbo8-unsplash.jpg" alt="">
-            </div>
-            <div class="details">
-                <a href=""><i class="bi bi-play-circle"></i></a>
-                <h2>Movie</h2>
-                <h3>Directed</h3>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <span>4/5</span>
-                </div>
-                <div class="tags">
-                    <span>2023</span>
-                    <span>Action</span>
-                </div>
-                <div class="info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut quibusdam minus fuga debitis cum
-                    vitae?
-                    Laudantium
-                    aut amet eius alias, commodi sunt vero.
-                </div>
-            </div>
-        </div>
+        }
+  
     </div>
 </div>
 

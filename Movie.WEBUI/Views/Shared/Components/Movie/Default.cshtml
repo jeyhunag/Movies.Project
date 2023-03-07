@@ -1,20 +1,52 @@
-﻿
-@model IEnumerable<MovieC>
-
-@foreach (var item in Model)
+﻿@model IEnumerable<MovieC>
+@if (string.IsNullOrWhiteSpace(ViewBag.isneww))
 {
-    <div class="img-div " style="display:flex; justify-content: space-between;">
-        <div>
-            <img src="~/@item.Img" alt="" id="image" class="img-fluid">
-            <div class="icon-container me-2">
-                <a href=""><i class="bi bi-play-circle "></i></a>
-                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
-                <a href=""><i class="bi bi-info-circle"></i></a>
+    @foreach (var item in Model)
+    {
+            <div class="img-div ">
+                <div>
+                    <img src="~/@item.Img" alt="" id="image" class="img-fluid">
+                    <div class="icon-container me-2">
+                        <a href=""><i class="bi bi-play-circle "></i></a>
+                        <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
+                        <a href=""><i class="bi bi-info-circle"></i></a>
+                    </div>
+                </div>
+                <h4 class="text-white">@item.Name</h4>
+                <p class="text-white">@item.Year</p>
+                <p class="mx-2 text-white">@item.Age</p>
+                <p class="text-white">@item.GenresCategory.Name</p>
+            </div>
+    }
+}
+else
+{
+    @foreach (var item in Model)
+    {
+        <div class="slider-item" style="background: url(~/@item.Img); background-size: cover; ">
+            <div class="slider-content-main">
+                <div class="slider-content">
+                    <span class="badge mb-4">New</span>
+                    <h1>@item.Name</h1>
+                    <p>
+                     @item.Description
+                    </p>
+                    <div class="SpanMovies my-5">
+                        <span><i class="bi bi-person-fill"></i>@item.Age</span>
+                        <span><i class="bi bi-clock"></i>@item.MovieTime</span>
+                        <span><i class="bi bi-emoji-smile"></i>@item.Year</span>
+                        <span><i class="bi bi-activity"></i>@item.GenresCategory.Name</span>
+                        <span><i class="bi bi-globe"></i>@item.CountryCategory.Name</span>
+                    </div>
+                    <div class="slider-action">
+                        <a class="slider-btn-1">Play Now</a>
+                        <a href="# " class="slider-btn-2">My List</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <h4 class="text-white">@item.Name</h4>
-        <p class="text-white">@item.Year</p>
-        <p class="mx-2 text-white">@item.Age</p>
-        <p class="text-white">@item.GenresCategory.Name</p>
-    </div>
+    }
+  
 }
+
+

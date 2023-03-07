@@ -30,5 +30,6 @@ namespace Movies.DAL.DbModel
         public Trends Trend { get; set; }
         public virtual ICollection<MoviesDocument>? MoviesDocuments { get; set; }
         public bool Top { get; set; }
+        public bool isneww { get; set; }
     }
 }
