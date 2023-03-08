@@ -1,4 +1,4 @@
-﻿@*@model SignInViewModel*@
+﻿@model HomeViewModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +25,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="~/css/owl-carusel.css" rel="stylesheet" />
-
-    <title>@ViewData["Title"] - Movies-CO</title>
+    <link rel="icon" href="~/Img/Minimalist White Black Cinematography Business Logo.gif" type="img">
+    <title> Movies-CO</title>
     @RenderSection("addcss",false)
 </head>
 <body>
@@ -53,21 +53,21 @@
                     <a id="open-modal-signup" class="btn-open-modal">Sign Up</a>
                 }
             </div>
-@*            <!-- Modal Sign In -->
+            <!-- Modal Sign In -->
             <div class="modal-overlay">
                 <div class="modal-content">
                     <span class="close-button">&times;</span>
                     <h2 class="modal-title">Sign In</h2>
                     <form class="formModal" asp-controller="account" asp-action="SignIn">
-                        <label asp-for="UserName" for="username" class="labelModal">Username</label>
-                        <input asp-for="UserName" type="text" id="username" name="username" required>
+                        <label asp-for="SignInViewModel.UserName" for="username" class="labelModal">Username</label>
+                        <input asp-for="SignInViewModel.UserName" type="text" id="username"  required>
 
-                        <label asp-for="Password" for="password" class="labelModal">Password</label>
-                        <input asp-for="Password" type="password" id="password" name="password" required>
+                        <label asp-for="SignInViewModel.Password" for="password" class="labelModal">Password</label>
+                        <input asp-for="SignInViewModel.Password" type="password" id="password"  required>
 
                         <div class="form-group">
-                            <input asp-for="RememberMe" type="checkbox" id="remember-me" name="remember-me">
-                            <label asp-for="RememberMe" for="remember-me" class="remember-me mx-2">Remember me</label>
+                            <input asp-for="SignInViewModel.RememberMe" type="checkbox" id="remember-me" name="remember-me">
+                            <label asp-for="SignInViewModel.RememberMe" for="remember-me" class="remember-me mx-2">Remember me</label>
                             <a href="#" class="forgot-password">Forgot password?</a>
                         </div>
                         <button type="submit" class="btn-signin">Sign In</button>
@@ -79,7 +79,7 @@
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-            </div>*@
+            </div>
 @*            <!-- Modal Sign Up -->
             <div class="modal-overlay-sigup">
                 <div class="modal-content-sigup">
@@ -108,7 +108,7 @@
             </div>*@
         </div>
         <div class="search-box ">
-            <input class="search-txt" placeholder="Search"><i class="bi bi-search "></i>
+            <input class="search-txt" style="font-size: 15px!important;" placeholder="Search"><i class="bi bi-search "></i>
         </div>
         <div class="Accaunt">
             <div class="line"></div>

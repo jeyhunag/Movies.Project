@@ -1,9 +1,10 @@
-﻿@{
+﻿@model MovieC
+@{
     ViewData["Title"] = "Index";
 }
 
 @section Scripts{
-  
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="~/css/playmovies.css" rel="stylesheet" />
     <style>
@@ -50,94 +51,111 @@
             }
 
     </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.img-div div').hover(function () {
+
+                $(this).children().css({ 'transform': 'scale(1.2)', 'transition': 'transform 0.5s', 'z-index': '1' });
+
+            }, function () {
+                $(this).children().css({ 'transform': 'scale(1)', 'z-index': '0' });
+            });
+
+            $('.img-div > div').mouseover(function () {
+                $(this).addClass("active");
+            });
+
+            $('.img-div > div').mouseleave(function () {
+                $(this).removeClass("active");
+            });
+        });
+    </script>
 }
 <main>
-    <video controls>
-        <source src="~/Video/Record_2023_01_30_12_53_59_274.mp4" type="video/mp4">
-        Your browser does not support the html video tag.
-    </video>
-    <div class="container PMovies">
-        <div class="MoviesFoto">
-            <img src="~/Img/ryunosuke-kikuno-cqtw4QCfbQg-unsplash.jpg" alt="foto" class="img-fluid">
-        </div>
-        <div class="text mt-5">
-            <h1>THE DARK KNIGHT RISES</h1>
-            <div class="SpanMovies my-5">
-                <span><i class="bi bi-person-fill"></i>18+</span>
-                <span><i class="bi bi-clock"></i>2hr 45min</span>
-                <span><i class="bi bi-emoji-smile"></i>2021</span>
-                <span><i class="bi bi-activity"></i>Action</span>
-                <span><i class="bi bi-globe"></i>United States</span>
-            </div>
-            <div class="MoviesP">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                </p>
-                <h4 class="my-5">Director:Ceyhun Qafarov</h4>
-            </div>
-            <div class="BMovies">
-                <button type="button" class="btn px-5 "><i class="bi bi-play-fill me-2 "></i>Play</button>
-                <button type="button" class="btn px-5"><i class="bi bi-plus me-2"></i>MY List</button>
-                <button type="button" class="btn px-5" data-bs-toggle="modal" data-bs-target="#trailer">
-                    <i class="bi bi-camera-video-fill me-2"></i>
-                    Trailer
-                </button>
-                <button type="button" class="btn px-4" data-bs-toggle="modal" data-bs-target="#myModal">
-                    <i class="bi bi-share-fill me-2"></i>
-                    Share
-                </button>
 
-                <!-- The Modal Share-->
-                <div class="modal modalPlayMovies" id="myModal">
-                    <div class="modal-dialog">
-                        <div class=" modal-content-playMovies">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title modal-title-playmovies fw-bolder text-white">Share</h4>
-                                <button type="button" class="btn-close btn-play-close" data-bs-dismiss="modal">
-                                </button>
-                            </div>
+        <video controls>
+            <source src="~/@Model.MovieVideo" type="video/mp4">
+           
+        </video>
+        <div class="container PMovies">
+            <div class="MoviesFoto">
+                <img src="~/@Model.Img" alt="foto" class="img-fluid">
+            </div>
+            <div class="text mt-5">
+                <h1>@Model.Name</h1>
+                <div class="SpanMovies my-5">
+                    <span><i class="bi bi-person-fill"></i>@Model.Age</span>
+                    <span><i class="bi bi-clock"></i>@Model.MovieTime</span>
+                    <span><i class="bi bi-emoji-smile"></i>@Model.Year</span>
+                    <span><i class="bi bi-activity"></i>@Model.GenresCategoryId</span>
+                    <span><i class="bi bi-globe"></i>@Model.CountryCategoryId</span>
+                </div>
+                <div class="MoviesP">
+                    <p>@Model.Description</p>
+                    <h4 class="my-5">Director:@Model.Director</h4>
+                </div>
+                <div class="BMovies">
+                    <button type="button" class="btn px-5 "><i class="bi bi-play-fill me-2 "></i>Play</button>
+                    <button type="button" class="btn px-5"><i class="bi bi-plus me-2"></i>MY List</button>
+                    <button type="button" class="btn px-5" data-bs-toggle="modal" data-bs-target="#trailer">
+                        <i class="bi bi-camera-video-fill me-2"></i>
+                        Trailer
+                    </button>
+                    <button type="button" class="btn px-4" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <i class="bi bi-share-fill me-2"></i>
+                        Share
+                    </button>
 
-                            <!-- Modal body -->
-                            <div class="modal-body-icon d-flex justify-content-around ">
-                                <a class="my-5"><i class="bi bi-facebook "></i></a>
-                                <a class="my-5"><i class="bi bi-twitter"></i></a>
-                                <a class="my-5"><i class="bi bi-telegram"></i></a>
-                                <a class="my-5"><i class="bi bi-instagram"></i></a>
+                    <!-- The Modal Share-->
+                    <div class="modal modalPlayMovies" id="myModal">
+                        <div class="modal-dialog">
+                            <div class=" modal-content-playMovies">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title modal-title-playmovies fw-bolder text-white">Share</h4>
+                                    <button type="button" class="btn-close btn-play-close" data-bs-dismiss="modal">
+                                    </button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body-icon d-flex justify-content-around ">
+                                    <a class="my-5"><i class="bi bi-facebook "></i></a>
+                                    <a class="my-5"><i class="bi bi-twitter"></i></a>
+                                    <a class="my-5"><i class="bi bi-telegram"></i></a>
+                                    <a class="my-5"><i class="bi bi-instagram"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- The Modal Trailer-->
-                <div class="modal" id="trailer">
-                    <div class="modal-dialog">
-                        <div class="modal-content modal-content-playMovies">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title modal-title-playmovies fw-bolder text-white">Trailer</h4>
-                                <button type="button" class="btn-close btn-play-close" data-bs-dismiss="modal"></button>
-                            </div>
+                    <!-- The Modal Trailer-->
+                    <div class="modal" id="trailer">
+                        <div class="modal-dialog">
+                            <div class="modal-content modal-content-playMovies">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title modal-title-playmovies fw-bolder text-white">Trailer</h4>
+                                    <button type="button" class="btn-close btn-play-close" data-bs-dismiss="modal"></button>
+                                </div>
 
-                            <!-- Modal body -->
-                            <div class=" modal-body-playmovies">
-                                <video controls>
-                                    <source src="~/Video/Record_2023_01_30_12_53_59_274.mp4" type="video/mp4">
-                                    Your browser does not support the html video tag.
-                                </video>
+                                <!-- Modal body -->
+                                <div class=" modal-body-playmovies">
+                                    <video controls>
+                                        <source src="~/@Model.Trailer" type="video/mp4">
+                                    </video>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+ 
+
     <!--RELATED MOVIES-->
     <div class="container">
         <div class="RelatedMovies">
@@ -159,91 +177,12 @@
                         <p class="mx-2 text-white">+18</p>
                         <p class="text-white">Action</p>
                     </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/ouael-ben-salah-1bK4CXuXIGE-unsplash.jpg" alt="" id="image" class="img-fluid">
-                            <div class="icon-container me-2">
-                                <a href=""><i class="bi bi-play-circle "></i></a>
-                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
-                                <a href=""><i class="bi bi-info-circle"></i></a>
-                            </div>
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/ashlee-marie-uCHCdZ1fYiQ-unsplash (1).jpg" alt="" id="image" class="img-fluid">
-                            <div class="icon-container me-2">
-                                <a href=""><i class="bi bi-play-circle "></i></a>
-                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
-                                <a href=""><i class="bi bi-info-circle"></i></a>
-                            </div>
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/format-arw-PXjQaGxi4JA-unsplash.jpg" alt="" id="image" class="img-fluid">
-                            <div class="icon-container me-2">
-                                <a href=""><i class="bi bi-play-circle "></i></a>
-                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
-                                <a href=""><i class="bi bi-info-circle"></i></a>
-                            </div>
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/nate-johnston-4CRTpLLsuJ8-unsplash.jpg" alt="" id="image" class="img-fluid">
-                            <div class="icon-container me-2">
-                                <a href=""><i class="bi bi-play-circle "></i></a>
-                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
-                                <a href=""><i class="bi bi-info-circle"></i></a>
-                            </div>
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
+
                 </div>
             </div>
         </div>
 
     </div>
 
-
 </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.img-div div').hover(function () {
-
-            $(this).children().css({ 'transform': 'scale(1.2)', 'transition': 'transform 0.5s', 'z-index': '1' });
-
-        }, function () {
-            $(this).children().css({ 'transform': 'scale(1)', 'z-index': '0' });
-        });
-
-        $('.img-div > div').mouseover(function () {
-            $(this).addClass("active");
-        });
-
-        $('.img-div > div').mouseleave(function () {
-            $(this).removeClass("active");
-        });
-    });
-</script>

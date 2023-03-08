@@ -1,16 +1,14 @@
 ﻿@model HomeViewModel
 @{
     ViewData["Title"] = "Home Page";
+    int count = 0;
 }
-
-
 
 <div class="hero-slider owl-carousel owl-theme ">
     <!--Esas Carusel-->
     <!--item-->
     @await Component.InvokeAsync("Movie", new{isneww = true})
     <!--item-->
-
 </div>
 <div class="container">
     <div id="moviesCarusel">
@@ -19,32 +17,31 @@
             <div class="movie-category">
                 <ul class="featured-movies-shows">
 
-                  @*  @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Driver")))
+                    @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Driver")))
                     {
                         <li class="featured_li active px-3 me-4 " data-category="@item.Name">@item.Name</li>
-                    }*@
-                    @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Drama") || gc.Name.Contains("Family") || gc.Name.Contains("Romance")))
-                    {
-
-                        <li class="featured_li active px-3 me-4 " data-category="@item.Name">@item.Name</li>
-
                     }
+                 
                 </ul>
                 <div class="images container ">
-                    @foreach (var item in Model.GenresCategories.Take(5).Where(gc => gc.Name.Contains("Drama") || gc.Name.Contains("Family") || gc.Name.Contains("Romance")))
+                  
+                    @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Driver")))
                     {
+                        count++;
+                        if (count == 1)
+                        {
+                            <div class="image @item.Name active text-white">
+                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="image @item.Name text-white">
+                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
+                            </div>
+                        }
 
-                        <div class="image @item.Name  active text-white ">
-                            @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
-                        </div>
                     }
-                   @* @foreach (var item in Model.GenresCategories.Take(5).Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Driver")))
-                    {
-
-                        <div class="image @item.Name active text-white ">
-                            @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
-                        </div>
-                    }*@
                 </div>
             </div>
         </div>
@@ -105,13 +102,26 @@
 
                     }
                 </ul>
+                @(count = 0)
                 <div class="images container ">
-                    @foreach (var item in Model.GenresCategories.Take(5).Where(gc => gc.Name.Contains("Drama") || gc.Name.Contains("Family") || gc.Name.Contains("Romance")))
-                    {
 
-                        <div class="image @item.Name  active text-white ">
-                            @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
-                        </div>
+                    @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Drama") || gc.Name.Contains("Family") || gc.Name.Contains("Romance")))
+                    {
+                        count++;
+                        if (count == 1)
+                        {
+
+                            <div class="image @item.Name  active text-white ">
+                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="image @item.Name  text-white ">
+                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
+                            </div>
+                        }
                     }
                 </div>
             </div>

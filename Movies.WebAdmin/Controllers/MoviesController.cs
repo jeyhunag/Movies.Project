@@ -18,9 +18,9 @@ namespace Movies.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly string _imgPath = @"img\";
-        private readonly string _videoPath = @"Video\";
-        private readonly string _trailerPath = @"Video\";
+        private readonly string _imgPath = @"img/";
+        private readonly string _videoPath = @"Video/";
+        private readonly string _trailerPath = @"Video/";
 
         public MoviesController(AppDbContext context, IWebHostEnvironment webHostEnvironment)
         {
@@ -52,46 +52,46 @@ namespace Movies.Controllers
             //if (ModelState.IsValid)
             //{
 
-                if (imageFile != null && imageFile.Length > 0)
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var imagePath = _imgPath + imageFile.FileName;
+                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    var imagePath = _imgPath + imageFile.FileName;
-                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        await imageFile.CopyToAsync(stream);
-                        movie.Img = imagePath;
-                    }
+                    await imageFile.CopyToAsync(stream);
+                    movie.Img = imagePath;
                 }
+            }
 
 
-                if (videoFile != null && videoFile.Length > 0)
+            if (videoFile != null && videoFile.Length > 0)
+            {
+                var videoPath = _videoPath + videoFile.FileName;
+                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    var videoPath = _videoPath + videoFile.FileName;
-                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        await videoFile.CopyToAsync(stream);
-                        movie.MovieVideo = videoPath;
-                    }
+                    await videoFile.CopyToAsync(stream);
+                    movie.MovieVideo = videoPath;
                 }
+            }
 
 
-                if (trailerFile != null && trailerFile.Length > 0)
+            if (trailerFile != null && trailerFile.Length > 0)
+            {
+                var trailerPath = _trailerPath + trailerFile.FileName;
+                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, trailerPath);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    var trailerPath = _trailerPath + trailerFile.FileName;
-                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, trailerPath);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        await trailerFile.CopyToAsync(stream);
-                        movie.Trailer = trailerPath;
-                    }
+                    await trailerFile.CopyToAsync(stream);
+                    movie.Trailer = trailerPath;
                 }
+            }
 
 
-                _context.Movies.Add(movie);
-                await _context.SaveChangesAsync();
+            _context.Movies.Add(movie);
+            await _context.SaveChangesAsync();
 
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
             //}
             ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name", movie.CountryCategoryId);
             ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name", movie.GenresCategoryId);
@@ -131,57 +131,58 @@ namespace Movies.Controllers
 
             //if (ModelState.IsValid)
             //{
-                try
+            try
+            {
+                if (imageFile != null && imageFile.Length > 0)
                 {
-                    if (imageFile != null && imageFile.Length > 0)
+                    var imagePath = _imgPath + imageFile.FileName;
+                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
-                        var imagePath = _imgPath + imageFile.FileName;
-                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                        using (var stream = new FileStream(fullPath, FileMode.Create))
-                        {
-                            await imageFile.CopyToAsync(stream);
-                            movie.Img = imagePath;
-                        }
-                    }
-
-                    if (videoFile != null && videoFile.Length > 0)
-                    {
-                        var videoPath = _videoPath + videoFile.FileName;
-                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
-                        using (var stream = new FileStream(fullPath, FileMode.Create))
-                        {
-                            await videoFile.CopyToAsync(stream);
-                            movie.MovieVideo = videoPath;
-                        }
-                    }
-
-                    if (trailerFile != null && trailerFile.Length > 0)
-                    {
-                        var trailerPath = _trailerPath + trailerFile.FileName;
-                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, trailerPath);
-                        using (var stream = new FileStream(fullPath, FileMode.Create))
-                        {
-                            await trailerFile.CopyToAsync(stream);
-                            movie.Trailer = trailerPath;
-                        }
-                    }
-
-                    _context.Update(movie);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!MovieExists(movie.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
+                        await imageFile.CopyToAsync(stream);
+                        movie.Img = imagePath;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+                if (videoFile != null && videoFile.Length > 0)
+                {
+                    var videoPath = _videoPath + videoFile.FileName;
+                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await videoFile.CopyToAsync(stream);
+                        movie.MovieVideo = videoPath;
+                    }
+                }
+
+                if (trailerFile != null && trailerFile.Length > 0)
+                {
+                    var trailerPath = _trailerPath + trailerFile.FileName;
+                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, trailerPath);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await trailerFile.CopyToAsync(stream);
+                        movie.Trailer = trailerPath;
+                    }
+                }
+
+                _context.Update(movie);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MovieExists(movie.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
             //}
+
             ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name", movie.CountryCategoryId);
             ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name", movie.GenresCategoryId);
             ViewData["LanguageCategoryId"] = new SelectList(_context.LanguageCategories, "Id", "Name", movie.LanguageCategoryId);

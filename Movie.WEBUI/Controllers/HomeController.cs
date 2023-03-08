@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Movie.WEBUI.Models;
 using Movie.WEBUI.ViewModels;
 using Movies.DAL.Data;
@@ -25,7 +26,7 @@ namespace Movie.WEBUI.Controllers
 			return View(vm);
 		}
 
-		public IActionResult Privacy()
+        public IActionResult Privacy()
 		{
 			return View();
 		}

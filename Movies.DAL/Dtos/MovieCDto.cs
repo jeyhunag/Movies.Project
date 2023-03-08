@@ -27,6 +27,7 @@ namespace Movies.DAL.Dtos
         public List<MoviesDocumentDto> MoviesDocumentDtos { get; set; }
 
         public List<CountryCategoryDto> CountryCategoryDtos { get; set; }
+        public List<TrandCategoryDto> TrandCategoryDtos { get; set; }
         public List<GenresCategoryDto> GenresCategoryDtos { get; set; }
         public List<LanguageCategoryDto> LanguageCategoryDtos { get; set; }
         public List<TrandCategoryDto> TrandsCategoryDtos { get; set; }

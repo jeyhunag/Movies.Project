@@ -115,9 +115,9 @@ footer {
     background: none;
     outline: none;
     color: black;
-    font-size: 20px;
     transition: 0.5s;
     width: 300px;
+    
 }
 
 .show {

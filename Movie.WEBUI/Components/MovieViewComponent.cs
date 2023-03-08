@@ -30,7 +30,7 @@ namespace Movie.WEBUI.Components
 
             if (categoryId > 0)
             {
-                movies = movies.Where(p => p.GenresCategoryId == categoryId).ToList();
+                movies = movies.Where(p => p.GenresCategoryId == categoryId).Take(5).ToList();
             }
             if(top == true)
             {

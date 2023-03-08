@@ -30,8 +30,9 @@ namespace Movie.WEBUI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignInViewModel signInViewModel)
+        public async Task<IActionResult> SignIn(HomeViewModel homeViewModel, SignInViewModel signInViewModel)
         {
+            signInViewModel = homeViewModel.SignInViewModel;
             String UserName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             if (ModelState.IsValid)
             {
