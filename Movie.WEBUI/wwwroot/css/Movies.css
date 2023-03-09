@@ -63,7 +63,6 @@
 
 .card .details {
     position: absolute;
-    bottom: -139px;
     left: 0;
     padding: 20px;
     width: 100%;
@@ -76,8 +75,7 @@
 }
 
 .card .details h2 {
-    color: white;
-    max-width: 150px;
+    
     font-weight: bolder;
 }
 

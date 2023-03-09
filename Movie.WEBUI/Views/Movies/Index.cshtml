@@ -29,6 +29,16 @@
         .dropdown-menu {
             margin-top: 10px;
         }
+
+        .card .details {
+            bottom: -69px;
+        }
+
+            .card .details h2 {
+                color: red;
+                max-width: 250px;
+                font-size:23px;
+            }
     </style>
 }
 
@@ -81,8 +91,8 @@
                 <div class="poster">
                     <img src="~/@item.Img" alt="#">
                 </div>
-                <div class="details">
-                    <a href="#"><i class="bi bi-play-circle"></i></a>
+                <div class="details" sty>
+                    <a asp-area="" asp-controller="Movies" asp-action="Index" asp-route-id="@item.Id"><i class="bi bi-play-circle"></i></a>
                     <h2>@item.Name</h2>
                     <h3>@item.Director</h3>
                     <div class="rating">
@@ -95,7 +105,7 @@
                     </div>
                     <div class="tags">
                         <span>@item.Year</span>
-                        <span>@item.GenresCategory</span>
+                        <span>@item.GenresCategory.Name</span>
                     </div>
                     <div class="info">
                         @item.Description

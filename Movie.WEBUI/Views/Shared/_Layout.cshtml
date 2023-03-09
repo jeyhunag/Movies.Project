@@ -1,5 +1,4 @@
-﻿@model HomeViewModel
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,7 +10,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css"
           integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-   
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
           integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -23,10 +22,31 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="~/css/owl-carusel.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/style.css" />
     <link rel="icon" href="~/Img/Minimalist White Black Cinematography Business Logo.gif" type="img">
     <title> Movies-CO</title>
+    <style>
+        #topmyBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 100%;
+        }
+
+            #topmyBtn:hover {
+                background-color: #555;
+            }
+    </style>
     @RenderSection("addcss",false)
 </head>
 <body>
@@ -54,57 +74,57 @@
                 }
             </div>
             <!-- Modal Sign In -->
-            <div class="modal-overlay">
-                <div class="modal-content">
-                    <span class="close-button">&times;</span>
-                    <h2 class="modal-title">Sign In</h2>
-                    <form class="formModal" asp-controller="account" asp-action="SignIn">
-                        <label asp-for="SignInViewModel.UserName" for="username" class="labelModal">Username</label>
-                        <input asp-for="SignInViewModel.UserName" type="text" id="username"  required>
+            @*        <div class="modal-overlay">
+            <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="modal-title">Sign In</h2>
+            <form class="formModal" asp-controller="account" asp-action="SignIn">
+            <label asp-for="SignInViewModel.UserName" for="username" class="labelModal">Username</label>
+            <input asp-for="SignInViewModel.UserName" type="text" id="username" required>
 
-                        <label asp-for="SignInViewModel.Password" for="password" class="labelModal">Password</label>
-                        <input asp-for="SignInViewModel.Password" type="password" id="password"  required>
+            <label asp-for="SignInViewModel.Password" for="password" class="labelModal">Password</label>
+            <input asp-for="Password" type="password" id="password" name="password" required>
 
-                        <div class="form-group">
-                            <input asp-for="SignInViewModel.RememberMe" type="checkbox" id="remember-me" name="remember-me">
-                            <label asp-for="SignInViewModel.RememberMe" for="remember-me" class="remember-me mx-2">Remember me</label>
-                            <a href="#" class="forgot-password">Forgot password?</a>
-                        </div>
-                        <button type="submit" class="btn-signin">Sign In</button>
-                    </form>
-                    <p>Don't have an account? <a href="#" class="sign-up">Sign Up</a></p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
+            <div class="form-group">
+            <input asp-for="RememberMe" type="checkbox" id="remember-me" name="remember-me">
+            <label asp-for="RememberMe" for="remember-me" class="remember-me mx-2">Remember me</label>
+            <a href="#" class="forgot-password">Forgot password?</a>
             </div>
-@*            <!-- Modal Sign Up -->
+            <button type="submit" class="btn-signin">Sign In</button>
+            </form>
+            <p>Don't have an account? <a href="#" class="sign-up">Sign Up</a></p>
+            <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            </div>
+            </div>*@
+            @*            <!-- Modal Sign Up -->
             <div class="modal-overlay-sigup">
-                <div class="modal-content-sigup">
-                    <span class="close-button-sigup">&times;</span>
-                    <h2 class="modal-title-sigup">Sign Up</h2>
-                    <form class="formModal" method="post" asp-controller="account" asp-action="SignUp">
-                        <label asp-for="UserName" class="labelModal-signup">Username</label>
-                        <input asp-for="UserName" type="text" id="username" name="UserName" required>
+            <div class="modal-content-sigup">
+            <span class="close-button-sigup">&times;</span>
+            <h2 class="modal-title-sigup">Sign Up</h2>
+            <form class="formModal" method="post" asp-controller="account" asp-action="SignUp">
+            <label asp-for="UserName" class="labelModal-signup">Username</label>
+            <input asp-for="UserName" type="text" id="username" name="UserName" required>
 
-                        <label asp-for="Email" class="labelModal-signup">Email</label>
-                        <input asp-for="Email" type="text" name="Email" required>
+            <label asp-for="Email" class="labelModal-signup">Email</label>
+            <input asp-for="Email" type="text" name="Email" required>
 
-                        <label asp-for="Password" class="labelModal-signup">Password</label>
-                        <input asp-for="Password" type="password" id="password" name="password" required>
+            <label asp-for="Password" class="labelModal-signup">Password</label>
+            <input asp-for="Password" type="password" id="password" name="password" required>
 
-                        <label asp-for="PasswordConfirm" class="changePassword-signup">Change Password</label>
-                        <input asp-for="PasswordConfirm" type="password" name="PasswordConfirm" required>
+            <label asp-for="PasswordConfirm" class="changePassword-signup">Change Password</label>
+            <input asp-for="PasswordConfirm" type="password" name="PasswordConfirm" required>
 
-                        <div class="form-group">
-                            <input type="checkbox" name="remember-me">
-                            <label for="remember-me" class="remember-me mx-2">Remember me</label>
-                        </div>
-                        <button type="submit" class="btn-signup">Sign In</button>
-                    </form>
-                </div>
+            <div class="form-group">
+            <input type="checkbox" name="remember-me">
+            <label for="remember-me" class="remember-me mx-2">Remember me</label>
+            </div>
+            <button type="submit" class="btn-signup">Sign In</button>
+            </form>
+            </div>
             </div>*@
         </div>
         <div class="search-box ">
@@ -132,7 +152,6 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" id="pages">PAGES</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" asp-area="" asp-controller="About" asp-action="Index">About Us</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="PlayMovies" asp-action="Index">Play Movies</a>
                         <a class="dropdown-item" asp-area="" asp-controller="PricingPlans" asp-action="Index">Pricing Plans</a>
                         <a class="dropdown-item" asp-area="" asp-controller="Error" asp-action="Index">404</a>
                     </div>
@@ -143,8 +162,6 @@
     <main>
         @RenderBody()
     </main>
-    
-
     <!-- Partial _Footer -->
     <footer>
         <div class="container footer">
@@ -189,17 +206,43 @@
         </div>
     </footer>
 
-
+    <button onclick="topFunction()" id="topmyBtn" title="Go to top"><i class="bi bi-arrow-up px-1"></i></button>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
             integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
             integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+
     <script src="~/js/Index.js"></script>
+
+    <script>
+        let mybutton = document.getElementById("topmyBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

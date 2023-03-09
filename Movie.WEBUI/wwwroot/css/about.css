@@ -1,7 +1,8 @@
 
 #about {
+    display: flex;
     width: 100%;
-    background: rgb(26, 26, 26);
+    background: #202020;
     height: 100vh;
 }
 
@@ -30,25 +31,25 @@
         padding-bottom: 20px;
     }
 
-    .about-text h5 {
-        font-size: 25px;
-        color: white;
-        padding-bottom: 20px;
-        letter-spacing: 2px;
-    }
+.about-text h5 {
+    font-size: 25px;
+    color: white;
+    padding-bottom: 20px;
+    letter-spacing: 2px;
+}
 
-    .about-text span {
-        color: red;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
+.about-text span {
+    color: red;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
-    .about-text p {
-        color: antiquewhite;
-        font-size: 17px;
-        letter-spacing: 1px;
-        line-height: 25px;
-        margin-bottom: 30px;
-    }
+.about-text p {
+    color: antiquewhite;
+    font-size: 17px;
+    letter-spacing: 1px;
+    line-height: 25px;
+    margin-bottom: 30px;
+}
 
 .button_detailed {
     width: 120px;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Movies.BLL.Services.Interfaces;
 using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
@@ -16,8 +17,9 @@ namespace Movie.WEBUI.Controllers
         }
         public async Task<IActionResult>  Index()
 		{
-            var data = await _service.GetListAsync();
-            return View(data);
+            List<AboutDto> categoryDtos = await _service.GetListAsync();
+            return View(categoryDtos);
+
         }
 
 	}

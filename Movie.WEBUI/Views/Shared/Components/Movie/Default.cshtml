@@ -3,20 +3,20 @@
 {
     @foreach (var item in Model)
     {
-            <div class="img-div ">
-                <div>
-                    <img src="~/@item.Img" alt="" id="image" class="img-fluid">
-                    <div class="icon-container me-2">
+        <div class="img-div">
+            <div>
+                <img src="~/@item.Img" alt="" id="image" class="img-fluid">
+                <div class="icon-container me-2">
                     <a asp-area="" asp-controller="PlayMovies" asp-action="Index" asp-route-id="@item.Id"><i class="bi bi-play-circle "></i></a>
-                        <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
-                        <a href=""><i class="bi bi-info-circle"></i></a>
-                    </div>
+                    <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
+                    <a href=""><i class="bi bi-info-circle"></i></a>
                 </div>
-                <h4 class="text-white">@item.Name</h4>
-                <p class="text-white">@item.Year</p>
-                <p class="mx-2 text-white">@item.Age</p>
-                <p class="text-white">@item.GenresCategory.Name</p>
             </div>
+            <h4 class="text-white">@item.Name</h4>
+            <p class="text-white">@item.Year</p>
+            <p class="mx-2 text-white">@item.Age</p>
+            <p class="text-white">@item.GenresCategory.Name</p>
+        </div>
     }
 }
 else
@@ -29,7 +29,7 @@ else
                     <span class="badge mb-4">New</span>
                     <h1>@item.Name</h1>
                     <p>
-                     @item.Description
+                        @item.Description
                     </p>
                     <div class="SpanMovies my-5">
                         <span><i class="bi bi-person-fill"></i>@item.Age</span>
@@ -46,7 +46,7 @@ else
             </div>
         </div>
     }
-  
+
 }
 
 
