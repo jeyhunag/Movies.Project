@@ -1,89 +1,213 @@
-﻿    <!-- Navbar Start -->
-<nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-    <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-        <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
-    </a>
-    <a href="#" class="sidebar-toggler flex-shrink-0">
-        <i class="fa fa-bars"></i>
-    </a>
-    <form class="d-none d-md-flex ms-4">
-        <input class="form-control bg-dark border-0" type="search" placeholder="Search">
-    </form>
-    <div class="navbar-nav align-items-center ms-auto">
-        <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <i class="fa fa-envelope me-lg-2"></i>
-                <span class="d-none d-lg-inline-flex">Message</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" class="dropdown-item">
-                    <div class="d-flex align-items-center">
-                        <img class="rounded-circle" src="~/img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                        <div class="ms-2">
-                            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                            <small>15 minutes ago</small>
+﻿<div class="all-content-wrapper">
+
+    <div class="header-advance-area">
+        <div class="header-top-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="header-top-wraper">
+                            <div class="row">
+                                <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                                    <div class="menu-switcher-pro">
+                                        <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+                                            <i class="icon nalika-menu-task"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                                    <div class="header-top-menu tabl-d-n">
+                                        <div class="breadcome-heading">
+                                            <form role="search">
+                                                <input type="text" placeholder="Search..." class="form-control">
+                                                <a href=""><i class="fa fa-search"></i></a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                    <div class="header-right-info">
+                                        <ul class="nav navbar-nav mai-top-nav header-right-menu">
+                                            <li class="nav-item dropdown">
+                                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="icon nalika-mail nalika-chat-pro" aria-hidden="true"></i><span class="indicator-ms"></span></a>
+                                                <div role="menu" class="author-message-top dropdown-menu animated zoomIn">
+                                                    <div class="message-single-top">
+                                                        <h1>Message</h1>
+                                                    </div>
+                                                    <ul class="message-menu">
+                                                        <li>
+                                                            <a href="#">
+                                                                <div class="message-img">
+                                                                    <img src="~/img/contact/1.jpg" alt="">
+                                                                </div>
+                                                                <div class="message-content">
+                                                                    <span class="message-date">16 Sept</span>
+                                                                    <h2>Advanda Cro</h2>
+                                                                    <p>Please done this project as soon possible.</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="message-view">
+                                                        <a href="#">View All Messages</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="icon nalika-alarm" aria-hidden="true"></i><span class="indicator-nt"></span></a>
+                                                <div role="menu" class="notification-author dropdown-menu animated zoomIn">
+                                                    <div class="notification-single-top">
+                                                        <h1>Notifications</h1>
+                                                    </div>
+                                                    <ul class="notification-menu">
+                                                        <li>
+                                                            <a href="#">
+                                                                <div class="notification-icon">
+                                                                    <i class="icon nalika-tick" aria-hidden="true"></i>
+                                                                </div>
+                                                                <div class="notification-content">
+                                                                    <span class="notification-date">16 Sept</span>
+                                                                    <h2>Advanda Cro</h2>
+                                                                    <p>Please done this project as soon possible.</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="notification-view">
+                                                        <a href="#">View All Notification</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                                    <i class="icon nalika-user nalika-user-rounded header-riht-inf" aria-hidden="true"></i>
+                                                    <span class="admin-name">Advanda Cro</span>
+                                                    <i class="icon nalika-down-arrow nalika-angle-dw nalika-icon"></i>
+                                                </a>
+                                                <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                    <li>
+                                                        <a href="register.html"><span class="icon nalika-home author-log-ic"></span> Register</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="nav-item nav-setting-open">
+                                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="icon nalika-menu-task"></i></a>
+
+                                                <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated zoomIn">
+                                                    <ul class="nav nav-tabs custon-set-tab">
+                                                        <li class="active">
+                                                            <a data-toggle="tab" href="#Notes">News</a>
+                                                        </li>
+                                                    </ul>
+
+                                                    <div class="tab-content custom-bdr-nt">
+                                                        <div id="Notes" class="tab-pane fade in active">
+                                                            <div class="notes-area-wrap">
+                                                                <div class="note-heading-indicate">
+                                                                    <h2><i class="icon nalika-chat"></i> Latest News</h2>
+                                                                    <p>You have 10 New News.</p>
+                                                                </div>
+                                                                <div class="notes-list-area notes-menu-scrollbar">
+                                                                    <ul class="notes-menu-list">
+                                                                        <li>
+                                                                            <a href="#">
+                                                                                <div class="notes-list-flow">
+                                                                                    <div class="notes-img">
+                                                                                        <img src="~/img/contact/4.jpg" alt="" />
+                                                                                    </div>
+                                                                                    <div class="notes-content">
+                                                                                        <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
+                                                                                        <span>Yesterday 2:45 pm</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="Projects" class="tab-pane fade">
+                                                            <div class="projects-settings-wrap">
+                                                                <div class="note-heading-indicate">
+                                                                    <h2><i class="icon nalika-happiness"></i> Recent Activity</h2>
+                                                                    <p> You have 20 Recent Activity.</p>
+                                                                </div>
+                                                                <div class="project-st-list-area project-st-menu-scrollbar">
+                                                                    <ul class="projects-st-menu-list">
+                                                                        <li>
+                                                                            <a href="#">
+                                                                                <div class="project-list-flow">
+                                                                                    <div class="projects-st-heading">
+                                                                                        <h2>New User Registered</h2>
+                                                                                        <p> The point of using Lorem Ipsum is that it has a more or less normal.</p>
+                                                                                        <span class="project-st-time">1 hours ago</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="Settings" class="tab-pane fade">
+                                                            <div class="setting-panel-area">
+                                                                <div class="note-heading-indicate">
+                                                                    <h2><i class="icon nalika-gear"></i> Settings Panel</h2>
+                                                                    <p> You have 20 Settings. 5 not completed.</p>
+                                                                </div>
+                                                                <ul class="setting-panel-list">
+                                                                    <li>
+                                                                        <div class="checkbox-setting-pro">
+                                                                            <div class="checkbox-title-pro">
+                                                                                <h2>Show notifications</h2>
+                                                                                <div class="ts-custom-check">
+                                                                                    <div class="onoffswitch">
+                                                                                        <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
+                                                                                        <label class="onoffswitch-label" for="example">
+                                                                                            <span class="onoffswitch-inner"></span>
+                                                                                            <span class="onoffswitch-switch"></span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item">
-                    <div class="d-flex align-items-center">
-                        <img class="rounded-circle" src="~/img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                        <div class="ms-2">
-                            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                            <small>15 minutes ago</small>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu start -->
+        <div class="mobile-menu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="mobile-menu">
+                            <nav id="dropdown">
+                                <ul class="mobile-menu-nav">
+                                    <li>
+                                        <a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
+                                        <ul class="collapse dropdown-header-top">
+                                            <li><a href="index.html">Dashboard v.1</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item">
-                    <div class="d-flex align-items-center">
-                        <img class="rounded-circle" src="~/img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                        <div class="ms-2">
-                            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                            <small>15 minutes ago</small>
-                        </div>
-                    </div>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item text-center">See all message</a>
+                </div>
             </div>
         </div>
-        <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <i class="fa fa-bell me-lg-2"></i>
-                <span class="d-none d-lg-inline-flex">Notificatin</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">Profile updated</h6>
-                    <small>15 minutes ago</small>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">New user added</h6>
-                    <small>15 minutes ago</small>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">Password changed</h6>
-                    <small>15 minutes ago</small>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item text-center">See all notifications</a>
-            </div>
-        </div>
-        <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img class="rounded-circle me-lg-2" src="~/img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                <span class="d-none d-lg-inline-flex">John Doe</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" class="dropdown-item">My Profile</a>
-                <a href="#" class="dropdown-item">Settings</a>
-                <a href="#" class="dropdown-item">Log Out</a>
-            </div>
-        </div>
+        <!-- Mobile Menu end -->
     </div>
-</nav>
-<!-- Navbar End -->
+</div>

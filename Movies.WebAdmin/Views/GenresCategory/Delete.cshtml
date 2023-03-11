@@ -2,24 +2,64 @@
 @{
     ViewData["Title"] = "Delete";
 }
-<div class="container">
-    <div class="row">
-        <!--Card 1-->
-        <div class="col-md-6 mx-auto d-block">
-            <div class="card">
-                <div class="card-header border-4 text-center">
-                    <h1 class="display-4">Delete </h1>
-                </div>
+@section addcss{
+    <!-- accordions CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/css/accordions.css">
 
-                <div class=" list-box">
-                    <div class="my-3"> Id: <span>@Html.DisplayFor(model => model.Id)</span></div>
-                    <div class="my-3"> Model: <span>@Html.DisplayFor(model => model.Name)</span></div>
-                </div>
+    <style>
+        .panel-group form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 7px;
+        }
 
-                <form class="card-footer p-0 text-center " asp-action="Delete">
+            .panel-group form button {
+                background-color: red;
+                color: white;
+                font-weight: bolder;
+            }
+
+                .panel-group form button:hover {
+                    background-color: red;
+                    color: white;
+                    font-weight: bolder;
+                }
+
+        .create-account-sign {
+            display: flex;
+            align-items: end;
+            justify-content: end;
+        }
+    </style>
+}
+
+<div class="row" style="display:flex; align-items:center; justify-content:center;">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top:75px;">
+        <div class="create-account-sign">
+            <a asp-action="Index"><i class="fa fa-sign-in big-icon"></i></a>
+        </div>
+        <div class="admin-pro-accordion-wrap responsive-mg-b-30">
+            <div class="panel-group adminpro-custon-design" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading accordion-head">
+                        <h4 class="panel-title" style="display:flex; align-items:center; justify-content:center;">
+                            Delete Genres
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse panel-ic collapse in">
+                        <div class="panel-body admin-panel-content animated bounce">
+                            <p style="color: red;">Id: <span style="color: black;">@Html.DisplayFor(model => model.Id)</span></p>
+                            <p style="color: red;">Name: <span style="color: black;">@Html.DisplayFor(model => model.Name)</span></p>
+                        </div>
+                    </div>
+                </div>
+                <form asp-action="Delete">
                     <input type="hidden" asp-for="Id" />
-                    <input class="btn btn-danger ms-3 my-4 float-start btn-lg" type="submit" value="Delete" />
-                    <a class="btn btn-warning my-4  me-3 float-end btn-lg" asp-action="Index">Back to List</a>
+                    <button class="btn btn-danger btn-lg" type="submit" value="Delete">
+                        Delete
+                    </button>
                 </form>
             </div>
         </div>

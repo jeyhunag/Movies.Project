@@ -12,7 +12,7 @@ namespace Movies.WebAdmin.Controllers
     {
         private readonly IGenericService<AboutDto, About> _service;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly string _imgPath = @"img\";
+        private readonly string _imgPath = @"img/";
 
         public AboutController(IGenericService<AboutDto, About> service, IWebHostEnvironment webHostEnvironment)
         {
@@ -38,8 +38,8 @@ namespace Movies.WebAdmin.Controllers
         public async Task<IActionResult> Create(AboutDto aboutDto, IFormFile imageFile)
         {
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
 
                 if (imageFile != null && imageFile.Length > 0)
                 {
@@ -60,7 +60,7 @@ namespace Movies.WebAdmin.Controllers
                 }
 
                 return RedirectToAction("Index");
-        }
+            //}
 
             return View(aboutDto);
         }

@@ -1,59 +1,84 @@
-﻿        <!-- Spinner Start -->
-<div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-</div>
-<!-- Spinner End -->
+﻿
 
-<!-- Sidebar Start -->
-<div class="sidebar pe-4 pb-3">
-    <nav class="navbar bg-secondary navbar-dark">
-        <a href="index.html" class="navbar-brand mx-4 mb-3">
-            <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
-        </a>
-        <div class="d-flex align-items-center ms-4 mb-4">
-            <div class="position-relative">
-                <img class="rounded-circle" src="~/img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+<div class="left-sidebar-pro">
+    <nav id="sidebar" class="">
+        <div class="sidebar-header">
+            <a href="index.html"><img class="main-logo" src="~/img/logo/logo.png" alt="" /></a>
+            <strong><img src="~/img/logo/logosn.png" alt="" /></strong>
+        </div>
+        <div class="nalika-profile">
+            <div class="profile-dtl">
+                <a href="#"><img src="~/img/notification/4.jpg" alt="" /></a>
+                <h2>Lakian <span class="min-dtn">Das</span></h2>
             </div>
-            <div class="ms-3">
-                <h6 class="mb-0">Jhon Doe</h6>
-                <span>Admin</span>
+            <div class="profile-social-dtl">
+                <ul class="dtl-social">
+                    <li><a href="#"><i class="icon nalika-facebook"></i></a></li>
+                    <li><a href="#"><i class="icon nalika-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon nalika-linkedin"></i></a></li>
+                </ul>
             </div>
         </div>
-        <div class="navbar-nav w-100">
-            <a asp-area="" asp-controller="Movies" asp-action="Index" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Movie</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Filtr Category</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a asp-area="" asp-controller="GenresCategory" asp-action="Index" class="dropdown-item">Genres</a>
-                    <a asp-area="" asp-controller="CountryCategory" asp-action="Index" class="dropdown-item">Country</a>
-                    <a asp-area="" asp-controller="LanguageCategory" asp-action="Index" class="dropdown-item">Language</a>
-                    <a asp-area="" asp-controller="Trands" asp-action="Index" class="dropdown-item">Trands</a>
-                </div>
-            </div>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Users Management</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a asp-area="" asp-controller="UserManagment" asp-action="UserIndex" class="dropdown-item">User</a>
-                    <a asp-area="" asp-controller="UserManagment" asp-action="RoleIndex" class="dropdown-item">Role</a>
-                </div>
-            </div>
-            <a asp-area="" asp-controller="About" asp-action="Index" class="nav-item nav-link"><i class="fa fa-th me-2"></i>About</a>
-            <a asp-area="" asp-controller="Contact" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Contact</a>
-            <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="signin.html" class="dropdown-item">Sign In</a>
-                    <a href="signup.html" class="dropdown-item">Sign Up</a>
-                    <a href="404.html" class="dropdown-item">404 Error</a>
-                    <a href="blank.html" class="dropdown-item">Blank Page</a>
-                </div>
-            </div>
+        <div class="left-custom-menu-adp-wrap comment-scrollbar">
+            <nav class="sidebar-nav left-sidebar-menu-pro">
+                <ul class="metismenu" id="menu1">
+                    <li class="active">
+                        <a class="has-arrow" asp-area="" asp-controller="Movies" asp-action="Index">
+                            <i class="icon nalika-home icon-wrap"></i>
+                            <span class="mini-click-non">Movies</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-table icon-wrap"></i> </i> <span class="mini-click-non">Category</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Inbox" asp-area="" asp-controller="GenresCategory" asp-action="Index"><span class="mini-sub-pro">Genres</span></a></li>
+                            <li><a title="Inbox" asp-area="" asp-controller="CountryCategory" asp-action="Index"><span class="mini-sub-pro">Country</span></a></li>
+                            <li><a title="Inbox" asp-area="" asp-controller="LanguageCategory" asp-action="Index"><span class="mini-sub-pro">Language</span></a></li>
+                            <li><a title="Inbox" asp-area="" asp-controller="Trands" asp-action="Index"><span class="mini-sub-pro">Trands</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-diamond icon-wrap"></i> <span class="mini-click-non">Users Management</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a  asp-area="" asp-controller="UserManagment" asp-action="UserIndex"><span class="mini-sub-pro">User</span></a></li>
+                            <li><a asp-area="" asp-controller="UserManagment" asp-action="RoleIndex"><span class="mini-sub-pro">Role</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" asp-area="" asp-controller="About" asp-action="Index"><i class="icon nalika-pie-chart icon-wrap"></i> <span class="mini-click-non">About</span></a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" asp-area="" asp-controller="Contact" asp-action="Index"><i class="icon nalika-bar-chart icon-wrap"></i> <span class="mini-click-non">Contact</span></a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-table icon-wrap"></i> <span class="mini-click-non">Data Tables</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Peity Charts" href="static-table.html"><span class="mini-sub-pro">Static Table</span></a></li>
+                            <li><a title="Data Table" href="data-table.html"><span class="mini-sub-pro">Data Table</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-forms icon-wrap"></i> <span class="mini-click-non">Forms Elements</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Basic Form Elements" href="basic-form-element.html"><span class="mini-sub-pro">Bc Form Elements</span></a></li>
+                            <li><a title="Advance Form Elements" href="advance-form-element.html"><span class="mini-sub-pro">Ad Form Elements</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-smartphone-call icon-wrap"></i> <span class="mini-click-non">App views</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Notifications" href="notifications.html"><span class="mini-sub-pro">Notifications</span></a></li>
+                            <li><a title="Alerts" href="alerts.html"><span class="mini-sub-pro">Alerts</span></a></li>
+                        </ul>
+                    </li>
+                    <li id="removable">
+                        <a class="has-arrow" href="#" aria-expanded="false"><i class="icon nalika-new-file icon-wrap"></i> <span class="mini-click-non">Pages</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Login" href="login.html"><span class="mini-sub-pro">Login</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </nav>
 </div>
-<!-- Sidebar End -->

@@ -1,86 +1,74 @@
-﻿
-@model List<UserViewModel>
+﻿@model List<UserViewModel>
 @{
     ViewData["Title"] = "Index";
 }
 
-
-<div class="row mt-3 mx-3">
-
-    <div id="tableProgress" class="col-lg-12 col-12 layout-spacing">
-        <div class="statbox widget box box-shadow">
-            <div class="widget-header">
-                <div class="row">
-
-                    <div class="col-6">
-                        <h2 class="text-primary">
-                            Istifadəçi siyahısı
-                        </h2>
+<div class="row" style="display:flex; align-items:center; justify-content:center;">
+    <div class="col-lg-10 col-md-6 col-sm-6 col-xs-12" style="margin-top:75px; margin-left:190px">
+        <div class="sparkline8-list">
+            <div class="sparkline8-hd">
+                <div class="main-sparkline8-hd text-white">
+                    <h1 style="color:white; display:flex; align-items:center; justify-content:center;">User Managment</h1>
+                    <div style="float:right">
+                        <a asp-action="UserCreate" class="btn btn-custon-four btn-primary">Creat User</a>
                     </div>
-                    <div class="col-6 text-right">
-                        <a asp-controller="UserManagment" asp-action="UserCreate" class="btn btn-primary">
-                            <i class="bi bi-plus-circle"></i>&nbsp; Yeni istifadəçi yarad
-                        </a>
-                    </div>
-
                 </div>
             </div>
-            <div class="widget-content widget-content-area">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
+            <div class="sparkline8-graph">
+                <div class="static-table-list">
+                    <table class="table ">
                         <thead>
-                            <tr>
+                            <tr style="color:white; font-size:19px;">
                                 <th>Image</th>
-                                <th>#</th>
+                                <th>Id</th>
                                 <th>UserName</th>
                                 <th>Gender</th>
                                 <th>Name</th>
                                 <th>Surname</th>
                                 <th>Email</th>
                                 <th>Country</th>
-                                <th>Update| Delete | Role</th>
+                                <th style="display:flex; text-align:end; justify-content:end;">Update || Delete ||Role </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @{
-
-                                foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td class="img-fluid">
-                                         <img style="width:40px; height: 50px" src="~/@item.Img" />
-                                        </td>
-                                        <td>@item.Id</td>
-                                        <td>@item.Name</td>
-                                        <td>@item.Surname</td>
-                                        <td>@item.Gender</td>
-                                        <td>@item.UserName</td>
-                                        <td>@item.Email</td>
-                                        <td>@item.Country</td>
-                                        <td class="text-center" role="group">
-                                            <a asp-controller="UserManagment" asp-action="UserDelete" asp-route-id="@item.Id" class="btn btn-danger" aria-current="page">  <i class="bi bi-trash-fill"></i>Delete</a>
-                                            <a asp-controller="UserManagment" asp-action="UserUpdate" asp-route-id="@item.Id" class="btn btn-primary" aria-current="page"> <i class="bi bi-pencil-square"></i>Update</a>
-                                            <a asp-controller="UserManagment" asp-action="RoleAssign" asp-route-id="@item.Id" class="btn btn-secondary" aria-current="page"> <i class="bi bi-person-gear"></i>CreateRole</a>
-                                            <a class="btn btn-info" onclick="showModal('@item.Id')" id="nav-btn"><i class="bi bi-info-circle"></i>RoleAssign</a>
-                                            
-                                        </td>
-                                        <td>
-                                            
-                                        </td>
-                                    </tr>
-                                }
+                            @foreach (var item in Model)
+                            {
+                                <tr style="color:white;">
+                                    <td class="img-fluid">
+                                        <img style="width:40px; height: 50px" src="~/@item.Img" />
+                                    </td>
+                                    <td>@item.Id</td>
+                                    <td>@item.UserName</td>
+                                    <td>@item.Gender</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Surname</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Country</td>
+                                    <td style="display:flex; text-align:center; justify-content:center;">
+                                        <a class="btn btn-custon-four btn-warning" asp-action="UserUpdate" asp-route-id="@item.Id" style="margin-right:8px;">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            Update
+                                        </a>
+                                        <a class="btn btn-custon-four btn-danger" asp-action="UserDelete" asp-route-id="@item.Id" style="margin-right:8px;">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                            Delete
+                                        </a>
+                                        <a class="btn btn-custon-four btn-default" asp-action="RoleAssign" asp-route-id="@item.Id" style="margin-right:8px;">
+                                            <i class="fa-regular fa-circle-user"></i>
+                                            Create Role
+                                        </a>
+                                        <a class="btn btn-info" onclick="showModal('@item.Id')" id="nav-btn"><i class="bi bi-info-circle"></i>RoleAssign</a>
+                                    </td>
+                                </tr>
                             }
+
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
         </div>
     </div>
-
 </div>
-
 <partial name="UserRole" />
 
 <script>

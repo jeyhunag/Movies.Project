@@ -1,19 +1,20 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Movies.DAL.DbModel;
 using Movies.WebAdmin.ViewModels;
 using System.Text;
 
 namespace Movies.WebAdmin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class UserManagmentController : Controller
     {
         private UserManager<AppUser> _userManager;
         private RoleManager<AppRole> _roleManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly string _imgPath = @"img\";
+        private readonly string _imgPath = @"img/";
 
         public UserManagmentController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, IWebHostEnvironment webHostEnvironment)
         {
@@ -22,10 +23,6 @@ namespace Movies.WebAdmin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         #region UserOperation
         public IActionResult UserIndex()
@@ -67,34 +64,34 @@ namespace Movies.WebAdmin.Controllers
             //if (ModelState.IsValid)
             //{
 
-                if (imageFile != null && imageFile.Length > 0)
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var imagePath = _imgPath + imageFile.FileName;
+                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    var imagePath = _imgPath + imageFile.FileName;
-                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        await imageFile.CopyToAsync(stream);
-                        viewModel.Img = imagePath;
-                    }
+                    await imageFile.CopyToAsync(stream);
+                    viewModel.Img = imagePath;
                 }
+            }
 
-                AppUser user = new AppUser()
-                {
-
-                    Name = viewModel.Name,
-                    Surname = viewModel.Surname,
-                    UserName = viewModel.UserName,
-                    Country = viewModel.Country,
-                    Img = viewModel.Img,
-                    DateOfBirth = viewModel.DateOfBirth,
-                    Email = viewModel.Email,
-                    Gender = viewModel.Gender
-                };
-                IdentityResult result = await _userManager.CreateAsync(user, viewModel.Password);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("UserIndex");
-                }
+            AppUser user = new AppUser()
+            {
+                Id = viewModel.Id,
+                Name = viewModel.Name,
+                Surname = viewModel.Surname,
+                UserName = viewModel.UserName,
+                Country = viewModel.Country,
+                Img = viewModel.Img,
+                DateOfBirth = viewModel.DateOfBirth,
+                Email = viewModel.Email,
+                Gender = viewModel.Gender
+            };
+            IdentityResult result = await _userManager.CreateAsync(user, viewModel.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("UserIndex");
+            }
 
             //}
             return View(viewModel);
@@ -130,39 +127,39 @@ namespace Movies.WebAdmin.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                if (imageFile != null && imageFile.Length > 0)
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var imagePath = _imgPath + imageFile.FileName;
+                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    var imagePath = _imgPath + imageFile.FileName;
-                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        await imageFile.CopyToAsync(stream);
-                        viewModel.Img = imagePath;
-                    }
+                    await imageFile.CopyToAsync(stream);
+                    viewModel.Img = imagePath;
                 }
+            }
 
-                AppUser user = await _userManager.FindByIdAsync(viewModel.Id);
+            AppUser user = await _userManager.FindByIdAsync(viewModel.Id);
 
-                if (user == null)
-                {
-                    return NotFound();
-                }
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-                user.Name = viewModel.Name;
-                user.Surname = viewModel.Surname;
-                user.Country = viewModel.Country;
-                user.Img = viewModel.Img;
-                user.DateOfBirth = viewModel.DateOfBirth;
-                user.Email = viewModel.Email;
-                user.UserName = viewModel.UserName;
-                user.Gender = viewModel.Gender;
+            user.Name = viewModel.Name;
+            user.Surname = viewModel.Surname;
+            user.Country = viewModel.Country;
+            user.Img = viewModel.Img;
+            user.DateOfBirth = viewModel.DateOfBirth;
+            user.Email = viewModel.Email;
+            user.UserName = viewModel.UserName;
+            user.Gender = viewModel.Gender;
 
-                IdentityResult result = await _userManager.UpdateAsync(user);
+            IdentityResult result = await _userManager.UpdateAsync(user);
 
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("UserIndex");
-                }
+            if (result.Succeeded)
+            {
+                return RedirectToAction("UserIndex");
+            }
             //}
 
             return View(viewModel);
@@ -182,7 +179,9 @@ namespace Movies.WebAdmin.Controllers
             return RedirectToAction("UserIndex");
         }
 
+        #endregion
 
+        #region RoleOperation
         public async Task<string> UserRole(string id)
         {
 
@@ -196,9 +195,9 @@ namespace Movies.WebAdmin.Controllers
             }
             return builder.ToString();
         }
-        #endregion
+        
 
-        #region RoleOperation
+        
         public IActionResult RoleIndex()
         {
 
@@ -209,6 +208,7 @@ namespace Movies.WebAdmin.Controllers
             {
                 RoleViewModel viewModel = new RoleViewModel
                 {
+                    Id = item.Id,
                     Name = item.Name
 
                 };
@@ -228,15 +228,15 @@ namespace Movies.WebAdmin.Controllers
         {
             //if (ModelState.IsValid)
             //{
-            AppRole role = new AppRole()
-            {
-                Name = viewModel.Name
-            };
-            IdentityResult result = await _roleManager.CreateAsync(role);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("RoleIndex");
-            }
+                AppRole role = new AppRole()
+                {
+                    Name = viewModel.Name
+                };
+                IdentityResult result = await _roleManager.CreateAsync(role);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("RoleIndex");
+                }
 
             //}
             return View(viewModel);
@@ -335,25 +335,45 @@ namespace Movies.WebAdmin.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RoleDelete(int id)
+        [HttpGet]
+        public async Task<IActionResult> RoleDelete(string id)
         {
-            var role = await _roleManager.FindByIdAsync(id.ToString());
-
+            AppRole role = await _roleManager.FindByIdAsync(id);
             if (role == null)
             {
                 return NotFound();
             }
 
-            var result = await _roleManager.DeleteAsync(role);
-
-            if (!result.Succeeded)
+            IdentityResult result = await _roleManager.DeleteAsync(role);
+            if (result.Succeeded)
             {
+                return RedirectToAction("RoleIndex");
             }
-
-            return RedirectToAction(nameof(Index));
+            else
+            {
+                return BadRequest(result.Errors);
+            }
         }
+
+        //public async Task<IActionResult> RoleDelete(int id)
+        //{
+        //    AppRole role = await _roleManager.FindByIdAsync(id.ToString());
+
+        //    if (role == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    IdentityResult result = await _roleManager.DeleteAsync(role);
+
+        //    if (result.Succeeded)
+        //    {
+        //        return Ok();
+        //    }
+
+        //    return BadRequest();
+        //}
+
 
         #endregion
     }
