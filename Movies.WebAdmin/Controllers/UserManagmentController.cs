@@ -77,7 +77,6 @@ namespace Movies.WebAdmin.Controllers
 
             AppUser user = new AppUser()
             {
-                Id = viewModel.Id,
                 Name = viewModel.Name,
                 Surname = viewModel.Surname,
                 UserName = viewModel.UserName,
@@ -354,27 +353,6 @@ namespace Movies.WebAdmin.Controllers
                 return BadRequest(result.Errors);
             }
         }
-
-        //public async Task<IActionResult> RoleDelete(int id)
-        //{
-        //    AppRole role = await _roleManager.FindByIdAsync(id.ToString());
-
-        //    if (role == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    IdentityResult result = await _roleManager.DeleteAsync(role);
-
-        //    if (result.Succeeded)
-        //    {
-        //        return Ok();
-        //    }
-
-        //    return BadRequest();
-        //}
-
-
         #endregion
     }
 

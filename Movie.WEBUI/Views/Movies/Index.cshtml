@@ -31,7 +31,7 @@
         }
 
         .card .details {
-            bottom: -69px;
+            bottom: -80px;
         }
 
             .card .details h2 {
@@ -94,7 +94,6 @@
                 <div class="details" sty>
                     <a asp-area="" asp-controller="Movies" asp-action="Index" asp-route-id="@item.Id"><i class="bi bi-play-circle"></i></a>
                     <h2>@item.Name</h2>
-                    <h3>@item.Director</h3>
                     <div class="rating">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -108,7 +107,7 @@
                         <span>@item.GenresCategory.Name</span>
                     </div>
                     <div class="info">
-                        @item.Description
+                       Director: @item.Director
                     </div>
                 </div>
             </div>

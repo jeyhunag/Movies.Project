@@ -18,7 +18,7 @@ namespace Movies.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly string _imgPath = @"img/";
+        private readonly string _imgPath = @"Img/";
         private readonly string _videoPath = @"Video/";
         private readonly string _trailerPath = @"Video/";
 

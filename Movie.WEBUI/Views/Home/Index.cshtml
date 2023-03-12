@@ -50,11 +50,11 @@
         <!--Comedia Movies Carusel-->
         <h2>Comedia</h2>
         <hr id="hr_color">
-        @foreach (var item in Model.GenresCategories.Take(5).Where(gc => gc.Name.Contains("Comedia")))
+        @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Comedia")))
         {
-            <div class="carousel owl-carousel ">
+            <div class="carousel owl-carousel @item.Name">
 
-                @await Component.InvokeAsync("Movie")
+                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
 
             </div>
         }
@@ -65,7 +65,7 @@
             <h2 class="text-white fw-bolder">Top 5</h2>
             <hr id="hr_color">
             <div class=" suggestedFor owl-carousel">
-                @foreach (var item in Model.GenresCategories.Take(8))
+                @foreach (var item in Model.GenresCategories)
                 {
 
                     @await Component.InvokeAsync("Movie", new{Top = true})
@@ -78,10 +78,10 @@
         <!--History  Carusel-->
         <h2 class="text-white fw-bolder">History</h2>
         <hr id="hr_color">
-        @foreach (var item in Model.GenresCategories.Take(5).Where(gc => gc.Name.Contains("History")))
+        @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("History")))
         {
-            <div class=" trendingNow owl-carousel">
-                @await Component.InvokeAsync("Movie")
+            <div class=" trendingNow owl-carousel @item.Name">
+                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
             </div>
         }
     </div>
@@ -133,10 +133,10 @@
     <div>
         <h2 class="text-white fw-bolder">Animation</h2>
         <hr id="hr_color">
-        @foreach (var item in Model.GenresCategories.Take(5).Where(gc => gc.Name.Contains("Animation")))
+        @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Animation")))
         {
-            <div class=" suggestedFor owl-carousel">
-                @await Component.InvokeAsync("Movie")
+            <div class=" suggestedFor owl-carousel @item.Name">
+                @await Component.InvokeAsync("Movie",new{categoryId = item.Id})
             </div>
         }
     </div>
