@@ -29,7 +29,6 @@
                         <select asp-for="RoleName"
                                 class="form-control"
                                 asp-items="@(new SelectList(Model.Roles, nameof(RoleViewModel.Name), nameof(RoleViewModel.Name)))">
-                            <option>Please select one</option>
                         </select>
 
                         <span asp-validation-for="RoleId" class="text-danger"></span>
