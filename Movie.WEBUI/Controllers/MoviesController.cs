@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Movies.DAL.Data;
 using Movies.DAL.DbModel;
+
 
 namespace Movie.WEBUI.Controllers
 {
@@ -17,8 +19,9 @@ namespace Movie.WEBUI.Controllers
 
         public async Task<IActionResult> Index(int Id)
         {
+            
             return View(await _context.Movies.Include(p => p.GenresCategory).ToListAsync());
-           
+
         }
     }
 }

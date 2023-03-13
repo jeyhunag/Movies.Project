@@ -1,4 +1,5 @@
-﻿@model List<MovieC>
+﻿
+@model List<MovieC>
 @{
     ViewData["Title"] = "Index";
 }
@@ -15,31 +16,25 @@
         .card-container {
             margin-bottom: 100px !important;
         }
-
         .moviePageDropdown ul li a {
             color: black;
             background: white;
         }
-
         .dropdown ul li a {
             color: black;
             background: white;
         }
-
         .moviePageDropdown {
             display: inline-flex;
             background: red;
             color: black;
         }
-
         .dropdown-menu {
             margin-top: 10px;
         }
-
         .card .details {
             bottom: -45px;
         }
-
             .card .details h2 {
                 color: white;
                 max-width: 250px;
@@ -47,9 +42,6 @@
             }
     </style>
 }
-
-
-
 <div class="container">
     <div class="Filtir">
         <div class="dropdown moviePageDropdown">
@@ -90,6 +82,7 @@
         </div>
         <a id="search" href="#">Search</a>
     </div> transition: all 2s ease-in !important;
+
     <div class="card-container ">
         @foreach (var item in Model)
         {
@@ -98,7 +91,7 @@
                     <img src="~/@item.Img" alt="#">
                 </div>
                 <div class="details" sty>
-                    <a asp-area="" asp-controller="Movies" asp-action="Index" asp-route-id="@item.Id"><i class="bi bi-play-circle"></i></a>
+                    <a asp-area="" asp-controller="PlayMovies" asp-action="Index" asp-route-id="@item.Id"><i class="bi bi-play-circle"></i></a>
                     <h2>@item.Name</h2>
                     <div id="rateYo_@item.Id" style="width: 110px; margin-bottom:15px;"> </div>
                     <div class="tags">
@@ -115,7 +108,6 @@
     </div>
 </div>
 
-
 @section Scripts{
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -123,36 +115,8 @@
     <!-- Include rateYo JavaScript file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script>
-
-        //let genres ="";
-        //var categories = "";
-        //var lang = "";
-        //$('.genres').click(function(e){
-        //    e.preventDefault();
-        //    genres = $(this).data("genres");
-        //})
-
-        //$('#categories > li').click(function (e) {
-        //    e.preventDefault();
-        //    categories = $(this).text();
-        //})
-
-        //$('#lang > li').click(function (e) {
-        //    e.preventDefault();
-        //    lang = $(this).text();
-        //})
-
-        //$("#search").click(function(e){
-        //    e.preventDefault();
-
-
-
-        //      window.location.href = `${window.location.href}?genres = ${genres}`
-        //})
-
+     
         /* Javascript Star*/
-
-
         $(function () {
             // Iterate over all divs with id attribute that starts with "rateYo_"
             $('div[id^="rateYo_"]').each(function () {
@@ -171,10 +135,8 @@
             });
         });
                         // $(function () {
-
                         //     $("#rateYo").rateYo()
                         //         .on("rateyo.set", function (e, data) {
-
                         //             alert("The rating is set to " + data.rating + "!");
                         //         });
                         // });
