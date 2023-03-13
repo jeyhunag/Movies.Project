@@ -1,8 +1,14 @@
-﻿@model List<MovieC> 
+﻿@model List<MovieC>
 @{
     ViewData["Title"] = "Index";
 }
+
 @section addcss{
+
+
+    <!-- Include rateYo CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css" />
+
 
     <link href="~/css/movies.css" rel="stylesheet" />
     <style>
@@ -31,13 +37,13 @@
         }
 
         .card .details {
-            bottom: -80px;
+            bottom: -45px;
         }
 
             .card .details h2 {
-                color: red;
+                color: white;
                 max-width: 250px;
-                font-size:23px;
+                font-size: 23px;
             }
     </style>
 }
@@ -94,55 +100,83 @@
                 <div class="details" sty>
                     <a asp-area="" asp-controller="Movies" asp-action="Index" asp-route-id="@item.Id"><i class="bi bi-play-circle"></i></a>
                     <h2>@item.Name</h2>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <span>4/5</span>
-                    </div>
+                    <div id="rateYo_@item.Id" style="width: 110px; margin-bottom:15px;"> </div>
                     <div class="tags">
                         <span>@item.Year</span>
                         <span>@item.GenresCategory.Name</span>
                     </div>
                     <div class="info">
-                       Director: @item.Director
+                        Director: @item.Director
                     </div>
                 </div>
             </div>
         }
-  
+
     </div>
 </div>
 
 
 @section Scripts{
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include rateYo JavaScript file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script>
-        let genres ="";
-        var categories = "";
-        var lang = "";
-        $('.genres').click(function(e){
-            e.preventDefault();
-            genres = $(this).data("genres");
-        })
 
-        $('#categories > li').click(function (e) {
-            e.preventDefault();
-            categories = $(this).text();
-        })
+        //let genres ="";
+        //var categories = "";
+        //var lang = "";
+        //$('.genres').click(function(e){
+        //    e.preventDefault();
+        //    genres = $(this).data("genres");
+        //})
 
-        $('#lang > li').click(function (e) {
-            e.preventDefault();
-            lang = $(this).text();
-        })
+        //$('#categories > li').click(function (e) {
+        //    e.preventDefault();
+        //    categories = $(this).text();
+        //})
 
-        $("#search").click(function(e){
-            e.preventDefault();
+        //$('#lang > li').click(function (e) {
+        //    e.preventDefault();
+        //    lang = $(this).text();
+        //})
+
+        //$("#search").click(function(e){
+        //    e.preventDefault();
 
 
-          
-              window.location.href = `${window.location.href}?genres = ${genres}`
-        })
+
+        //      window.location.href = `${window.location.href}?genres = ${genres}`
+        //})
+
+        /* Javascript Star*/
+
+
+        $(function () {
+            // Iterate over all divs with id attribute that starts with "rateYo_"
+            $('div[id^="rateYo_"]').each(function () {
+                // Extract the Id of the MovieC item from the div's id attribute
+                var movieId = this.id.replace('rateYo_', '');
+                // Initialize rateYo plugin for this div with the extracted movieId
+                $(this).rateYo({
+                    rating: 1.6,
+                    spacing: "5px",
+                    starWidth: "20px",
+                    multiColor: {
+                        "startColor": "#FF0000", //RED
+                        "endColor": "#00FF00"  //GREEN
+                    }
+                });
+            });
+        });
+                // $(function () {
+
+                //     $("#rateYo").rateYo()
+                //         .on("rateyo.set", function (e, data) {
+
+                //             alert("The rating is set to " + data.rating + "!");
+                //         });
+                // });
     </script>
 }
