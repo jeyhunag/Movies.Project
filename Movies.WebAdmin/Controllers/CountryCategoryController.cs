@@ -32,7 +32,7 @@ namespace Movies.WebAdmin.Controllers
                 var countryCategories = _service.Update(itemDto);
                 if (countryCategories != null)
                 {
-                    TempData["success"] = "Kateqoriya uğurla dəyişdirildi.";
+                    TempData["success"] = "Country have been successfully changed.";
                     return RedirectToAction("Index");
                 }
             }
@@ -56,7 +56,7 @@ namespace Movies.WebAdmin.Controllers
                 var category = await _service.AddAsync(itemDto);
                 if (category != null)
                 {
-                    TempData["success"] = "Kateqoriya uğurla əlavə edildi.";
+                    TempData["success"] = "Country added successfully. ";
                     return RedirectToAction("Index");
                 }
             }
@@ -74,7 +74,7 @@ namespace Movies.WebAdmin.Controllers
         public IActionResult Delete(CountryCategoryDto itemDto)
         {
             _service.Delete(itemDto.Id);
-            TempData["success"] = "Kateqoriya uğurla silindi.";
+            TempData["success"] = "Country have been successfully deleted.";
             return RedirectToAction("Index");
         }
     }

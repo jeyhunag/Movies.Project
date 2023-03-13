@@ -90,7 +90,7 @@ namespace Movies.Controllers
 
             _context.Movies.Add(movie);
             await _context.SaveChangesAsync();
-
+            TempData["success"] = "Movie added successfully. ";
             return RedirectToAction("Index");
             //}
             ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name", movie.CountryCategoryId);
@@ -165,7 +165,7 @@ namespace Movies.Controllers
                         movie.Trailer = trailerPath;
                     }
                 }
-
+                TempData["success"] = "Movie have been successfully changed.";
                 _context.Update(movie);
                 await _context.SaveChangesAsync();
             }
@@ -197,7 +197,7 @@ namespace Movies.Controllers
             MovieC movie = _context.Movies.Where(p => p.Id == id).FirstOrDefault();
             _context.Movies.Remove(movie);
             _context.SaveChanges();
-
+            TempData["success"] = "Movie have been successfully deleted.";
             return RedirectToAction("Index");
         }
 

@@ -32,7 +32,7 @@ namespace Movies.WebAdmin.Controllers
                 var trendsCategories = _service.Update(itemDto);
                 if (trendsCategories != null)
                 {
-                    TempData["success"] = "Kateqoriya uğurla dəyişdirildi.";
+                    TempData["success"] = "Trends have been successfully changed.";
                     return RedirectToAction("Index");
                 }
             }
@@ -55,7 +55,7 @@ namespace Movies.WebAdmin.Controllers
                 var trendsCategories = await _service.AddAsync(itemDto);
                 if (trendsCategories != null)
                 {
-                    TempData["success"] = "Kateqoriya uğurla əlavə edildi.";
+                    TempData["success"] = "Trands added successfully. ";
                     return RedirectToAction("Index");
                 }
             }
@@ -74,7 +74,7 @@ namespace Movies.WebAdmin.Controllers
         public IActionResult Delete(TrandCategoryDto itemDto)
         {
             _service.Delete(itemDto.Id);
-            TempData["success"] = "Kateqoriya uğurla silindi.";
+            TempData["success"] = "Trends have been successfully deleted.";
             return RedirectToAction("Index");
         }
     }

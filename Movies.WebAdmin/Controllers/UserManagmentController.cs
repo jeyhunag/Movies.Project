@@ -89,6 +89,7 @@ namespace Movies.WebAdmin.Controllers
             IdentityResult result = await _userManager.CreateAsync(user, viewModel.Password);
             if (result.Succeeded)
             {
+                TempData["success"] = "User added successfully. ";
                 return RedirectToAction("UserIndex");
             }
 
@@ -157,6 +158,7 @@ namespace Movies.WebAdmin.Controllers
 
             if (result.Succeeded)
             {
+                TempData["success"] = "User have been successfully changed.";
                 return RedirectToAction("UserIndex");
             }
             //}
@@ -172,6 +174,7 @@ namespace Movies.WebAdmin.Controllers
                 IdentityResult result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
+                    TempData["success"] = "User have been successfully deleted.";
                     return RedirectToAction("UserIndex");
                 }
             }
@@ -234,7 +237,8 @@ namespace Movies.WebAdmin.Controllers
                 IdentityResult result = await _roleManager.CreateAsync(role);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("RoleIndex");
+                TempData["success"] = "Role added successfully. ";
+                return RedirectToAction("RoleIndex");
                 }
 
             //}
@@ -323,6 +327,7 @@ namespace Movies.WebAdmin.Controllers
 
             if (result.Succeeded)
             {
+                TempData["success"] = "Role have been successfully changed.";
                 return RedirectToAction("RoleIndex");
             }
 
@@ -346,6 +351,7 @@ namespace Movies.WebAdmin.Controllers
             IdentityResult result = await _roleManager.DeleteAsync(role);
             if (result.Succeeded)
             {
+                TempData["success"] = "Role have been successfully deleted.";
                 return RedirectToAction("RoleIndex");
             }
             else

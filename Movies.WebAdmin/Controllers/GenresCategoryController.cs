@@ -38,7 +38,7 @@ namespace Movies.WebAdmin.Controllers
 
                 if (genresCategories != null)
                 {
-                    TempData["success"] = "Kateqoriya uğurla dəyişdirildi.";
+                    TempData["success"] = "Genres have been successfully changed.";
                     return RedirectToAction("Index");
                 }
             }
@@ -60,7 +60,7 @@ namespace Movies.WebAdmin.Controllers
                 var genresCategories = await _service.AddAsync(itemDto);
                 if (genresCategories != null)
                 {
-                    TempData["success"] = "Kateqoriya uğurla əlavə edildi.";
+                    TempData["success"] = "Genres added successfully. ";
                     return RedirectToAction("Index");
                 }
             }
@@ -79,7 +79,7 @@ namespace Movies.WebAdmin.Controllers
         public IActionResult Delete(GenresCategoryDto itemDto)
         {
             _service.Delete(itemDto.Id);
-            TempData["success"] = "Kateqoriya uğurla silindi.";
+            TempData["success"] = "Genres have been successfully deleted.";
             return RedirectToAction("Index");
         }
 

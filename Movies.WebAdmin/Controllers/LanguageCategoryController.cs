@@ -32,7 +32,7 @@ namespace Movies.WebAdmin.Controllers
                 var languageCategories = _service.Update(itemDto);
                 if (languageCategories != null)
                 {
-                    TempData["success"] = "Kateqoriya uğurla dəyişdirildi.";
+                    TempData["success"] = "Language have been successfully changed.";
                     return RedirectToAction("Index");
                 }
             }
@@ -55,7 +55,7 @@ namespace Movies.WebAdmin.Controllers
                 var languageCategories = await _service.AddAsync(itemDto);
                 if (languageCategories != null)
                 {
-                    TempData["success"] = "Kateqoriya uğurla əlavə edildi.";
+                    TempData["success"] = "Language added successfully. ";
                     return RedirectToAction("Index");
                 }
             }
@@ -74,7 +74,7 @@ namespace Movies.WebAdmin.Controllers
         public IActionResult Delete(LanguageCategoryDto itemDto)
         {
             _service.Delete(itemDto.Id);
-            TempData["success"] = "Kateqoriya uğurla silindi.";
+            TempData["success"] = "Language have been successfully deleted.";
             return RedirectToAction("Index");
         }
     }
