@@ -22,8 +22,9 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="~/css/owl-carusel.css" rel="stylesheet" />
+   
     <link rel="stylesheet" href="~/css/style.css" />
+   
     <link rel="icon" href="~/Img/Minimalist White Black Cinematography Business Logo.gif" type="img">
     <title> Movies-CO</title>
     <style>
@@ -74,58 +75,10 @@
                 }
             </div>
             <!-- Modal Sign In -->
-            @*        <div class="modal-overlay">
-            <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2 class="modal-title">Sign In</h2>
-            <form class="formModal" asp-controller="account" asp-action="SignIn">
-            <label asp-for="SignInViewModel.UserName" for="username" class="labelModal">Username</label>
-            <input asp-for="SignInViewModel.UserName" type="text" id="username" required>
+            @await Component.InvokeAsync("Signin")
 
-            <label asp-for="SignInViewModel.Password" for="password" class="labelModal">Password</label>
-            <input asp-for="Password" type="password" id="password" name="password" required>
-
-            <div class="form-group">
-            <input asp-for="RememberMe" type="checkbox" id="remember-me" name="remember-me">
-            <label asp-for="RememberMe" for="remember-me" class="remember-me mx-2">Remember me</label>
-            <a href="#" class="forgot-password">Forgot password?</a>
-            </div>
-            <button type="submit" class="btn-signin">Sign In</button>
-            </form>
-            <p>Don't have an account? <a href="#" class="sign-up">Sign Up</a></p>
-            <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-            </div>
-            </div>*@
-            @*            <!-- Modal Sign Up -->
-            <div class="modal-overlay-sigup">
-            <div class="modal-content-sigup">
-            <span class="close-button-sigup">&times;</span>
-            <h2 class="modal-title-sigup">Sign Up</h2>
-            <form class="formModal" method="post" asp-controller="account" asp-action="SignUp">
-            <label asp-for="UserName" class="labelModal-signup">Username</label>
-            <input asp-for="UserName" type="text" id="username" name="UserName" required>
-
-            <label asp-for="Email" class="labelModal-signup">Email</label>
-            <input asp-for="Email" type="text" name="Email" required>
-
-            <label asp-for="Password" class="labelModal-signup">Password</label>
-            <input asp-for="Password" type="password" id="password" name="password" required>
-
-            <label asp-for="PasswordConfirm" class="changePassword-signup">Change Password</label>
-            <input asp-for="PasswordConfirm" type="password" name="PasswordConfirm" required>
-
-            <div class="form-group">
-            <input type="checkbox" name="remember-me">
-            <label for="remember-me" class="remember-me mx-2">Remember me</label>
-            </div>
-            <button type="submit" class="btn-signup">Sign In</button>
-            </form>
-            </div>
-            </div>*@
+                <!-- Modal Sign Up -->
+            @await Component.InvokeAsync("Signup")
         </div>
         <div class="search-box ">
             <input class="search-txt" style="font-size: 15px!important;" placeholder="Search"><i class="bi bi-search "></i>

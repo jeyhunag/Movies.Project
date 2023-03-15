@@ -3,7 +3,9 @@
     ViewData["Title"] = "Home Page";
     int count = 0;
 }
-
+@section addcss{
+    <link rel="stylesheet" href="~/css/owl-carusel.css" rel="stylesheet" />
+}
 <div class="hero-slider owl-carousel owl-theme ">
     <!--Esas Carusel-->
     <!--item-->
@@ -21,17 +23,21 @@
                     {
                         <li class="featured_li active px-3 me-4 " data-category="@item.Name">@item.Name</li>
                     }
-                 
+
                 </ul>
                 <div class="images container">
-                  
+
                     @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Driver")))
                     {
+
                         count++;
                         if (count == 1)
                         {
                             <div class="image @item.Name active text-white">
-                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
+                                
+                                    @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
+                         
+                                
                             </div>
                         }
                         else

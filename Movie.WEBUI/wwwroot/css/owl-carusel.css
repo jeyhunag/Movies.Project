@@ -202,6 +202,7 @@
     overflow: hidden;
     position: relative;
     cursor:auto;
+    margin: 3%;
 }
 
 .icon-container {
@@ -255,7 +256,9 @@ h4 {
 }
 
 .images>.active {
+    width: 100% !important;
     display: flex !important;
+    justify-content: space-between !important;
 }
 
 .featured,

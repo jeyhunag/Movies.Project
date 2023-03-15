@@ -30,9 +30,10 @@ namespace Movie.WEBUI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> SignIn( SignInViewModel signInViewModel)
+        public async Task<IActionResult> SignIn(HomeViewModel homeViewModel, SignInViewModel signInViewModel)
         {
-            String UserName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            signInViewModel = homeViewModel.SignInViewModel;
+            string UserName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             if (ModelState.IsValid)
             {
                 var appUser = await _userManager.FindByNameAsync(signInViewModel.UserName);
@@ -58,7 +59,7 @@ namespace Movie.WEBUI.Controllers
                 }
             }
                      showSameView:
-            return View(signInViewModel);
+            return View(homeViewModel);
         }
         [HttpGet]
         public async Task<IActionResult> SignUp()
@@ -67,10 +68,11 @@ namespace Movie.WEBUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignUp(SignUpViewModel model)
+        public async Task<IActionResult> SignUp(HomeViewModel homeViewModel, SignUpViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            model = homeViewModel.SignUpViewModel;
+            //if (ModelState.IsValid)
+            //{
                 var user = new AppUser { UserName = model.UserName, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -82,9 +84,9 @@ namespace Movie.WEBUI.Controllers
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-            }
+            //}
 
-            return View(model);
+            return View(homeViewModel);
         }
 
         public async Task<IActionResult> ProfileSettings(string id)

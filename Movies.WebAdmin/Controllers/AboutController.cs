@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Movies.BLL.Services.Interfaces;
@@ -55,8 +56,8 @@ namespace Movies.WebAdmin.Controllers
                 var about = await _service.AddAsync(aboutDto);
                 if (about != null)
                 {
-                    TempData["success"] = "Kateqoriya uğurla əlavə edildi.";
-                    return RedirectToAction("Index");
+                TempData["success"] = "About added successfully. ";
+                return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Index");
@@ -81,8 +82,8 @@ namespace Movies.WebAdmin.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
                     if (imageFile != null && imageFile.Length > 0)
@@ -95,7 +96,7 @@ namespace Movies.WebAdmin.Controllers
                             about.Img = imagePath;
                         }
                     }
-
+                    TempData["success"] = "About have been successfully changed.";
                     _service.Update(about);
                 }
                 catch (DbUpdateConcurrencyException)
@@ -110,10 +111,13 @@ namespace Movies.WebAdmin.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            //}
 
             return View(about);
         }
+
+
+
         public async Task<IActionResult> Delete(int id)
         {
             var about = await _service.GetByIdAsync(id);
@@ -125,7 +129,7 @@ namespace Movies.WebAdmin.Controllers
         public IActionResult Delete(AboutDto itemDto)
         {
             _service.Delete(itemDto.Id);
-            TempData["success"] = "Kateqoriya uğurla silindi.";
+            TempData["success"] = "About have been successfully deleted.";
             return RedirectToAction("Index");
         }
 

@@ -137,7 +137,7 @@
                                                         Img
                                                     </label>
                                                     <input asp-for="Img" name="imageFile" class="input-situation custom-file-input" type="file" id="createdImage file" width="500" height="500" style="opacity:0;" />
-                                                    <img id="createdImage" width="500" height="500" style="display:block;" />
+                                                    <img src="~/@Model.Img" id="createdImage" width="500" height="500" style="display:block;" />
 
                                                 </div>
                                             </div>
@@ -148,7 +148,10 @@
                                                         Movie
                                                     </label>
                                                     <input asp-for="MovieVideo" name="videoFile" class="input-situation custom-file-input" type="file" id="createdImage file" width="500" height="500" style="opacity:0;" />
-                                                    <img id="createdImage" width="900" height="300" style="display:block;" />
+                                                    <video  id="createdImage" width="900" height="300" style="display:block;">
+
+                                                        <source src="~/@Model.MovieVideo" type="video/mp4" />
+                                                    </video>
                                                 </div>
 
                                             </div>
@@ -159,7 +162,9 @@
                                                         Trailer
                                                     </label>
                                                     <input asp-for="Trailer" name="trailerFile" class="input-situation custom-file-input" type="file" id="createdImage file" width="500" height="500" style="opacity:0;" />
-                                                    <img id="createdImage" width="900" height="300" style="display:block;" />
+                                                    <video id="createdImage" width="900" height="300" style="display:block;">
+                                                        <source src="~/@Model.Trailer" type="video/mp4" />
+                                                    </video>
                                                 </div>
 
                                             </div>

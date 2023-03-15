@@ -19,9 +19,12 @@ namespace Movie.WEBUI.Controllers
 
         public async Task<IActionResult> Index(int Id)
         {
-            
-            return View(await _context.Movies.Include(p => p.GenresCategory).ToListAsync());
+
+            return View(await _context.Movies.Include(p => p.GenresCategory).Include(p => p.CountryCategory)
+                .Include(p => p.Trend).Include(p => p.LanguageCategory).ToListAsync());
 
         }
+
+
     }
 }
