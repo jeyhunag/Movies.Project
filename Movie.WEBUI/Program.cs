@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Movies.BLL.Mapping;
 using Movies.DAL.Data;
+using Movies.WebAdmin.Helper.CookieExtensions;
 using Movies.WebAdmin.Helper.Extensions;
 using Movies.WebAdmin.Helper.IdentityExtensions;
 
@@ -21,6 +22,7 @@ namespace Movie.WEBUI
 
             //Mapping
             builder.Services.AddAutoMapper(typeof(CustomMapping));
+
             //Identity AppRole,AppUser Security 
             builder.Services.AddIdentityServices();
 
@@ -29,6 +31,9 @@ namespace Movie.WEBUI
 
             //Generic Repostory Extensions
             builder.Services.AddRepositories();
+
+            //Cookie Service
+            builder.Services.AddCookieServices();
 
             var app = builder.Build();
             // Configure the HTTP request pipeline.

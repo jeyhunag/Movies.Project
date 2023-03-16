@@ -26,6 +26,11 @@ namespace Movie.WEBUI.Controllers
 			return View(vm);
 		}
 
+        public IActionResult AccessDenied()
+        {
+
+            return View();
+        }
         public IActionResult Privacy()
 		{
 			return View();

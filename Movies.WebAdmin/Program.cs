@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Movies.WebAdmin.Helper.IdentityExtensions;
 using Movies.WebAdmin.Helper.CookieExtensions;
 using Movies.WebAdmin.Provider;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Movies.WebAdmin
 {
@@ -24,12 +25,12 @@ namespace Movies.WebAdmin
             var builder = WebApplication.CreateBuilder(args);
             builder.Host.UseSerilog();
 
-
+            //Boolean 
             builder.Services.AddControllersWithViews(cfg =>
             {
                 cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());
             });
-           /*.AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<Program>());*/
+         
 
             //Fluent Validations Extension
             builder.Services.AddFluentServices();

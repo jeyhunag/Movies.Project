@@ -30,7 +30,8 @@ namespace Movies.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movies.ToListAsync());
+            return View(await _context.Movies.Include(p => p.GenresCategory).Include(p => p.CountryCategory)
+                .Include(p => p.Trend).Include(p => p.LanguageCategory).ToListAsync());
         }
 
         [HttpGet]
@@ -190,7 +191,24 @@ namespace Movies.Controllers
             return View(movie);
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.Movies == null)
+            {
+                return NotFound();
+            }
 
+            var movie = await _context.Movies.
+                Include(p => p.GenresCategory).Include(p => p.CountryCategory)
+                .Include(p => p.Trend).Include(p => p.LanguageCategory)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
 
         public IActionResult Delete(int? id)
         {

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Movies.WebAdmin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserManagmentController : Controller
     {
         private UserManager<AppUser> _userManager;

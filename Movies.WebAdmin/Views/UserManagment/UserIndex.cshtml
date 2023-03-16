@@ -63,7 +63,7 @@
                                     <td>@item.Email</td>
                                     <td>@item.Country</td>
                                     <td style="display:flex; text-align:center; justify-content:center;">
-                                        <a class="btn btn-custon-four btn-warning" asp-action="UserUpdate" asp-route-id="@item.Id" style="margin-right:8px;">
+                                        <a class="btn btn-custon-four" asp-action="UserUpdate" asp-route-id="@item.Id" style="margin-right:8px;">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                             Update
                                         </a>
@@ -71,7 +71,7 @@
                                             <i class="fa-solid fa-trash-can"></i>
                                             Delete
                                         </a>
-                                        <a class="btn btn-custon-four btn-default" asp-action="RoleAssign" asp-route-id="@item.Id" style="margin-right:8px;">
+                                        <a class="btn btn-custon-four btn-default" asp-action="RoleAssign" asp-route-id="@item.Id" style="margin-right:8px; background-color:#2bee75; color:white;">
                                             <i class="fa-regular fa-circle-user"></i>
                                             Create Role
                                         </a>

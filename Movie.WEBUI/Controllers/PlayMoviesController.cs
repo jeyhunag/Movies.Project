@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Movies.DAL.Data;
 using Movies.DAL.DbModel;
 
 namespace Movie.WEBUI.Controllers
 {
-	public class PlayMoviesController : Controller
+    //[Authorize(Roles = "Admin")]
+    public class PlayMoviesController : Controller
 	{
         private readonly AppDbContext _context;
 
