@@ -74,8 +74,6 @@ namespace Movies.WebAdmin.Controllers
                             }
                         }
                     }
-
-
                 }
                 else
                 {

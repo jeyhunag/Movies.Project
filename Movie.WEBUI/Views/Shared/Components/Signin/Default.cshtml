@@ -7,10 +7,10 @@
         <h2 class="modal-title">Sign In</h2>
         <form class="formModal" asp-controller="account" asp-action="SignIn">
             <label asp-for="SignInViewModel.UserName" for="username" class="labelModal">Username</label>
-            <input asp-for="SignInViewModel.UserName" type="text" id="username" required>
+            <input asp-for="SignInViewModel.UserName" type="text" id="username">
 
             <label asp-for="SignInViewModel.Password" for="password" class="labelModal">Password</label>
-            <input asp-for="SignInViewModel.Password" type="password" id="password" name="password" required>
+            <input asp-for="SignInViewModel.Password" type="password" id="password">
 
             <div class="form-group">
                 <input asp-for="SignInViewModel.RememberMe" type="checkbox" id="remember-me" name="remember-me">

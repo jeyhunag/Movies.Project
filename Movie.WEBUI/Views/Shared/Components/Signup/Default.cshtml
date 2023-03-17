@@ -7,16 +7,16 @@
         <h2 class="modal-title-sigup">Sign Up</h2>
         <form class="formModal" method="post" asp-controller="account" asp-action="SignUp">
             <label asp-for="SignUpViewModel.UserName" class="labelModal-signup">Username</label>
-            <input asp-for="SignUpViewModel.UserName" type="text" id="username" name="UserName" required>
+            <input asp-for="SignUpViewModel.UserName" type="text" id="username"  required>
 
             <label asp-for="SignUpViewModel.Email" class="labelModal-signup">Email</label>
-            <input asp-for="SignUpViewModel.Email" type="text" name="Email" required>
+            <input asp-for="SignUpViewModel.Email" type="text" required>
 
             <label asp-for="SignUpViewModel.Password" class="labelModal-signup">Password</label>
-            <input asp-for="SignUpViewModel.Password" type="password" id="password" name="password" required>
+            <input asp-for="SignUpViewModel.Password" type="password" id="password" required>
 
             <label asp-for="SignUpViewModel.PasswordConfirm" class="changePassword-signup">Change Password</label>
-            <input asp-for="SignUpViewModel.PasswordConfirm" type="password" name="PasswordConfirm" required>
+            <input asp-for="SignUpViewModel.PasswordConfirm" type="password"  required>
 
             <div class="form-group">
                 <input type="checkbox" name="remember-me">

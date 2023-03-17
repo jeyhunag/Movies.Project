@@ -66,7 +66,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Log Out</a>
-                    <a asp-area="" asp-controller="Account" asp-action="ProfileSettings">Profile Settings </a>
+                    <a asp-area="" asp-controller="Account" asp-action="ProfileSettings" >Profile Settings </a>
                 }
                 else
                 {
@@ -74,11 +74,11 @@
                     <a id="open-modal-signup" class="btn-open-modal">Sign Up</a>
                 }
             </div>
-  @*          <!-- Modal Sign In -->
+            <!-- Modal Sign In -->
             @await Component.InvokeAsync("Signin")
 
                 <!-- Modal Sign Up -->
-            @await Component.InvokeAsync("Signup")*@
+            @await Component.InvokeAsync("Signup")
         </div>
         <div class="search-box ">
             <input class="search-txt" style="font-size: 15px!important;" placeholder="Search"><i class="bi bi-search "></i>

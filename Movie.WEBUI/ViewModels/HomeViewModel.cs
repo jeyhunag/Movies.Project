@@ -8,6 +8,6 @@ namespace Movie.WEBUI.ViewModels
         public IEnumerable<Trends>? Trends { get; set; }
         public IEnumerable<GenresCategory>? GenresCategories { get; set; }
         public SignInViewModel SignInViewModel { get; set; }
-        public SignUpViewModel SignUpViewModel { get; set; }
+        public SignUpViewModel? SignUpViewModel { get; set; }
     }
 }
