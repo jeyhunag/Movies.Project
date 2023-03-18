@@ -13,7 +13,7 @@ namespace Movies.BLL.Mapping
     {
         public CustomMapping()
         {
-            CreateMap<MovieC, MovieC>().ReverseMap();
+            CreateMap<MovieC, MovieCDto>().ReverseMap();
             CreateMap<GenresCategory, GenresCategoryDto>().ReverseMap();
             CreateMap<CountryCategory, CountryCategoryDto>().ReverseMap();
             CreateMap<LanguageCategory, LanguageCategoryDto>().ReverseMap();

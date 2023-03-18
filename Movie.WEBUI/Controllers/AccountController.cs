@@ -16,17 +16,15 @@ namespace Movie.WEBUI.Controllers
         private SignInManager<AppUser> _signInManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly string _imgPath = @"img/";
-        public AccountController( UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebHostEnvironment webHostEnvironment)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
+            IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult SignIn()
-        {
-            return View();
-        }
+
 
 
         [AllowAnonymous]
@@ -35,49 +33,48 @@ namespace Movie.WEBUI.Controllers
         {
             signInViewModel = homeViewModel.SignInViewModel;
             string UserName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 var appUser = await _userManager.FindByNameAsync(signInViewModel.UserName);
-            if (appUser == null)
-            {
-                ModelState.AddModelError("", "Username or password is incorrect");
-                goto showSameView;
-            }
-            var result = await _signInManager.PasswordSignInAsync(appUser, signInViewModel.Password, true, true);
+                if (appUser == null)
+                {
+                    ModelState.AddModelError("", "Username or password is incorrect");
+                    goto showSameView;
+                }
+                var result = await _signInManager.PasswordSignInAsync(appUser, signInViewModel.Password, true, true);
 
-            if (result.Succeeded)
-            {
+                if (result.Succeeded)
+                {
 
-                string? redirect = Request.Query["returnUrl"];
-                if (string.IsNullOrWhiteSpace(redirect))
-                    return RedirectToAction("Index", "Home");
+                    string? redirect = Request.Query["returnUrl"];
+                    if (string.IsNullOrWhiteSpace(redirect))
+                        return RedirectToAction("Index", "Home");
 
-            }
-            else
-            {
-                ModelState.AddModelError("", "Username or password is incorrect");
-                goto showSameView;
-            }
-            }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Username or password is incorrect");
+                    goto showSameView;
+                }
+            //}
         showSameView:
             return View(homeViewModel);
         }
-    
-        public async Task<IActionResult> SignUp()
-        {
-            return View();
-        }
+
 
         [HttpPost]
         public async Task<IActionResult> SignUp(HomeViewModel homeViewModel, SignUpViewModel model)
         {
             model = homeViewModel.SignUpViewModel;
+
             //if (ModelState.IsValid)
             //{
                 AppUser user = new AppUser { UserName = model.UserName, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
@@ -92,7 +89,7 @@ namespace Movie.WEBUI.Controllers
 
         public async Task<IActionResult> ProfileSettings(string id)
         {
-           
+
             AppUser user = await _userManager.FindByIdAsync(id);
 
             if (user == null)

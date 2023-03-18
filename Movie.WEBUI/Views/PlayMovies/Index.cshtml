@@ -1,4 +1,4 @@
-﻿@model MovieC
+﻿@model HomeViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -79,25 +79,25 @@
 <main>
 
         <video controls>
-            <source src="~/@Model.MovieVideo" type="video/mp4">
+            <source src="~/@Model.MovieC.MovieVideo" type="video/mp4">
            
         </video>
         <div class="container PMovies">
             <div class="MoviesFoto">
-                <img src="~/@Model.Img" alt="foto" class="img-fluid">
+                <img src="~/@Model.MovieC.Img" alt="foto" class="img-fluid">
             </div>
             <div class="text mt-5">
-                <h1>@Model.Name</h1>
+                <h1>@Model.MovieC.Name</h1>
                 <div class="SpanMovies my-5">
-                    <span><i class="bi bi-person-fill"></i>@Model.Age</span>
-                    <span><i class="bi bi-clock"></i>@Model.MovieTime</span>
-                    <span><i class="bi bi-emoji-smile"></i>@Model.Year</span>
-                    <span><i class="bi bi-activity"></i>@Model.GenresCategoryId</span>
-                    <span><i class="bi bi-globe"></i>@Model.CountryCategoryId</span>
+                    <span><i class="bi bi-person-fill"></i>@Model.MovieC.Age</span>
+                    <span><i class="bi bi-clock"></i>@Model.MovieC.MovieTime</span>
+                    <span><i class="bi bi-emoji-smile"></i>@Model.MovieC.Year</span>
+                    <span><i class="bi bi-activity"></i>@Model.MovieC.GenresCategoryId</span>
+                    <span><i class="bi bi-globe"></i>@Model.MovieC.CountryCategoryId</span>
                 </div>
                 <div class="MoviesP">
-                    <p>@Model.Description</p>
-                    <h4 class="my-5">Director:@Model.Director</h4>
+                    <p>@Model.MovieC.Description</p>
+                    <h4 class="my-5">Director:@Model.MovieC.Director</h4>
                 </div>
                 <div class="BMovies">
                     <button type="button" class="btn px-5 "><i class="bi bi-play-fill me-2 "></i>Play</button>
@@ -145,7 +145,7 @@
                                 <!-- Modal body -->
                                 <div class=" modal-body-playmovies">
                                     <video controls>
-                                        <source src="~/@Model.Trailer" type="video/mp4">
+                                        <source src="~/@Model.MovieC.Trailer" type="video/mp4">
                                     </video>
                                 </div>
                             </div>

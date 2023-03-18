@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -47,6 +48,24 @@
             #topmyBtn:hover {
                 background-color: #555;
             }
+
+            .pagination{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            }
+
+            .pagination > li {             
+                margin: 1%;
+            }
+
+                .pagination > li > a,
+                .pagination > li > a.disabled,
+                .pagination > li > a.active {
+                color: white !important;
+                text-decoration: none !important;
+            }
+            
     </style>
     @RenderSection("addcss",false)
 </head>

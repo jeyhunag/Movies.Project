@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Controller;
+using Movies.BLL.Services.Interfaces;
 using Movies.DAL.Data;
 using Movies.DAL.DbModel;
+using Movies.DAL.Dtos;
 using System;
 using System.IO;
 using System.Linq;
@@ -16,38 +18,42 @@ namespace Movies.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IMoviesService _movieService;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly string _imgPath = @"Img/";
-        private readonly string _videoPath = @"Video/";
-        private readonly string _trailerPath = @"Video/";
+        private readonly string _imgPath = @"img\";
+        private readonly string _videoPath = @"Video\";
+        private readonly string _trailerPath = @"Video\";
 
-        public MoviesController(AppDbContext context, IWebHostEnvironment webHostEnvironment)
+        public MoviesController(IMoviesService movieService, IWebHostEnvironment webHostEnvironment)
         {
-            _context = context;
+            _movieService = movieService;
             _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movies.Include(p => p.GenresCategory).Include(p => p.CountryCategory)
-                .Include(p => p.Trend).Include(p => p.LanguageCategory).ToListAsync());
+            var movie = await _movieService.GetListAsync();
+            return View(movie);
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name");
-            ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name");
-            ViewData["LanguageCategoryId"] = new SelectList(_context.LanguageCategories, "Id", "Name");
-            ViewData["TrendId"] = new SelectList(_context.Trends, "Id", "Name");
-            return View();
+            MovieCDto model = new()
+            {
+                CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
+                GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
+                LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),
+                TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync()
+            };
+
+            return View(model);
         }
 
 
 
         [HttpPost]
-        public async Task<IActionResult> Create(MovieC movie, IFormFile imageFile, IFormFile videoFile, IFormFile trailerFile)
+        public async Task<IActionResult> Create(MovieCDto movie, IFormFile imageFile, IFormFile videoFile, IFormFile trailerFile)
         {
 
             //if (ModelState.IsValid)
@@ -89,15 +95,12 @@ namespace Movies.Controllers
             }
 
 
-            _context.Movies.Add(movie);
-            await _context.SaveChangesAsync();
-            TempData["success"] = "Movie added successfully. ";
+            await _movieService.AddAsync(movie);
+
+
             return RedirectToAction("Index");
             //}
-            ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name", movie.CountryCategoryId);
-            ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name", movie.GenresCategoryId);
-            ViewData["LanguageCategoryId"] = new SelectList(_context.LanguageCategories, "Id", "Name", movie.LanguageCategoryId);
-            ViewData["TrendId"] = new SelectList(_context.Trends, "Id", "Name", movie.TrendId);
+
             return View(movie);
         }
 
@@ -109,21 +112,42 @@ namespace Movies.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movies.FindAsync(id);
+            var movie = await _movieService.GetByIdAsync(id.Value);
             if (movie == null)
             {
                 return NotFound();
             }
-            ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name");
-            ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name");
-            ViewData["LanguageCategoryId"] = new SelectList(_context.LanguageCategories, "Id", "Name");
-            ViewData["TrendId"] = new SelectList(_context.Trends, "Id", "Name");
-            return View(movie);
+
+            MovieCDto model = new()
+            {
+                Id = movie.Id,
+                Name = movie.Name,
+                Description = movie.Description,
+                Year = movie.Year,
+                MovieTime = movie.MovieTime,
+                Age = movie.Age,
+                Director = movie.Director,
+                Img = movie.Img,
+                MovieVideo = movie.MovieVideo,
+                Trailer = movie.Trailer,
+                Top = movie.Top,
+                isneww = movie.isneww,
+                CountryCategoryId = movie.CountryCategoryId,
+                GenresCategoryId = movie.GenresCategoryId,
+                TrandsId = movie.TrandsId,
+                LanguageCategoryId = movie.LanguageCategoryId,
+                CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
+                GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
+                LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),
+                TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync()
+            };
+   
+            return View(model);
+
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, MovieC movie, IFormFile imageFile, IFormFile videoFile, IFormFile trailerFile)
+        public async Task<IActionResult> Edit(int id, MovieCDto movie, IFormFile imageFile, IFormFile videoFile, IFormFile trailerFile)
         {
             if (id != movie.Id)
             {
@@ -132,97 +156,94 @@ namespace Movies.Controllers
 
             //if (ModelState.IsValid)
             //{
-            try
-            {
-                if (imageFile != null && imageFile.Length > 0)
-                {
-                    var imagePath = _imgPath + imageFile.FileName;
-                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        await imageFile.CopyToAsync(stream);
-                        movie.Img = imagePath;
-                    }
-                }
 
-                if (videoFile != null && videoFile.Length > 0)
-                {
-                    var videoPath = _videoPath + videoFile.FileName;
-                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    if (imageFile != null && imageFile.Length > 0)
                     {
-                        await videoFile.CopyToAsync(stream);
-                        movie.MovieVideo = videoPath;
+                        var imagePath = _imgPath + imageFile.FileName;
+                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                        using (var stream = new FileStream(fullPath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(stream);
+                            movie.Img = imagePath;
+                        }
                     }
-                }
 
-                if (trailerFile != null && trailerFile.Length > 0)
-                {
-                    var trailerPath = _trailerPath + trailerFile.FileName;
-                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, trailerPath);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    if (videoFile != null && videoFile.Length > 0)
                     {
-                        await trailerFile.CopyToAsync(stream);
-                        movie.Trailer = trailerPath;
+                        var videoPath = _videoPath + videoFile.FileName;
+                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
+                        using (var stream = new FileStream(fullPath, FileMode.Create))
+                        {
+                            await videoFile.CopyToAsync(stream);
+                            movie.MovieVideo = videoPath;
+                        }
                     }
-                }
+
+                    if (trailerFile != null && trailerFile.Length > 0)
+                    {
+                        var trailerPath = _trailerPath + trailerFile.FileName;
+                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, trailerPath);
+                        using (var stream = new FileStream(fullPath, FileMode.Create))
+                        {
+                            await trailerFile.CopyToAsync(stream);
+                            movie.Trailer = trailerPath;
+                        }
+                    }
+
+                _movieService.Update(movie);
                 TempData["success"] = "Movie have been successfully changed.";
-                _context.Update(movie);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MovieExists(movie.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             //}
 
-            ViewData["CountryCategoryId"] = new SelectList(_context.CountryCategories, "Id", "Name", movie.CountryCategoryId);
-            ViewData["GenresCategoryId"] = new SelectList(_context.GenresCategories, "Id", "Name", movie.GenresCategoryId);
-            ViewData["LanguageCategoryId"] = new SelectList(_context.LanguageCategories, "Id", "Name", movie.LanguageCategoryId);
-            ViewData["TrendId"] = new SelectList(_context.Trends, "Id", "Name", movie.TrendId);
+         
             return View(movie);
         }
 
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Movies == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var movie = await _context.Movies.
-                Include(p => p.GenresCategory).Include(p => p.CountryCategory)
-                .Include(p => p.Trend).Include(p => p.LanguageCategory)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var movie = await _movieService.GetByIdAsync(id.Value);
             if (movie == null)
             {
                 return NotFound();
             }
+            MovieCDto model = new()
+            {
+                Name = movie.Name,
+                Description = movie.Description,
+                Year = movie.Year,
+                MovieTime = movie.MovieTime,
+                Age = movie.Age,
+                Director = movie.Director,
+                Img = movie.Img,
+                CountryCategoryId = movie.CountryCategoryId,
+                GenresCategoryId = movie.GenresCategoryId,
+                TrandsId = movie.TrandsId,
+                LanguageCategoryId = movie.LanguageCategoryId,
+                CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
+                GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
+                LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),
+                TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync()
+            };
 
-            return View(movie);
+            return View(model);
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            MovieC movie = _context.Movies.Where(p => p.Id == id).FirstOrDefault();
-            _context.Movies.Remove(movie);
-            _context.SaveChanges();
-            TempData["success"] = "Movie have been successfully deleted.";
+            var movie = await _movieService.GetByIdAsync(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            _movieService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        private bool MovieExists(int id)
-        {
-            throw new NotImplementedException("Yalnis melumat daxil etdiniz.");
-        }
     }
 
 }

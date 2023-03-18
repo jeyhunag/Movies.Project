@@ -1,4 +1,4 @@
-﻿@model MovieC
+﻿@model MovieCDto
 @{
     ViewData["Title"] = "Create";
 }
@@ -84,22 +84,26 @@
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                <select asp-for="GenresCategoryId" asp-items="ViewBag.GenresCategoryId" class="form-control pro-edt-select form-control-primary">
+                                                <select asp-for="GenresCategoryId" asp-items="@(new SelectList(Model.GenresCategoryDtos, nameof(GenresCategoryDto.Id), nameof(GenresCategoryDto.Name)))"
+                                                class="form-control pro-edt-select form-control-primary">
                                                 </select>
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                <select asp-for="LanguageCategoryId" asp-items="ViewBag.LanguageCategoryId" class="form-control pro-edt-select form-control-primary">
+                                                <select asp-for="LanguageCategoryId" asp-items="@(new SelectList(Model.LanguageCategoryDtos, nameof(LanguageCategoryDto.Id), nameof(LanguageCategoryDto.Name)))"
+                                                class="form-control pro-edt-select form-control-primary">
                                                 </select>
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                <select asp-for="CountryCategoryId" asp-items="ViewBag.CountryCategoryId" class="form-control pro-edt-select form-control-primary">
+                                                <select asp-for="CountryCategoryId" asp-items="@(new SelectList(Model.CountryCategoryDtos, nameof(CountryCategoryDto.Id), nameof(CountryCategoryDto.Name)))"
+                                                class="form-control pro-edt-select form-control-primary">
                                                 </select>
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                <select asp-for="TrendId" asp-items="ViewBag.TrendId" class="form-control pro-edt-select form-control-primary">
+                                                <select asp-for="TrandsId" asp-items="@(new SelectList(Model.TrandCategoryDtos, nameof(TrandCategoryDto.Id), nameof(TrandCategoryDto.Name)))"
+                                                class="form-control pro-edt-select form-control-primary">
                                                 </select>
                                             </div>
                                             <div class="form-check ms-4">

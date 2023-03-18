@@ -5,7 +5,7 @@
     <div class="modal-content">
         <span class="close-button">&times;</span>
         <h2 class="modal-title">Sign In</h2>
-        <form class="formModal" asp-controller="account" asp-action="SignIn">
+        <form class="formModal" asp-controller="account" asp-action="SignIn" method="post">
             <label asp-for="SignInViewModel.UserName" for="username" class="labelModal">Username</label>
             <input asp-for="SignInViewModel.UserName" type="text" id="username">
 

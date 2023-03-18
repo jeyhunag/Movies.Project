@@ -1,4 +1,4 @@
-﻿@model List<AboutDto>
+﻿@model HomeViewModel 
 @{
     ViewData["Title"] = "Index";
 }
@@ -16,7 +16,7 @@
 
     </style>
 }
-@foreach (var item in Model)
+@foreach (var item in Model.Abouts)
 {
     <section id="about">
         <div class="about-content mt-5">

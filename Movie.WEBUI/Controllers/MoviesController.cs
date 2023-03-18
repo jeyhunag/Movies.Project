@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Movie.WEBUI.ViewModels;
 using Movies.DAL.Data;
 using Movies.DAL.DbModel;
-
 
 namespace Movie.WEBUI.Controllers
 {
@@ -17,11 +17,14 @@ namespace Movie.WEBUI.Controllers
         }
 
 
-        public async Task<IActionResult> Index(int Id)
+        public IActionResult Index(int Id,int PageIndex=1, int pagSize=12)
         {
+            var vm = new HomeViewModel();
+            var movies =  _context.Movies.Include(p => p.GenresCategory).Include(p => p.CountryCategory)
+                .Include(p => p.Trend).Include(p => p.LanguageCategory);
+            vm.PagedViewModel = new PagedViewModel<MovieC>(movies, PageIndex, pagSize);
 
-            return View(await _context.Movies.Include(p => p.GenresCategory).Include(p => p.CountryCategory)
-                .Include(p => p.Trend).Include(p => p.LanguageCategory).ToListAsync());
+            return View(vm);
 
         }
 

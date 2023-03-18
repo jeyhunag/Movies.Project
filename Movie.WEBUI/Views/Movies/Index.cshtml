@@ -1,4 +1,4 @@
-﻿@model List<MovieC>
+﻿@model HomeViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -56,7 +56,7 @@
             <ul class="dropdown-menu dropdown-menu-movie">
 
 
-                @foreach (var item in Model)
+                @foreach (var item in Model.PagedViewModel.Items)
                 {
                     <li><a class="dropdown-item genres" data-genres="1" href="#">@item.GenresCategory.Name</a></li>
                 }
@@ -69,7 +69,7 @@
                 Country
             </button>
             <ul id="categories" class="dropdown-menu">
-                @foreach (var item in Model)
+                @foreach (var item in Model.PagedViewModel.Items)
                 {
                     <li><a class="dropdown-item" href="#">@item.CountryCategory.Name</a></li>
                 }
@@ -82,7 +82,7 @@
                 Language
             </button>
             <ul id="lang" class="dropdown-menu">
-                @foreach (var item in Model)
+                @foreach (var item in Model.PagedViewModel.Items)
                 {
                     <li><a class="dropdown-item" href="#">@item.LanguageCategory.Name</a></li>
                 }
@@ -93,7 +93,8 @@
     </div>
 
     <div class="card-container ">
-        @foreach (var item in Model)
+@*        @await Component.InvokeAsync("OtherMovie")*@
+        @foreach (var item in Model.PagedViewModel.Items)
         {
             <div class="card mt-3 mb-5">
                 <div class="poster">
@@ -113,7 +114,7 @@
                 </div>
             </div>
         }
-
+        @Model.PagedViewModel.GetPagenation(Url, "Index");
     </div>
 </div>
 

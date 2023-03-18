@@ -42,25 +42,25 @@ namespace Movies.WebAdmin.Controllers
             //if (ModelState.IsValid)
             //{
 
-                if (imageFile != null && imageFile.Length > 0)
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var imagePath = _imgPath + imageFile.FileName;
+                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    var imagePath = _imgPath + imageFile.FileName;
-                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        await imageFile.CopyToAsync(stream);
-                        aboutDto.Img = imagePath;
-                    }
+                    await imageFile.CopyToAsync(stream);
+                    aboutDto.Img = imagePath;
                 }
+            }
 
-                var about = await _service.AddAsync(aboutDto);
-                if (about != null)
-                {
+            var about = await _service.AddAsync(aboutDto);
+            if (about != null)
+            {
                 TempData["success"] = "About added successfully. ";
                 return RedirectToAction("Index");
-                }
+            }
 
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
             //}
 
             return View(aboutDto);
@@ -82,8 +82,8 @@ namespace Movies.WebAdmin.Controllers
                 return NotFound();
             }
 
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 try
                 {
                     if (imageFile != null && imageFile.Length > 0)
@@ -96,8 +96,7 @@ namespace Movies.WebAdmin.Controllers
                             about.Img = imagePath;
                         }
                     }
-                    TempData["success"] = "About have been successfully changed.";
-                    _service.Update(about);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -110,8 +109,10 @@ namespace Movies.WebAdmin.Controllers
                         throw;
                     }
                 }
+                TempData["success"] = "About have been successfully changed.";
+                _service.Update(about);
                 return RedirectToAction(nameof(Index));
-            //}
+            }
 
             return View(about);
         }

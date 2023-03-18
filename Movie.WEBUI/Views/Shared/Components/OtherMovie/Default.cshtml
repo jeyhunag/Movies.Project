@@ -1,0 +1,22 @@
+﻿@model PagedViewModel<MovieC>
+@foreach (var item in Model.Items)
+{
+    <div class="card mt-3 mb-5">
+        <div class="poster">
+            <img src="~/@item.Img" alt="#">
+        </div>
+        <div class="details" sty>
+            <a asp-area="" asp-controller="PlayMovies" asp-action="Index" asp-route-id="@item.Id"><i class="bi bi-play-circle"></i></a>
+            <h2>@item.Name</h2>
+            <div id="rateYo_@item.Id" style="width: 110px; margin-bottom:15px;"> </div>
+            <div class="tags">
+                <span>@item.Year</span>
+                <span>@item.GenresCategory.Name</span>
+            </div>
+            <div class="info">
+                Director: @item.Director
+            </div>
+        </div>
+    </div>
+}
+@Model.GetPagenation(Url, "Index");
