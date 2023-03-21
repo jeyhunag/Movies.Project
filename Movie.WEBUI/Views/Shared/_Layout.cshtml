@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +86,9 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Log Out</a>
-                    <a asp-area="" asp-controller="Account" asp-action="ProfileSettings" >Profile Settings </a>
+                    @*<a asp-area="" asp-controller="Account" asp-action="ProfileSettings" >Profile Settings </a>*@
+                    <a asp-area="" asp-controller="Account" asp-action="ProfileSettings" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Profile Settings</a>
+
                 }
                 else
                 {
@@ -213,6 +216,31 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        }
+
+        //Img create
+        $('.custom-file-input').on('change', function () {
+            var fileName = $(this).val();
+            console.log(fileName);
+            readURL(this);
+
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    console.log(e.target.result);
+                    $('#plus').text("");
+                    $('#createdImage').css("display", "block");
+
+                    $('#createdImage').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
         }
     </script>
     @await RenderSectionAsync("Scripts", required: false)

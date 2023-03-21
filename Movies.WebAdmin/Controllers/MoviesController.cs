@@ -211,6 +211,7 @@ namespace Movies.Controllers
             {
                 return NotFound();
             }
+
             MovieCDto model = new()
             {
                 Name = movie.Name,
@@ -220,10 +221,10 @@ namespace Movies.Controllers
                 Age = movie.Age,
                 Director = movie.Director,
                 Img = movie.Img,
-                CountryCategoryId = movie.CountryCategoryId,
-                GenresCategoryId = movie.GenresCategoryId,
+                CountryCategoryName = movie.CountryCategoryName,
+                GenresCategoryName = movie.GenresCategoryName,
                 TrandsId = movie.TrandsId,
-                LanguageCategoryId = movie.LanguageCategoryId,
+                LanguageCategoryName = movie.LanguageCategoryName,
                 CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
                 GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
                 LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),

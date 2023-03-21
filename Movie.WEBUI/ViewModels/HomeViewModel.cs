@@ -11,6 +11,7 @@ namespace Movie.WEBUI.ViewModels
         public SignInViewModel SignInViewModel { get; set; }
         public MovieC MovieC { get; set; }
         public SignUpViewModel? SignUpViewModel { get; set; }
+        public ProfileViewModel? ProfileViewModel { get; set; }
         public PagedViewModel<MovieC> PagedViewModel { get; set; }
         public IEnumerable<AboutDto>? Abouts { get; set; }
 

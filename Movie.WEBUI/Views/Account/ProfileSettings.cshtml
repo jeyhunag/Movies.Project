@@ -1,4 +1,4 @@
-﻿@model ProfileViewModel
+﻿@model HomeViewModel
 @{
     ViewData["Title"] = "ProfileSettings";
 }
@@ -47,17 +47,18 @@
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <div class="settings-avatar">
-                                                        <a href="">
-                                                            <img src="~/Img/user.jpg"
-                                                                 class="img-fluid d-block mx-auto mb-3"
-                                                                 alt="User avatar">
-                                                        </a>
+                                                        <input asp-for="ProfileViewModel.Img" class="input-situation custom-file-input" type="file" name="imageFile" id="createdImage file" />
+                                                        <img src="~/Img/user.jpg" id="createdImage" width="200" height="200"
+                                                             class="img-fluid mt-4" alt="#">
+                                                             
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- Col End -->
                                             <div class="col-md-10">
-                                                <h2>John Doe</h2>
+                                                <h2  style="margin-left:100px; display:inline-flex; margin-top:70px;">
+                                                    @Model.ProfileViewModel.UserName
+                                                </h2>
                                             </div>
                                             <!-- Col End -->
                                         </div>
@@ -66,16 +67,16 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label asp-for="UserName" >Username</label>
-                                                    <input asp-for="UserName" class="form-control my-3" name="username" type="text"
+                                                    <label asp-for="ProfileViewModel.UserName" >Username</label>
+                                                    <input asp-for="ProfileViewModel.UserName" class="form-control my-3"  type="text"
                                                            placeholder="Enter your Username" id="username">
                                                 </div>
                                             </div>
                                             <!-- Col End -->
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label asp-for="Email">Email Address</label>
-                                                    <input asp-for="Email" type="email" class="form-control my-3" name="email"
+                                                    <label asp-for="ProfileViewModel.Email">Email Address</label>
+                                                    <input asp-for="ProfileViewModel.Email" type="email" class="form-control my-3"
                                                            placeholder="Enter your email" id="emailAddress">
                                                 </div>
                                             </div>
@@ -85,17 +86,17 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label asp-for="Name">First Name</label>
-                                                    <input asp-for="Name" class="form-control my-3" name="Surname" type="text"
-                                                           placeholder="Enter your Name" id="Name">
+                                                    <label asp-for="ProfileViewModel.Name"> Name</label>
+                                                    <input asp-for="ProfileViewModel.Name" class="form-control my-3"  type="text"
+                                                           placeholder="Enter your Name" id="emailAddress">
                                                 </div>
                                             </div>
 
                                             <!-- Col End -->
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label asp-for="Surname">Surname</label>
-                                                    <input asp-for="Surname" class="form-control my-3" name="Surname" type="text"
+                                                    <label asp-for="ProfileViewModel.Surname">Surname</label>
+                                                    <input asp-for="ProfileViewModel.Surname" class="form-control my-3" type="text"
                                                            placeholder="Enter your Surname" id="lastName">
                                                 </div>
                                             </div>
@@ -106,9 +107,9 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label  asp-for="Password">Current Password</label>
-                                                    <input asp-for="Password" type="password" class="form-control my-3"
-                                                           name="Password"
+                                                    <label asp-for="ProfileViewModel.Password">Current Password</label>
+                                                    <input asp-for="ProfileViewModel.Password" type="password" class="form-control my-3"
+                                                          
                                                            placeholder="Enter your Current Password"
                                                            id="currentPassword">
                                                 </div>
@@ -117,8 +118,8 @@
                                             <!-- Col End -->
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label asp-for="NewPassword">New Password</label>
-                                                    <input asp-for="NewPassword" type="password" class="form-control my-3" name="Password"
+                                                    <label asp-for="ProfileViewModel.NewPassword">New Password</label>
+                                                    <input asp-for="ProfileViewModel.NewPassword" type="password" class="form-control my-3" name="Password"
                                                            placeholder="Enter your New Password" id="newPassword">
                                                 </div>
                                             </div>
@@ -128,18 +129,18 @@
                                         <!-- Row End -->
                                         <h5 class="mb-3 mt-3 pb-3 section-border">Personal Information</h5>
                                         <div id="sandbox-container" class="form-group AccauntSettings">
-                                            <label asp-for="DateOfBirth">Date of Birth</label>
-                                            <input asp-for="DateOfBirth" type="text" class="form-control my-3" name="DateOfBirth"
+                                            <label asp-for="ProfileViewModel.DateOfBirth">Date of Birth</label>
+                                            <input asp-for="ProfileViewModel.DateOfBirth" type="text" class="form-control my-3" name="DateOfBirth"
                                                    placeholder="Enter your Date of Birth" id="dateofbirth">
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label asp-for="Gender">
+                                                    <label asp-for="ProfileViewModel.Gender">
                                                         Gender</label>
-                                                        
-                                                        <select asp-for="Gender" class="form-control my-3" name="Gender"
+
+                                                    <select asp-for="ProfileViewModel.Gender" class="form-control my-3" 
                                                             aria-label="Default select example" id="select-gender">
                                                         <option value="1" selected="selected">Male</option>
                                                         <option value="2">Female</option>
@@ -150,8 +151,8 @@
                                             <!-- Col End -->
                                             <div class="col-md-6">
                                                 <div class="form-group AccauntSettings">
-                                                    <label asp-for="Country">Country</label>
-                                                    <input asp-for="Country" class="form-control my-3" name="Country"
+                                                    <label asp-for="ProfileViewModel.Country">Country</label>
+                                                    <input asp-for="ProfileViewModel.Country" class="form-control my-3" 
                                                             aria-label="Default select example" id="select-language">
                                                 </div>
                                             </div>
@@ -160,7 +161,7 @@
 
                                         <!-- Row End -->
                                         <div class="form-group  mt-3" id="buttonSaveCancel">
-                                            <a href="#" class="hvr-sweep-to-right btn px-3">Save</a>
+                                            <button type="submit" href="#" class="hvr-sweep-to-right btn px-3">Save</button>
                                             <a href="#" class="hvr-sweep-to-right btn ms-3">Cancel</a>
                                         </div>
                                     </form>

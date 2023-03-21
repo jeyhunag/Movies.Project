@@ -69,7 +69,7 @@ namespace Movie.WEBUI.Controllers
 
             //if (ModelState.IsValid)
             //{
-                AppUser user = new AppUser { UserName = model.UserName, Email = model.Email };
+            AppUser user = new AppUser { UserName = model.UserName, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -107,15 +107,21 @@ namespace Movie.WEBUI.Controllers
                 DateOfBirth = user.DateOfBirth,
                 Email = user.Email,
                 UserName = user.UserName,
-                Gender = user.Gender
+                Gender = user.Gender,
+                Password = user.PasswordHash
             };
 
-            return View(viewModel);
+            HomeViewModel homeViewModel = new HomeViewModel
+            {
+                ProfileViewModel = viewModel
+            };
+            return View(homeViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> ProfileSettings(ProfileViewModel viewModel, IFormFile imageFile)
+        public async Task<IActionResult> ProfileSettings(HomeViewModel homeViewModel, ProfileViewModel viewModel, IFormFile imageFile)
         {
+            viewModel = homeViewModel.ProfileViewModel;
             //if (ModelState.IsValid)
             //{
             if (imageFile != null && imageFile.Length > 0)
@@ -153,7 +159,7 @@ namespace Movie.WEBUI.Controllers
             }
             //}
 
-            return View(viewModel);
+            return View(homeViewModel);
         }
 
 

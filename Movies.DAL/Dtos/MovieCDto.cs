@@ -17,6 +17,9 @@ namespace Movies.DAL.Dtos
         public string CountryCategoryId { get; set; }
         public string GenresCategoryId { get; set; }
         public string LanguageCategoryId { get; set; }
+        public string CountryCategoryName { get; set; }
+        public string LanguageCategoryName { get; set; }
+        public string GenresCategoryName { get; set; }
         public string TrandsId { get; set; }
         public string Director { get; set; }
         public string? Img { get; set; }

@@ -48,17 +48,17 @@
     </style>
 }
 <div class="container">
-    <div class="Filtir">
+   @* <div class="Filtir">
         <div class="dropdown moviePageDropdown">
             <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
                 Genres
             </button>
-            <ul class="dropdown-menu dropdown-menu-movie">
+            <ul id="genres" class="dropdown-menu dropdown-menu-movie">
 
 
-                @foreach (var item in Model.PagedViewModel.Items)
+                @foreach (var item in Model.GenresCategories.Distinct())
                 {
-                    <li><a class="dropdown-item genres" data-genres="1" href="#">@item.GenresCategory.Name</a></li>
+                    <li><a class="dropdown-item genres" data-genres="1" href="#">@item.Name</a></li>
                 }
 
             </ul>
@@ -69,7 +69,7 @@
                 Country
             </button>
             <ul id="categories" class="dropdown-menu">
-                @foreach (var item in Model.PagedViewModel.Items)
+                @foreach (var item in Model.PagedViewModel.Items.Distinct())
                 {
                     <li><a class="dropdown-item" href="#">@item.CountryCategory.Name</a></li>
                 }
@@ -82,16 +82,16 @@
                 Language
             </button>
             <ul id="lang" class="dropdown-menu">
-                @foreach (var item in Model.PagedViewModel.Items)
+                @foreach (var item in Model.PagedViewModel.Items.Distinct())
                 {
                     <li><a class="dropdown-item" href="#">@item.LanguageCategory.Name</a></li>
                 }
 
             </ul>
         </div>
-        <a id="search" href="#">Search</a>
+        <button type="button" id="search" href="#">Search</button>
     </div>
-
+*@
     <div class="card-container ">
 @*        @await Component.InvokeAsync("OtherMovie")*@
         @foreach (var item in Model.PagedViewModel.Items)
@@ -125,6 +125,7 @@
     <!-- Include rateYo JavaScript file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script>
+
 
         /* Javascript Star*/
         $(function () {
