@@ -71,7 +71,7 @@
                         +
                     </label>
                     <input asp-for="Img" name="imageFile" class="input-situation custom-file-input" type="file" id="createdImage file" width="500" height="500" style="opacity:0;" />
-                    <img  id="createdImage" width="500" height="500" style="display:block;" />
+                    <img @*src="~/@Model.Img"*@ id="createdImage" width="500" height="500" style="display:block;" />
 
                 </div>
 

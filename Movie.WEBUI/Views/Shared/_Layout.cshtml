@@ -86,7 +86,6 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Log Out</a>
-                    @*<a asp-area="" asp-controller="Account" asp-action="ProfileSettings" >Profile Settings </a>*@
                     <a asp-area="" asp-controller="Account" asp-action="ProfileSettings" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Profile Settings</a>
 
                 }
@@ -99,7 +98,7 @@
             <!-- Modal Sign In -->
             @await Component.InvokeAsync("Signin")
 
-                <!-- Modal Sign Up -->
+            <!-- Modal Sign Up -->
             @await Component.InvokeAsync("Signup")
         </div>
         <div class="search-box ">

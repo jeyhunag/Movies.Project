@@ -1,4 +1,5 @@
 ﻿using Abp.Runtime.Security;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Movie.WEBUI.ViewModels;
 using Movie.WEBUI.wwwroot.ViewModels;
 using Movies.DAL.DbModel;
+using System.Security.Claims;
 
 namespace Movie.WEBUI.Controllers
 {
@@ -24,9 +26,6 @@ namespace Movie.WEBUI.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-
-
-
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> SignIn(HomeViewModel homeViewModel, SignInViewModel signInViewModel)
@@ -35,32 +34,31 @@ namespace Movie.WEBUI.Controllers
             string UserName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             //if (ModelState.IsValid)
             //{
-                var appUser = await _userManager.FindByNameAsync(signInViewModel.UserName);
-                if (appUser == null)
-                {
-                    ModelState.AddModelError("", "Username or password is incorrect");
-                    goto showSameView;
-                }
-                var result = await _signInManager.PasswordSignInAsync(appUser, signInViewModel.Password, true, true);
+            var appUser = await _userManager.FindByNameAsync(signInViewModel.UserName);
+            if (appUser == null)
+            {
+                ModelState.AddModelError("", "Username or password is incorrect");
+                goto showSameView;
+            }
+            var result = await _signInManager.PasswordSignInAsync(appUser, signInViewModel.Password, true, true);
 
-                if (result.Succeeded)
-                {
+            if (result.Succeeded)
+            {
 
-                    string? redirect = Request.Query["returnUrl"];
-                    if (string.IsNullOrWhiteSpace(redirect))
-                        return RedirectToAction("Index", "Home");
+                string? redirect = Request.Query["returnUrl"];
+                if (string.IsNullOrWhiteSpace(redirect))
+                    return RedirectToAction("Index", "Home");
 
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Username or password is incorrect");
-                    goto showSameView;
-                }
-            //}
+            }
+            else
+            {
+                ModelState.AddModelError("", "Username or password is incorrect");
+                goto showSameView;
+            }
+        //}
         showSameView:
             return View(homeViewModel);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> SignUp(HomeViewModel homeViewModel, SignUpViewModel model)
@@ -70,18 +68,18 @@ namespace Movie.WEBUI.Controllers
             //if (ModelState.IsValid)
             //{
             AppUser user = new AppUser { UserName = model.UserName, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
 
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction(nameof(HomeController.Index), "Home");
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
             //}
 
             return View(homeViewModel);
@@ -108,7 +106,6 @@ namespace Movie.WEBUI.Controllers
                 Email = user.Email,
                 UserName = user.UserName,
                 Gender = user.Gender,
-                Password = user.PasswordHash
             };
 
             HomeViewModel homeViewModel = new HomeViewModel
@@ -117,6 +114,8 @@ namespace Movie.WEBUI.Controllers
             };
             return View(homeViewModel);
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> ProfileSettings(HomeViewModel homeViewModel, ProfileViewModel viewModel, IFormFile imageFile)
@@ -135,33 +134,67 @@ namespace Movie.WEBUI.Controllers
                 }
             }
 
-            AppUser user = await _userManager.FindByIdAsync(viewModel.Id);
 
-            if (user == null)
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null)
             {
-                return NotFound();
+                // Update user properties
+                user.Name = viewModel.Name;
+                user.Surname = viewModel.Surname;
+                user.Country = viewModel.Country;
+                user.Img = viewModel.Img;
+                user.DateOfBirth = viewModel.DateOfBirth;
+                user.Email = viewModel.Email;
+                user.UserName = viewModel.UserName;
+                user.Gender = viewModel.Gender;
+
+
+
+                if (!string.IsNullOrEmpty(viewModel.NewPassword))
+                {
+                    // Check if the current password is correct
+                    if (await _userManager.CheckPasswordAsync(user, viewModel.Password))
+                    {
+                        // Update the password
+                        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                        var result = await _userManager.ResetPasswordAsync(user, token, viewModel.NewPassword);
+
+                        if (!result.Succeeded)
+                        {
+                            foreach (var error in result.Errors)
+                            {
+                                ModelState.AddModelError(string.Empty, error.Description);
+                            }
+                            return View(viewModel);
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Incorrect current password.");
+                        return View(viewModel);
+                    }
+                }
+
+                var updateResult = await _userManager.UpdateAsync(user);
+                if (!updateResult.Succeeded)
+                {
+                    foreach (var error in updateResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View(viewModel);
+                }
+
+                return RedirectToAction("Index", "Home");
             }
-
-            user.Name = viewModel.Name;
-            user.Surname = viewModel.Surname;
-            user.Country = viewModel.Country;
-            user.Img = viewModel.Img;
-            user.DateOfBirth = viewModel.DateOfBirth;
-            user.Email = viewModel.Email;
-            user.UserName = viewModel.UserName;
-            user.Gender = viewModel.Gender;
-
-            IdentityResult result = await _userManager.UpdateAsync(user);
-
-            if (result.Succeeded)
+            else
             {
-                return RedirectToAction("UserIndex");
+                ModelState.AddModelError(string.Empty, "User not found.");
             }
             //}
 
             return View(homeViewModel);
         }
-
 
         [AllowAnonymous]
         public async Task<IActionResult> Logout()

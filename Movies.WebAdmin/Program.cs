@@ -96,7 +96,7 @@ namespace Movies.WebAdmin
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=LogIn}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
 
