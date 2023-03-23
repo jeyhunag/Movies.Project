@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using System.Security.Claims;
+@inject UserManager<AppUser> UserManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +82,24 @@
             </a>
         </div>
         <div class="dropdown">
-            <button class=" dropbtn bi bi-person-fill px-1" onclick="myFunction()"></button>
+            @if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = await UserManager.FindByIdAsync(userId);
+                if (!string.IsNullOrEmpty(user.Img))
+                {
+                    <img src="@user.Img" alt="Profile Picture" class="dropbtn" onclick="myFunction()" style="width: 25px; height: 25px; object-fit: cover; border-radius: 50%;" />
+                }
+                else
+                {
+                    <button class="dropbtn bi bi-person-fill px-1" onclick="myFunction()"></button>
+                }
+            }
+            else
+            {
+                <button class="dropbtn bi bi-person-fill px-1" onclick="myFunction()"></button>
+            }
+
             <div id="myDropdown" class="dropdown-content">
                 @if (User.Identity.IsAuthenticated)
                 {

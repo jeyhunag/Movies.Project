@@ -48,7 +48,7 @@
     </style>
 }
 <div class="container">
-   @* <div class="Filtir">
+    <div class="Filtir">
         <div class="dropdown moviePageDropdown">
             <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
                 Genres
@@ -91,7 +91,7 @@
         </div>
         <button type="button" id="search" href="#">Search</button>
     </div>
-*@
+
     <div class="card-container ">
 @*        @await Component.InvokeAsync("OtherMovie")*@
         @foreach (var item in Model.PagedViewModel.Items)

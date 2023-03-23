@@ -1,4 +1,7 @@
-﻿@model ContactDto
+﻿@using Microsoft.AspNetCore.Identity;
+@model ContactDto
+@inject UserManager<AppUser> UserManager
+
 @{
     ViewData["Title"] = "Create";
 }
