@@ -1,4 +1,6 @@
 ﻿@model HomeViewModel
+@inject UserManager<AppUser> UserManager
+
 @{
     ViewData["Title"] = "ProfileSettings";
 }
@@ -6,6 +8,7 @@
 @section addcss{
     <link rel="stylesheet" href="~/css/AccauntSettings.css">
     <script src="~/js/AccauntSettings.js"></script>
+
     <style>
         .form-group {
             flex-direction: column !important;
@@ -49,9 +52,25 @@
                                                 <div class="form-group">
                                                     <div class="settings-avatar">
                                                         <input asp-for="ProfileViewModel.Img" style="background-color:red;" class="input-situation custom-file-input" type="file" name="imageFile" id="createdImage file" />
-                                                        <img src="~/Img/user.jpg" id="createdImage" width="200" height="200"
+                                                        @if (User.Identity.IsAuthenticated)
+                                                        {
+                                                            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                                                            var user = await UserManager.FindByIdAsync(userId);
+                                                            if (!string.IsNullOrEmpty(user.Img))
+                                                            {
+                                                                <img src="~/@Model.ProfileViewModel.Img" alt="#" id="createdImage" class=" img-fluid mt-4" width="200" height="200" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="~/Img/user.jpg" id="createdImage" width="200" height="200"
                                                              class="img-fluid mt-4" alt="#">
-
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/Img/user.jpg" id="createdImage" width="200" height="200"
+                                                             class="img-fluid mt-4" alt="#">
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
@@ -169,3 +188,5 @@
         </section>
     </div>
 </div>
+
+
