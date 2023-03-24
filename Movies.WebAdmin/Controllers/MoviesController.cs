@@ -39,13 +39,12 @@ namespace Movies.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            MovieCDto model = new()
-            {
-                CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
-                GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
-                LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),
-                TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync()
-            };
+            MovieCDto model = new MovieCDto();
+
+            model.CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync();
+            model.GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync();
+            model.LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync();
+            model.TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync();
 
             return View(model);
         }
@@ -141,7 +140,7 @@ namespace Movies.Controllers
                 LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),
                 TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync()
             };
-   
+
             return View(model);
 
         }
@@ -157,45 +156,45 @@ namespace Movies.Controllers
             //if (ModelState.IsValid)
             //{
 
-                    if (imageFile != null && imageFile.Length > 0)
-                    {
-                        var imagePath = _imgPath + imageFile.FileName;
-                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                        using (var stream = new FileStream(fullPath, FileMode.Create))
-                        {
-                            await imageFile.CopyToAsync(stream);
-                            movie.Img = imagePath;
-                        }
-                    }
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var imagePath = _imgPath + imageFile.FileName;
+                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(stream);
+                    movie.Img = imagePath;
+                }
+            }
 
-                    if (videoFile != null && videoFile.Length > 0)
-                    {
-                        var videoPath = _videoPath + videoFile.FileName;
-                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
-                        using (var stream = new FileStream(fullPath, FileMode.Create))
-                        {
-                            await videoFile.CopyToAsync(stream);
-                            movie.MovieVideo = videoPath;
-                        }
-                    }
+            if (videoFile != null && videoFile.Length > 0)
+            {
+                var videoPath = _videoPath + videoFile.FileName;
+                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    await videoFile.CopyToAsync(stream);
+                    movie.MovieVideo = videoPath;
+                }
+            }
 
-                    if (trailerFile != null && trailerFile.Length > 0)
-                    {
-                        var trailerPath = _trailerPath + trailerFile.FileName;
-                        var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, trailerPath);
-                        using (var stream = new FileStream(fullPath, FileMode.Create))
-                        {
-                            await trailerFile.CopyToAsync(stream);
-                            movie.Trailer = trailerPath;
-                        }
-                    }
+            if (trailerFile != null && trailerFile.Length > 0)
+            {
+                var trailerPath = _trailerPath + trailerFile.FileName;
+                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, trailerPath);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    await trailerFile.CopyToAsync(stream);
+                    movie.Trailer = trailerPath;
+                }
+            }
 
-                _movieService.Update(movie);
-                TempData["success"] = "Movie have been successfully changed.";
-                return RedirectToAction("Index");
+            _movieService.Update(movie);
+            TempData["success"] = "Movie have been successfully changed.";
+            return RedirectToAction("Index");
             //}
 
-         
+
             return View(movie);
         }
 
@@ -221,10 +220,6 @@ namespace Movies.Controllers
                 Age = movie.Age,
                 Director = movie.Director,
                 Img = movie.Img,
-                CountryCategoryName = movie.CountryCategoryName,
-                GenresCategoryName = movie.GenresCategoryName,
-                TrandsId = movie.TrandsId,
-                LanguageCategoryName = movie.LanguageCategoryName,
                 CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
                 GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
                 LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),

@@ -21,11 +21,11 @@ namespace Movies.DAL.DbModel
         public string? MovieVideo { get; set; }
         public string? Trailer { get; set; }
         public int GenresCategoryId { get; set; }
-        public GenresCategory GenresCategory { get; set; }
+        public GenresCategory? GenresCategory { get; set; }
         public int CountryCategoryId { get; set; }
-        public CountryCategory CountryCategory { get; set; }
+        public CountryCategory? CountryCategory { get; set; }
         public int LanguageCategoryId { get; set; }
-        public LanguageCategory LanguageCategory { get; set; }
+        public LanguageCategory? LanguageCategory { get; set; }
         public int? TrendId { get; set; }
         public Trends Trend { get; set; }
         public virtual ICollection<MoviesDocument>? MoviesDocuments { get; set; }

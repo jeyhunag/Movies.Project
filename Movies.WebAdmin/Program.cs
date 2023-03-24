@@ -60,8 +60,7 @@ namespace Movies.WebAdmin
             //    options.Limits.MaxRequestBodySize = 838860800;
             //});
 
-            //All Logger Extensions
-            builder.Services.AddAllLogServices();
+
 
             //Importand Logger Extensions
            builder.Services.AddImpotandLogServices();

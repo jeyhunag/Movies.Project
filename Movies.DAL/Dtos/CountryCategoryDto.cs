@@ -8,6 +8,6 @@ namespace Movies.DAL.Dtos
 {
     public class CountryCategoryDto : BaseDto
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

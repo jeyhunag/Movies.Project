@@ -85,25 +85,25 @@
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                                                 <select asp-for="GenresCategoryId" asp-items="@(new SelectList(Model.GenresCategoryDtos, nameof(GenresCategoryDto.Id), nameof(GenresCategoryDto.Name)))"
-                                                class="form-control pro-edt-select form-control-primary">
+                                                        class="form-control pro-edt-select form-control-primary">
                                                 </select>
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                                                 <select asp-for="LanguageCategoryId" asp-items="@(new SelectList(Model.LanguageCategoryDtos, nameof(LanguageCategoryDto.Id), nameof(LanguageCategoryDto.Name)))"
-                                                class="form-control pro-edt-select form-control-primary">
+                                                        class="form-control pro-edt-select form-control-primary">
                                                 </select>
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                                                 <select asp-for="CountryCategoryId" asp-items="@(new SelectList(Model.CountryCategoryDtos, nameof(CountryCategoryDto.Id), nameof(CountryCategoryDto.Name)))"
-                                                class="form-control pro-edt-select form-control-primary">
+                                                        class="form-control pro-edt-select form-control-primary">
                                                 </select>
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                                                 <select asp-for="TrandsId" asp-items="@(new SelectList(Model.TrandCategoryDtos, nameof(TrandCategoryDto.Id), nameof(TrandCategoryDto.Name)))"
-                                                class="form-control pro-edt-select form-control-primary">
+                                                        class="form-control pro-edt-select form-control-primary">
                                                 </select>
                                             </div>
                                             <div class="form-check ms-4">
@@ -146,24 +146,20 @@
                                                 </div>
                                             </div>
                                             <div class="row">
+
                                                 <div class="col-md-12 form-group label-situation" style="display: flex; justify-content: center; align-items: center;">
-
-                                                   <label asp-for="MovieVideo" id="plus" class="form-control" for="file" style="font-size:4rem; background-color:transparent; border:none; text-align:center;">
-                                                        Movie
-                                                    </label>
-                                                    <input asp-for="MovieVideo" name="videoFile" class="input-situation custom-file-input" type="file" id="createdImage file" width="500" height="500" style="opacity:0;" />
-                                                    <img id="createdImage" width="900" height="300" style="display:block;" />
+                                                    <input asp-for="MovieVideo" name="videoFile" class="input-situation video" type="file" id="createdVideo File" width="500" height="500" style="opacity:0;" />
+                                                    <video id="createdVideo" width="800" height="500" controls>
+                                                        <source type="video/mp4">
+                                                    </video>
                                                 </div>
-
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 form-group label-situation" style="display: flex; justify-content: center; align-items: center;">
-
-                                                    <label asp-for="Trailer" id="plus" class="form-control" for="file" style="font-size:4rem; background-color:transparent; border:none; text-align:center;">
-                                                        Trailer
-                                                    </label>
-                                                    <input asp-for="Trailer" name="trailerFile" class="input-situation custom-file-input" type="file" id="createdImage file" width="500" height="500" style="opacity:0;" />
-                                                    <img id="createdImage" width="900" height="300" style="display:block;" />
+                                                    <input asp-for="Trailer" name="trailerFile" class="input-situation Trailer" type="file" id="createdTrailer file" width="500" height="500" style="opacity:0;" />
+                                                    <video id="createdTrailer" width="800" height="500" controls>
+                                                        <source type="video/mp4">
+                                                    </video>
                                                 </div>
 
                                             </div>
@@ -179,3 +175,80 @@
     </div>
 </div>
 
+@section Scripts{
+    <script>
+        //Image
+        $('.custom-file-input').on('change', function () {
+            var fileName = $(this).val();
+            console.log(fileName);
+            readURLImage(this);
+
+        });
+
+        function readURLImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    console.log(e.target.result);
+                    $('#plus').text("");
+                    $('#createdImage').css("display", "block");
+
+                    $('#createdImage').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        //Video
+
+   
+
+        $('.video').on('change', function () {
+            var fileVideo = $(this).val();
+            console.log(fileVideo);
+            readURLVideo(this);
+
+        });
+
+        function readURLVideo(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    console.log(e.target.result);
+                    $('#plusVideo').text("");
+                    $('#createdVideo').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        //Trailer
+        $('.Trailer').on('change', function () {
+            var fileTrailer = $(this).val();
+            console.log(fileTrailer);
+            readURLTrailer(this);
+        });
+
+        function readURLTrailer(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    console.log(e.target.result);
+                    $('#plusTrailer').text(""); // If you want to remove the label text
+                    $('#createdTrailer').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

@@ -10,7 +10,7 @@ namespace Movies.DAL.DbModel
     public class CountryCategory:BaseEntity
     {
    
-        public string Name { get; set; }
-        public virtual ICollection<MovieC> Movies { get; set; }
+        public string? Name { get; set; }
+        public virtual ICollection<MovieC>? Movies { get; set; }
     }
 }

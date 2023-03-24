@@ -31,7 +31,7 @@ namespace Movies.BLL.Services
             try
             {
                 _logger.LogInformation("Open");
-                
+
                 TEntity entity = _mapper.Map<TEntity>(item);
                 TEntity dbEntity = await _genericRepository.AddAsync(entity);
                 return _mapper.Map<TDto>(dbEntity);
@@ -60,8 +60,7 @@ namespace Movies.BLL.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
-                _logger.LogError(ex.StackTrace);
+
                 throw new CustomException("BLL də əlavə edillərkən xəta yarandı. Xahiş olunur adminsitrator ilə əlaqə saxla.");
             }
            
