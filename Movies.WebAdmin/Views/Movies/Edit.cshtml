@@ -134,7 +134,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="review-content-section">
                                             <div class="row">
-                                                <div asp-validation-summary="All" class="text-danger"></div>
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                                 <div class="col-md-12 form-group label-situation" style="display: flex; justify-content: center; align-items: center;">
 
                                                     <label asp-for="Img" id="plus" class="form-control" for="file" style="font-size:4rem; background-color:transparent; border:none; text-align:center;">
@@ -146,31 +146,21 @@
                                                 </div>
                                             </div>
                                             <div class="row">
+
                                                 <div class="col-md-12 form-group label-situation" style="display: flex; justify-content: center; align-items: center;">
-
-                                                    <label asp-for="MovieVideo" id="plus" class="form-control" for="file" style="font-size:4rem; background-color:transparent; border:none; text-align:center;">
-                                                        Movie
-                                                    </label>
-                                                    <input asp-for="MovieVideo" name="videoFile" class="input-situation custom-file-input" type="file" id="createdImage file" width="500" height="500" style="opacity:0;" />
-                                                    <video  id="createdImage" width="900" height="300" style="display:block;">
-
-                                                        <source src="~/@Model.MovieVideo" type="video/mp4" />
+                                                    <input asp-for="MovieVideo" name="videoFile" class="input-situation video" type="file" id="createdVideo File" width="500" height="500" style="opacity:0;" />
+                                                    <video id="createdVideo" width="800" height="500" controls>
+                                                        <source src="~/@Model.MovieVideo" type="video/mp4">
                                                     </video>
                                                 </div>
-
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 form-group label-situation" style="display: flex; justify-content: center; align-items: center;">
-
-                                                    <label asp-for="Trailer" id="plus" class="form-control" for="file" style="font-size:4rem; background-color:transparent; border:none; text-align:center;">
-                                                        Trailer
-                                                    </label>
-                                                    <input asp-for="Trailer" name="trailerFile" class="input-situation custom-file-input" type="file" id="createdImage file" width="500" height="500" style="opacity:0;" />
-                                                    <video id="createdImage" width="900" height="300" style="display:block;">
-                                                        <source src="~/@Model.Trailer" type="video/mp4" />
+                                                    <input asp-for="Trailer" name="trailerFile" class="input-situation Trailer" type="file" id="createdTrailer file" width="500" height="500" style="opacity:0;" />
+                                                    <video id="createdTrailer" width="800" height="500" controls>
+                                                        <source src="~/@Model.Trailer" type="video/mp4">
                                                     </video>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -183,3 +173,80 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        //Image
+        $('.custom-file-input').on('change', function () {
+            var fileName = $(this).val();
+            console.log(fileName);
+            readURLImage(this);
+
+        });
+
+        function readURLImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    console.log(e.target.result);
+                    $('#plus').text("");
+                    $('#createdImage').css("display", "block");
+
+                    $('#createdImage').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        //Video
+
+
+
+        $('.video').on('change', function () {
+            var fileVideo = $(this).val();
+            console.log(fileVideo);
+            readURLVideo(this);
+
+        });
+
+        function readURLVideo(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    console.log(e.target.result);
+                    $('#plusVideo').text("");
+                    $('#createdVideo').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        //Trailer
+        $('.Trailer').on('change', function () {
+            var fileTrailer = $(this).val();
+            console.log(fileTrailer);
+            readURLTrailer(this);
+        });
+
+        function readURLTrailer(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    console.log(e.target.result);
+                    $('#plusTrailer').text(""); // If you want to remove the label text
+                    $('#createdTrailer').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
