@@ -123,7 +123,7 @@ namespace Movies.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UserUpdate(UserViewModel viewModel, IFormFile imageFile)
+        public async Task<IActionResult> UserUpdate(UserViewModel viewModel,  IFormFile imageFile)
         {
             //if (ModelState.IsValid)
             //{
