@@ -1,5 +1,8 @@
-﻿<div class="all-content-wrapper">
-  
+﻿
+@inject UserManager<AppUser> UserManager
+@model UserViewModel
+<div class="all-content-wrapper">
+
     <div class="header-advance-area">
         <div class="header-top-area">
             <div class="container-fluid">
@@ -78,16 +81,53 @@
                                                 </div>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                    <i class="icon nalika-user nalika-user-rounded header-riht-inf" aria-hidden="true"></i>
-                                                    <span class="admin-name">Advanda Cro</span>
-                                                    <i class="icon nalika-down-arrow nalika-angle-dw nalika-icon"></i>
-                                                </a>
-                                                <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                    <li>
-                                                        <a href="register.html"><span class="icon nalika-home author-log-ic"></span> Register</a>
-                                                    </li>
-                                                </ul>
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                                                    var user = await UserManager.FindByIdAsync(userId);
+                                                    if (!string.IsNullOrEmpty(user.Img))
+                                                    {
+
+
+                                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                                            <img src="~/@user.Img" alt="#" id="createdImage" class=" img-fluid mt-4" width="20" height="20" />
+                                                            <span class="admin-name">@user.UserName</span>
+                                                            <i class="icon nalika-down-arrow nalika-angle-dw nalika-icon"></i>
+                                                        </a>
+                                                        <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                            <li>
+                                                                <a href="register.html"><span class="icon nalika-home author-log-ic"></span> Register</a>
+                                                            </li>
+                                                        </ul>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                                            <i class="icon nalika-user nalika-user-rounded header-riht-inf" aria-hidden="true"></i>
+                                                            <span class="admin-name">Advanda Cro</span>
+                                                            <i class="icon nalika-down-arrow nalika-angle-dw nalika-icon"></i>
+                                                        </a>
+                                                        <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                            <li>
+                                                                <a href="register.html"><span class="icon nalika-home author-log-ic"></span> Register</a>
+                                                            </li>
+                                                        </ul>
+                                                    }
+                                                }
+                                                else
+                                                {
+
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                                        <i class="icon nalika-user nalika-user-rounded header-riht-inf" aria-hidden="true"></i>
+                                                        <span class="admin-name">Advanda Cro</span>
+                                                        <i class="icon nalika-down-arrow nalika-angle-dw nalika-icon"></i>
+                                                    </a>
+                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                        <li>
+                                                            <a href="register.html"><span class="icon nalika-home author-log-ic"></span> Register</a>
+                                                        </li>
+                                                    </ul>
+                                                }
                                             </li>
                                             <li class="nav-item nav-setting-open">
                                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="icon nalika-menu-task"></i></a>
