@@ -27,7 +27,7 @@ namespace Movies.DAL.DbModel
         public int LanguageCategoryId { get; set; }
         public LanguageCategory? LanguageCategory { get; set; }
         public int? TrendId { get; set; }
-        public Trends Trend { get; set; }
+        public Trends? Trend { get; set; }
         public virtual ICollection<MoviesDocument>? MoviesDocuments { get; set; }
         public bool Top { get; set; }
         public bool isneww { get; set; }

@@ -20,9 +20,9 @@ namespace Movies.Controllers
     {
         private readonly IMoviesService _movieService;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly string _imgPath = @"img\";
-        private readonly string _videoPath = @"Video\";
-        private readonly string _trailerPath = @"Video\";
+        private readonly string _imgPath = @"img/";
+        private readonly string _videoPath = @"Video/";
+        private readonly string _trailerPath = @"Video/";
 
         public MoviesController(IMoviesService movieService, IWebHostEnvironment webHostEnvironment)
         {
@@ -39,16 +39,15 @@ namespace Movies.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            MovieCDto model = new MovieCDto();
-
-            model.CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync();
-            model.GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync();
-            model.LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync();
-            model.TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync();
-
+            MovieCDto model = new()
+            {
+                CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
+                GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
+                LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),
+                TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync()
+            };
             return View(model);
         }
-
 
 
         [HttpPost]
@@ -220,10 +219,12 @@ namespace Movies.Controllers
                 Age = movie.Age,
                 Director = movie.Director,
                 Img = movie.Img,
+                CountryCategoryId = movie.CountryCategoryId,
+                LanguageCategoryId = movie.LanguageCategoryId,
+                GenresCategoryId = movie.GenresCategoryId,
                 CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
                 GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
                 LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),
-                TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync()
             };
 
             return View(model);
