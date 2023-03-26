@@ -59,15 +59,15 @@
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                <input asp-for="Age" type="text" class="form-control" placeholder="Age">
+                                                <input asp-for="Age" value="" type="text" class="form-control" placeholder="Age">
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                <input asp-for="MovieTime" type="text" class="form-control" placeholder="Movie Time">
+                                                <input asp-for="MovieTime" value="" type="text" class="form-control" placeholder="Movie Time">
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                <input asp-for="Year" type="text" class="form-control" placeholder="Year">
+                                                <input asp-for="Year" value="" type="text" class="form-control" placeholder="Year">
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-favorites" aria-hidden="true"></i></span>
@@ -86,24 +86,28 @@
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                                                 <select asp-for="GenresCategoryId" asp-items="@(new SelectList(Model.GenresCategoryDtos, nameof(GenresCategoryDto.Id), nameof(GenresCategoryDto.Name)))"
                                                 class="form-control pro-edt-select form-control-primary">
+                                                    <option disabled selected value="Genres">Genres Category</option>
                                                 </select>
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                                                 <select asp-for="LanguageCategoryId" asp-items="@(new SelectList(Model.LanguageCategoryDtos, nameof(LanguageCategoryDto.Id), nameof(LanguageCategoryDto.Name)))"
                                                 class="form-control pro-edt-select form-control-primary">
+                                                    <option disabled selected value="Language">Language Category</option>
                                                 </select>
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                                                 <select asp-for="CountryCategoryId" asp-items="@(new SelectList(Model.CountryCategoryDtos, nameof(CountryCategoryDto.Id), nameof(CountryCategoryDto.Name)))"
                                                 class="form-control pro-edt-select form-control-primary">
+                                                    <option disabled selected value="Country">Country Category</option>
                                                 </select>
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                                                 <select asp-for="TrandsId" asp-items="@(new SelectList(Model.TrandCategoryDtos, nameof(TrandCategoryDto.Id), nameof(TrandCategoryDto.Name)))"
                                                 class="form-control pro-edt-select form-control-primary">
+                                                    <option disabled selected value="Trands">Trands</option>
                                                 </select>
                                             </div>
                                             <div class="form-check ms-4">
