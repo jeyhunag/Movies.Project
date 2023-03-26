@@ -34,9 +34,9 @@ namespace Movies.BLL.Services
             _genresRepository = genresRepository;
             _languageRepository = languageRepository;
             _trandsRepository = trandsRepository;
-            _countryRepository= countryRepository;
-            _documentRepository= documentRepository;
-            _moviesRepository= moviesRepository;
+            _countryRepository = countryRepository;
+            _documentRepository = documentRepository;
+            _moviesRepository = moviesRepository;
         }
 
         public async Task<List<CountryCategoryDto>> GetCountryCategoriesAsync()
@@ -91,6 +91,10 @@ namespace Movies.BLL.Services
             return moviestDto;
         }
 
-     
+        public async Task<MovieCDto> GetDetailByIdAsync(int id)
+        {
+            var moviec = await _moviesRepository.GetDetailByIdAsync(id);
+            return moviec;
+        }
     }
 }

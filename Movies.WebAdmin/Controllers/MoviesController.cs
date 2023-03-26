@@ -204,30 +204,34 @@ namespace Movies.Controllers
                 return NotFound();
             }
 
-            var movie = await _movieService.GetByIdAsync(id.Value);
+            var movie = await _movieService.GetDetailByIdAsync(id.Value);
             if (movie == null)
             {
                 return NotFound();
             }
 
-            MovieCDto model = new()
-            {
-                Name = movie.Name,
-                Description = movie.Description,
-                Year = movie.Year,
-                MovieTime = movie.MovieTime,
-                Age = movie.Age,
-                Director = movie.Director,
-                Img = movie.Img,
-                CountryCategoryId = movie.CountryCategoryId,
-                LanguageCategoryId = movie.LanguageCategoryId,
-                GenresCategoryId = movie.GenresCategoryId,
-                CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
-                GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
-                LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),
-            };
+            movie.CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync();
+            movie.GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync();
+            movie.LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync();
+            
+            //MovieCDto model = new()
+            //{
+            //    Name = movie.Name,
+            //    Description = movie.Description,
+            //    Year = movie.Year,
+            //    MovieTime = movie.MovieTime,
+            //    Age = movie.Age,
+            //    Director = movie.Director,
+            //    Img = movie.Img,
+            //    CountryCategoryId = movie.CountryCategoryId,
+            //    LanguageCategoryId = movie.LanguageCategoryId,
+            //    GenresCategoryId = movie.GenresCategoryId,
+            //    CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
+            //    GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
+            //    LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),
+            //};
 
-            return View(model);
+            return View(movie);
         }
 
         public async Task<IActionResult> Delete(int id)
