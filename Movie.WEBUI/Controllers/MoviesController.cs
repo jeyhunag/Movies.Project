@@ -24,6 +24,10 @@ namespace Movie.WEBUI.Controllers
                 .Include(p => p.Trend).Include(p => p.LanguageCategory);
             vm.PagedViewModel = new PagedViewModel<MovieC>(movies, PageIndex, pagSize);
 
+            vm.GenresCategories = _context.GenresCategories.ToList();
+            vm.CountryCategories = _context.CountryCategories.ToList();
+            vm.LanguageCategories = _context.LanguageCategories.ToList();
+
             return View(vm);
 
         }

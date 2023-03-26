@@ -9,27 +9,42 @@
     <!-- Include rateYo CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css" />
 
-
     <link href="~/css/movies.css" rel="stylesheet" />
     <style>
+        main{
+            margin-bottom:0px;
+        }
         .card-container {
             margin-bottom: 100px !important;
         }
 
-        .moviePageDropdown ul li a {
-            color: black;
-            background: white;
+        Form .input-group {
+            margin-right: 10px;
         }
 
-        .dropdown ul li a {
-            color: black;
-            background: white;
+        .pro-edt-select {
+            background-color: red;
+            color: white;
+            border-radius: 0;
+            border-color: red;
         }
 
+            .pro-edt-select option {
+                background-color: red;
+                color: white;
+            }
+
+            .pro-edt-select option:hover {
+                background-color: white;
+                color: black;
+            }
+
+        .submit{
+            background-color: #202020;
+            color: white;
+        }
         .moviePageDropdown {
             display: inline-flex;
-            background: red;
-            color: black;
         }
 
         .dropdown-menu {
@@ -45,55 +60,52 @@
                 max-width: 250px;
                 font-size: 23px;
             }
+
+        .pagination {
+            margin-top:40px; 
+            margin-bottom:-20px;
+        }
     </style>
 }
 <div class="container">
     <div class="Filtir">
-        <div class="dropdown moviePageDropdown">
-            <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
-                Genres
-            </button>
-            <ul id="genres" class="dropdown-menu dropdown-menu-movie">
-
-
-                @foreach (var item in Model.GenresCategories.Distinct())
-                {
-                    <li><a class="dropdown-item genres" data-genres="1" href="#">@item.Name</a></li>
-                }
-
-            </ul>
-        </div>
-
-        <div class="dropdown moviePageDropdown moviePageDropdown">
-            <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
-                Country
-            </button>
-            <ul id="categories" class="dropdown-menu">
-                @foreach (var item in Model.PagedViewModel.Items.Distinct())
-                {
-                    <li><a class="dropdown-item" href="#">@item.CountryCategory.Name</a></li>
-                }
-
-            </ul>
-        </div>
-
-        <div class="dropdown moviePageDropdown">
-            <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
-                Language
-            </button>
-            <ul id="lang" class="dropdown-menu">
-                @foreach (var item in Model.PagedViewModel.Items.Distinct())
-                {
-                    <li><a class="dropdown-item" href="#">@item.LanguageCategory.Name</a></li>
-                }
-
-            </ul>
-        </div>
-        <button type="button" id="search" href="#">Search</button>
+        <form action="/action_page.php" class="dropdown moviePageDropdown">
+            <div class="input-group mg-b-pro-edt">
+                <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
+                <select class="form-control pro-edt-select">
+                    @foreach (var item in Model.GenresCategories)
+                    {
+                        <option value="Genres">Genres</option>
+                        <option value="@item.Name">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="input-group mg-b-pro-edt">
+                <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
+                <select class="form-control pro-edt-select">
+                    @foreach (var item in Model.CountryCategories)
+                    {
+                        <option value="Country">Country</option>
+                        <option value="@item.Name">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="input-group mg-b-pro-edt">
+                <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
+                <select class="form-control pro-edt-select">
+                    @foreach (var item in Model.LanguageCategories)
+                    {
+                        <option value="Language">Language</option>
+                        <option value="@item.Name">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <button class="submit" type="submit"> Search</button>
+               
+        </form>
     </div>
 
     <div class="card-container ">
-@*        @await Component.InvokeAsync("OtherMovie")*@
         @foreach (var item in Model.PagedViewModel.Items)
         {
             <div class="card mt-3 mb-5">
