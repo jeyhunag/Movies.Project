@@ -8,6 +8,7 @@
 
     <!-- Include rateYo CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link href="~/css/movies.css" rel="stylesheet" />
     <style>
@@ -29,19 +30,29 @@
             border-color: red;
         }
 
+            .pro-edt-select:focus {
+                background-color: red;
+                color: white;
+                outline: none; /* To remove the default browser focus outline */
+            }
+
             .pro-edt-select option {
                 background-color: red;
                 color: white;
             }
 
-            .pro-edt-select option:hover {
-                background-color: white;
-                color: black;
-            }
+                .pro-edt-select option:hover {
+                    background-color: white;
+                    color: black;
+                }
+
 
         .submit{
             background-color: #202020;
             color: white;
+            padding: 10px;
+            border-radius:2px;
+            border-color:red;
         }
         .moviePageDropdown {
             display: inline-flex;
@@ -65,6 +76,11 @@
             margin-top:40px; 
             margin-bottom:-20px;
         }
+
+        .Filtir{
+            margin-left:20px;
+        }
+
     </style>
 }
 <div class="container">
@@ -72,7 +88,6 @@
         <form asp-action="index" method="get" class="dropdown moviePageDropdown">
             <div class="input-group mg-b-pro-edt">
                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-
                 <select class="form-control pro-edt-select" asp-for="FilterFormModel.GenresCategoryId">
                     <option value="Genres" selected disabled>Genres</option>
                     @foreach (var item in Model.GenresCategories)
@@ -102,7 +117,7 @@
                     }
                 </select>
             </div>
-           <input class="submit" type="submit" value="Search"/>
+            <input class="submit fa-solid fa-magnifying-glass" type="submit" value="Search" />
                
         </form>
     </div>
@@ -110,7 +125,7 @@
     <div class="card-container" style="justify-content: flex-start">
         @foreach (var item in Model.PagedViewModel.Items)
         {
-            <div class="card mt-3 mb-5" style="margin:1%;">
+            <div class="card mt-3 mb-5" style="margin:1.6%;">
                 <div class="poster">
                     <img src="~/@item.Img" alt="#">
                 </div>
