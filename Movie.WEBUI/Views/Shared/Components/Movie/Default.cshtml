@@ -15,7 +15,7 @@
             </div>
             <h4 class="text-white">@item.Name</h4>
             <p class="text-white">@item.Year</p>
-            <p class="mx-2 text-white">@item.Age</p>
+            <p class="mx-2 text-white">@item.Age +</p>
             <p class="text-white">@item.GenresCategory.Name</p>
         </div>
     }
@@ -40,8 +40,9 @@ else
                         <span><i class="bi bi-globe"></i>@item.CountryCategory.Name</span>
                     </div>
                     <div class="slider-action">
-                        <a asp-area="" asp-controller="PlayMovies" asp-action="Index" asp-route-id="@item.Id" class="slider-btn-1">Play Now</a>
-                        <a href="# " class="slider-btn-2">My List</a>
+                        <a asp-area="" asp-controller="PlayMovies" asp-action="Index" asp-route-id="@item.Id" style="border-radius:0;"
+                        class="slider-btn-1">Play Now</a>
+                        <a href="# " class="slider-btn-2" style="border-radius:0; color:white;">My List</a>
                     </div>
                 </div>
             </div>

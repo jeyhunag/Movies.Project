@@ -69,46 +69,48 @@
 }
 <div class="container">
     <div class="Filtir">
-        <form action="/action_page.php" class="dropdown moviePageDropdown">
+        <form asp-action="index" method="get" class="dropdown moviePageDropdown">
             <div class="input-group mg-b-pro-edt">
                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                <select class="form-control pro-edt-select">
+
+                <select class="form-control pro-edt-select" asp-for="FilterFormModel.GenresCategoryId">
+                    <option value="Genres" selected disabled>Genres</option>
                     @foreach (var item in Model.GenresCategories)
                     {
-                        <option value="Genres">Genres</option>
-                        <option value="@item.Name">@item.Name</option>
+                        
+                        <option value="@item.Id">@item.Name</option>
                     }
                 </select>
             </div>
             <div class="input-group mg-b-pro-edt">
                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                <select class="form-control pro-edt-select">
+                <select class="form-control pro-edt-select" asp-for="FilterFormModel.CountryCategoryId">
+                    <option value="Country" selected disabled>Country</option>
                     @foreach (var item in Model.CountryCategories)
                     {
-                        <option value="Country">Country</option>
-                        <option value="@item.Name">@item.Name</option>
+                        <option value="@item.Id">@item.Name</option>
                     }
                 </select>
             </div>
             <div class="input-group mg-b-pro-edt">
                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                <select class="form-control pro-edt-select">
+                <select class="form-control pro-edt-select" asp-for="FilterFormModel.LanguageCategoryId">
+                    <option value="Language" selected disabled>Language</option>
                     @foreach (var item in Model.LanguageCategories)
                     {
-                        <option value="Language">Language</option>
-                        <option value="@item.Name">@item.Name</option>
+                        <option value="@item.Id">@item.Name</option>
                     }
                 </select>
             </div>
-            <button class="submit" type="submit"> Search</button>
+           <input class="submit" type="submit" value="Search"/>
                
         </form>
     </div>
 
-    <div class="card-container ">
+    <div class="card-container" style="justify-content: flex-start">
         @foreach (var item in Model.PagedViewModel.Items)
         {
-            <div class="card mt-3 mb-5">
+            <div class="card mt-3 mb-5" style="margin:1%;">
                 <div class="poster">
                     <img src="~/@item.Img" alt="#">
                 </div>

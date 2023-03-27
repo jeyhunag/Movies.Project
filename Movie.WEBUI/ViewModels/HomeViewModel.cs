@@ -17,5 +17,6 @@ namespace Movie.WEBUI.ViewModels
         public PagedViewModel<MovieC> PagedViewModel { get; set; }
         public IEnumerable<AboutDto>? Abouts { get; set; }
 
+        public FilterFormModel FilterFormModel { get; set; }
     }
 }

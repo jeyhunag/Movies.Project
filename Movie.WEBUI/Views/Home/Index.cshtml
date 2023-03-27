@@ -19,7 +19,7 @@
             <div class="movie-category">
                 <ul class="featured-movies-shows">
 
-                    @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Driver")))
+                    @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Sport")))
                     {
                         <li class="featured_li active px-3 me-4 " data-category="@item.Name">@item.Name</li>
                     }
@@ -27,7 +27,7 @@
                 </ul>
                 <div class="images container">
 
-                    @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Driver")))
+                    @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Sport")))
                     {
 
                         count++;
