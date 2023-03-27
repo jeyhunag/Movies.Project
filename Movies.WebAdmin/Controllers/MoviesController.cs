@@ -115,32 +115,14 @@ namespace Movies.Controllers
             {
                 return NotFound();
             }
+            movie.CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync();
+            movie.GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync();
+            movie.LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync();
+            movie.TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync();
 
-            MovieCDto model = new()
-            {
-                Id = movie.Id,
-                Name = movie.Name,
-                Description = movie.Description,
-                Year = movie.Year,
-                MovieTime = movie.MovieTime,
-                Age = movie.Age,
-                Director = movie.Director,
-                Img = movie.Img,
-                MovieVideo = movie.MovieVideo,
-                Trailer = movie.Trailer,
-                Top = movie.Top,
-                isneww = movie.isneww,
-                CountryCategoryId = movie.CountryCategoryId,
-                GenresCategoryId = movie.GenresCategoryId,
-                TrandsId = movie.TrandsId,
-                LanguageCategoryId = movie.LanguageCategoryId,
-                CountryCategoryDtos = await _movieService.GetCountryCategoriesAsync(),
-                GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync(),
-                LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync(),
-                TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync()
-            };
+ 
 
-            return View(model);
+            return View(movie);
 
         }
 
