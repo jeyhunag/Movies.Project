@@ -6,6 +6,7 @@
 @section addcss{
     <link rel="stylesheet" href="~/css/owl-carusel.css" rel="stylesheet" />
     <style>
+
         .featured-movies-shows li {
             background-color: #202020;
             transition: background-color 1s ease;
@@ -59,7 +60,7 @@
                         count++;
                         if (count == 1)
                         {
-                            <div class="image @item.Name active text-white">
+                            <div class="imageJ @item.Name active text-white">
 
                                 @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
 
@@ -68,7 +69,7 @@
                         }
                         else
                         {
-                            <div class="image @item.Name text-white">
+                            <div class="imageJ @item.Name text-white">
                                 @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
                             </div>
                         }
@@ -176,6 +177,23 @@
 
 @section Scripts{
     <script>
+        //Sport Action active deactive.page kecid etmek ucun active edir.
+        $(document).ready(function () {
+            $('ul > li').click(function () {
+
+                var cat = $(this).data("category");
+                var findedImages = $('.imageJ').hasClass(`${cat}`)
+
+                if (findedImages == true) {
+
+                    $('.imageJ').removeClass("active");
+                    $(`.${cat}`).addClass('active');
+                    $(`.${cat}`).css({ 'transition': '0.5s' });
+                }
+
+            });
+        });
+        //Sport Action Drama Family Romance transistion,backround color.
         function addListClickHandlers(listSelector) {
             var items = document.querySelectorAll(listSelector + ' li');
 
@@ -202,6 +220,7 @@
         addListClickHandlers('.featured-movies-shows');
         addListClickHandlers('.BestSeries_li');
 
+        //Image focus top bar. sekil uzerinde focus olduqda sag yuxaridan menyu acilir.
         $(document).ready(function () {
             $('.img-div div').hover(function () {
 

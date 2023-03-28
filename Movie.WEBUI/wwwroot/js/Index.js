@@ -51,7 +51,7 @@ $('.hero-slider').owlCarousel({
 
 })
 
-//todo Featured Movies Shows carusel
+//Sport Drama Famil Romance active deactive.page kecid etmek ucun active edir.
 
 $(document).ready(function () {
     $('ul > li').click(function () {
@@ -68,6 +68,7 @@ $(document).ready(function () {
 
     });
 });
+
 
 //todo  P0PULAR MOVIES
 
