@@ -271,14 +271,11 @@ h4 {
     text-decoration: none;
     display: flex;
     color: white;
-    font-size: 30px;
-    font-weight: bolder;
+    font-size: 29px;
 
 }
 
-.featured_li {
-    background-color: red;
-}
+
 
 .movies_li:hover {
     color: red;

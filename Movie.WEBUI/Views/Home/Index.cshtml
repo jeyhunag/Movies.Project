@@ -5,6 +5,32 @@
 }
 @section addcss{
     <link rel="stylesheet" href="~/css/owl-carusel.css" rel="stylesheet" />
+    <style>
+        .featured-movies-shows li {
+            background-color: #202020;
+            transition: background-color 1s ease;
+        }
+
+            .featured-movies-shows li:first-child {
+                background-color: red;
+            }
+
+            .featured-movies-shows li.selected {
+                background-color: red;
+            }
+
+        .BestSeries_li li {
+            transition: background-color 1s ease;
+        }
+
+            .BestSeries_li li:first-child {
+                background-color: red;
+            }
+
+            .BestSeries_li li.selected {
+                background-color: red;
+            }
+    </style>
 }
 <div class="hero-slider owl-carousel owl-theme ">
     <!--Esas Carusel-->
@@ -21,7 +47,7 @@
 
                     @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Action") || gc.Name.Contains("Sport")))
                     {
-                        <li class="featured_li active px-3 me-4 " data-category="@item.Name">@item.Name</li>
+                        <li class=" active px-3 me-4" data-category="@item.Name">@item.Name</li>
                     }
 
                 </ul>
@@ -34,10 +60,10 @@
                         if (count == 1)
                         {
                             <div class="image @item.Name active text-white">
-                                
-                                    @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
-                         
-                                
+
+                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
+
+
                             </div>
                         }
                         else
@@ -104,7 +130,7 @@
                     @foreach (var item in Model.GenresCategories.Where(gc => gc.Name.Contains("Drama") || gc.Name.Contains("Family") || gc.Name.Contains("Romance")))
                     {
 
-                        <li class="featured_li active px-3 me-4 " data-category="@item.Name">@item.Name</li>
+                        <li class=" active px-3 me-4 " data-category="@item.Name">@item.Name</li>
 
                     }
                 </ul>
@@ -150,6 +176,32 @@
 
 @section Scripts{
     <script>
+        function addListClickHandlers(listSelector) {
+            var items = document.querySelectorAll(listSelector + ' li');
+
+            for (var i = 0; i < items.length; i++) {
+                items[i].addEventListener('click', function () {
+                    // Remove 'selected' class from all items
+                    for (var j = 0; j < items.length; j++) {
+                        items[j].classList.remove('selected');
+                    }
+
+                    // Add 'selected' class to clicked item
+                    this.classList.add('selected');
+
+                    // Change background color of first item to gray if not selected
+                    if (!items[0].classList.contains('selected')) {
+                        items[0].style.backgroundColor = '#202020';
+                    } else {
+                        items[0].style.backgroundColor = 'red';
+                    }
+                });
+            }
+        }
+
+        addListClickHandlers('.featured-movies-shows');
+        addListClickHandlers('.BestSeries_li');
+
         $(document).ready(function () {
             $('.img-div div').hover(function () {
 
