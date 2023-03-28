@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Movies.BLL.Services.Interfaces;
 using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
+using System.Net.Mail;
+using System.Net;
 
 namespace Movies.WebAdmin.Controllers
 {
@@ -20,7 +22,7 @@ namespace Movies.WebAdmin.Controllers
             return View(contact);
         }
 
-      
+       
         public async Task<IActionResult> Delete(int id)
         {
             var category = await _service.GetByIdAsync(id);

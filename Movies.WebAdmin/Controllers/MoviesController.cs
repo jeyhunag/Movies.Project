@@ -121,8 +121,11 @@ namespace Movies.Controllers
             movie.GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync();
             movie.LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync();
             movie.TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync();
+            ViewBag.ImgFileName = Path.GetFileName(movie.Img);
+            ViewBag.MovieVideoFileName = Path.GetFileName(movie.MovieVideo);
+            ViewBag.TrailerFileName = Path.GetFileName(movie.Trailer);
 
- 
+
 
             return View(movie);
 
@@ -136,6 +139,8 @@ namespace Movies.Controllers
                 return NotFound();
             }
             ModelState.Remove("Img");
+            ModelState.Remove("MovieVideo");
+            ModelState.Remove("Trailer");
             if (ModelState.IsValid)
             {
 
