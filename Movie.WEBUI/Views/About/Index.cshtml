@@ -14,6 +14,9 @@
             margin-bottom: -12rem;
         }
 
+        .about-text p{
+            text-align:justify;
+        }
     </style>
 }
 @foreach (var item in Model.Abouts)
@@ -24,7 +27,7 @@
             <div class="about-text">
                 <h1 class="AContentH1">About <span>Me</span></h1>
                 <h5>@item.Position</h5>
-                <p > @item.Description</p>
+                <p> @item.Description</p>
                 <button class="button_detailed">Detailed</button>
             </div>
         </div>
