@@ -38,30 +38,30 @@ namespace Movies.WebAdmin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(AboutDto aboutDto, IFormFile imageFile)
         {
-
-            //if (ModelState.IsValid)
-            //{
-
-            if (imageFile != null && imageFile.Length > 0)
+            ModelState.Remove("Img");
+            if (ModelState.IsValid)
             {
-                var imagePath = _imgPath + imageFile.FileName;
-                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                using (var stream = new FileStream(fullPath, FileMode.Create))
+
+                if (imageFile != null && imageFile.Length > 0)
                 {
-                    await imageFile.CopyToAsync(stream);
-                    aboutDto.Img = imagePath;
+                    var imagePath = _imgPath + imageFile.FileName;
+                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                        aboutDto.Img = imagePath;
+                    }
                 }
-            }
 
-            var about = await _service.AddAsync(aboutDto);
-            if (about != null)
-            {
-                TempData["success"] = "About added successfully. ";
+                var about = await _service.AddAsync(aboutDto);
+                if (about != null)
+                {
+                    TempData["success"] = "About added successfully. ";
+                    return RedirectToAction("Index");
+                }
+
                 return RedirectToAction("Index");
             }
-
-            return RedirectToAction("Index");
-            //}
 
             return View(aboutDto);
         }
@@ -81,7 +81,8 @@ namespace Movies.WebAdmin.Controllers
             {
                 return NotFound();
             }
-
+            ModelState.Remove("Img");
+            
             if (ModelState.IsValid)
             {
                 try

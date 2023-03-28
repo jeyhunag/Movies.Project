@@ -61,39 +61,42 @@ namespace Movies.WebAdmin.Controllers
         [HttpPost]
         public async Task<IActionResult> UserCreate(UserViewModel viewModel, IFormFile imageFile)
         {
-            //if (ModelState.IsValid)
-            //{
-
-            if (imageFile != null && imageFile.Length > 0)
+            ModelState.Remove("Id");
+            ModelState.Remove("Img");
+            ModelState.Remove("DateOfBirth");
+            if (ModelState.IsValid)
             {
-                var imagePath = _imgPath + imageFile.FileName;
-                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                using (var stream = new FileStream(fullPath, FileMode.Create))
+
+                if (imageFile != null && imageFile.Length > 0)
                 {
-                    await imageFile.CopyToAsync(stream);
-                    viewModel.Img = imagePath;
+                    var imagePath = _imgPath + imageFile.FileName;
+                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                        viewModel.Img = imagePath;
+                    }
                 }
-            }
 
-            AppUser user = new AppUser()
-            {
-                Name = viewModel.Name,
-                Surname = viewModel.Surname,
-                UserName = viewModel.UserName,
-                Country = viewModel.Country,
-                Img = viewModel.Img,
-                DateOfBirth = viewModel.DateOfBirth,
-                Email = viewModel.Email,
-                Gender = viewModel.Gender
-            };
-            IdentityResult result = await _userManager.CreateAsync(user, viewModel.Password);
-            if (result.Succeeded)
-            {
-                TempData["success"] = "User added successfully. ";
-                return RedirectToAction("UserIndex");
-            }
+                AppUser user = new AppUser()
+                {
+                    Name = viewModel.Name,
+                    Surname = viewModel.Surname,
+                    UserName = viewModel.UserName,
+                    Country = viewModel.Country,
+                    Img = viewModel.Img,
+                    DateOfBirth = viewModel.DateOfBirth,
+                    Email = viewModel.Email,
+                    Gender = viewModel.Gender
+                };
+                IdentityResult result = await _userManager.CreateAsync(user, viewModel.Password);
+                if (result.Succeeded)
+                {
+                    TempData["success"] = "User added successfully. ";
+                    return RedirectToAction("UserIndex");
+                }
 
-            //}
+            }
             return View(viewModel);
 
         }
@@ -123,45 +126,48 @@ namespace Movies.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UserUpdate(UserViewModel viewModel,  IFormFile imageFile)
+        public async Task<IActionResult> UserUpdate(UserViewModel viewModel, IFormFile imageFile)
         {
-            //if (ModelState.IsValid)
-            //{
-            if (imageFile != null && imageFile.Length > 0)
+            ModelState.Remove("Id");
+            ModelState.Remove("Img");
+            ModelState.Remove("DateOfBirth");
+            if (ModelState.IsValid)
             {
-                var imagePath = _imgPath + imageFile.FileName;
-                var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                using (var stream = new FileStream(fullPath, FileMode.Create))
+                if (imageFile != null && imageFile.Length > 0)
                 {
-                    await imageFile.CopyToAsync(stream);
-                    viewModel.Img = imagePath;
+                    var imagePath = _imgPath + imageFile.FileName;
+                    var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                        viewModel.Img = imagePath;
+                    }
+                }
+
+                AppUser user = await _userManager.FindByIdAsync(viewModel.Id);
+
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                user.Name = viewModel.Name;
+                user.Surname = viewModel.Surname;
+                user.Country = viewModel.Country;
+                user.Img = viewModel.Img;
+                user.DateOfBirth = viewModel.DateOfBirth;
+                user.Email = viewModel.Email;
+                user.UserName = viewModel.UserName;
+                user.Gender = viewModel.Gender;
+
+                IdentityResult result = await _userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    TempData["success"] = "User have been successfully changed.";
+                    return RedirectToAction("UserIndex");
                 }
             }
-
-            AppUser user = await _userManager.FindByIdAsync(viewModel.Id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            user.Name = viewModel.Name;
-            user.Surname = viewModel.Surname;
-            user.Country = viewModel.Country;
-            user.Img = viewModel.Img;
-            user.DateOfBirth = viewModel.DateOfBirth;
-            user.Email = viewModel.Email;
-            user.UserName = viewModel.UserName;
-            user.Gender = viewModel.Gender;
-
-            IdentityResult result = await _userManager.UpdateAsync(user);
-
-            if (result.Succeeded)
-            {
-                TempData["success"] = "User have been successfully changed.";
-                return RedirectToAction("UserIndex");
-            }
-            //}
 
             return View(viewModel);
         }
@@ -197,9 +203,9 @@ namespace Movies.WebAdmin.Controllers
             }
             return builder.ToString();
         }
-        
 
-        
+
+
         public IActionResult RoleIndex()
         {
 
@@ -230,16 +236,16 @@ namespace Movies.WebAdmin.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                AppRole role = new AppRole()
-                {
-                    Name = viewModel.Name
-                };
-                IdentityResult result = await _roleManager.CreateAsync(role);
-                if (result.Succeeded)
-                {
+            AppRole role = new AppRole()
+            {
+                Name = viewModel.Name
+            };
+            IdentityResult result = await _roleManager.CreateAsync(role);
+            if (result.Succeeded)
+            {
                 TempData["success"] = "Role added successfully. ";
                 return RedirectToAction("RoleIndex");
-                }
+            }
 
             //}
             return View(viewModel);

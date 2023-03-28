@@ -59,7 +59,7 @@
     <h2 class="text-light">Create Image</h2>
 
     <form method="post" asp-action="Create" enctype="multipart/form-data">
-
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
             <div style="margin-top:75px; margin-left:190px">
                 <div class="create-account-sign">
@@ -67,7 +67,6 @@
                 </div>
                 <h1  id="title">Create About</h1>
                 <div class="col-md-6 form-group label-situation" style="display: flex; justify-content: center; align-items: center;">
-                    <div asp-validation-summary="All" class="text-danger"></div>
                     <label asp-for="Img" id="plus" class="form-control" for="file" style="font-size:8rem; background-color:transparent; border:none; text-align:center;">
                         +
                     </label>
