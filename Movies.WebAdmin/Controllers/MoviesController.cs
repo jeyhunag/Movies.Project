@@ -121,9 +121,6 @@ namespace Movies.Controllers
             movie.GenresCategoryDtos = await _movieService.GetGenresCategoriesAsync();
             movie.LanguageCategoryDtos = await _movieService.GetLangaugeCategoriesAsync();
             movie.TrandCategoryDtos = await _movieService.GeTTrandsCategoriesAsync();
-            ViewBag.ImgFileName = Path.GetFileName(movie.Img);
-            ViewBag.MovieVideoFileName = Path.GetFileName(movie.MovieVideo);
-            ViewBag.TrailerFileName = Path.GetFileName(movie.Trailer);
 
 
 
@@ -134,15 +131,17 @@ namespace Movies.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, MovieCDto movie, IFormFile imageFile, IFormFile videoFile, IFormFile trailerFile)
         {
+
             if (id != movie.Id)
             {
                 return NotFound();
             }
-            ModelState.Remove("Img");
-            ModelState.Remove("MovieVideo");
-            ModelState.Remove("Trailer");
-            if (ModelState.IsValid)
-            {
+            //ModelState.Remove("Img");
+            //ModelState.Remove("MovieVideo");
+            //ModelState.Remove("Trailer");
+
+            //if (ModelState.IsValid)
+            //{
 
                 if (imageFile != null && imageFile.Length > 0)
                 {
@@ -177,10 +176,10 @@ namespace Movies.Controllers
                     }
                 }
 
-                _movieService.Update(movie);
+                _movieService.UpdateMovie(movie);
                 TempData["success"] = "Movie have been successfully changed.";
                 return RedirectToAction("Index");
-            }
+            //}
 
 
             return View(movie);

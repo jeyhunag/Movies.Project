@@ -11,6 +11,7 @@
 
             <label asp-for="SignInViewModel.Password" for="password" class="labelModal">Password</label>
             <input asp-for="SignInViewModel.Password" type="password" id="password">
+            <span asp-validation-for="SignInViewModel.Password" class="text-danger"></span>
 
             <div class="form-group">
                 <input asp-for="SignInViewModel.RememberMe" type="checkbox" id="remember-me" name="remember-me">

@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
+using Movies.BLL.Exceptions;
 using Movies.BLL.Services.Interfaces;
 using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
+using Movies.DAL.Repostory;
 using Movies.DAL.Repostory.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -95,6 +97,22 @@ namespace Movies.BLL.Services
         {
             var moviec = await _moviesRepository.GetDetailByIdAsync(id);
             return moviec;
+        }
+
+        public MovieCDto UpdateMovie(MovieCDto item)
+        {
+            try
+            {
+               
+                MovieC entity = _mapper.Map<MovieC>(item);
+                MovieC dbEntity = _moviesRepository.UpdateMovie(entity);
+
+                return _mapper.Map<MovieCDto>(dbEntity);
+            }
+            catch (Exception ex)
+            {
+                throw new CustomException("BLL də əlavə edillərkən xəta yarandı. Xahiş olunur adminsitrator ilə əlaqə saxla.");
+            }
         }
     }
 }

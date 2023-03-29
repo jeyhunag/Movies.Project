@@ -36,7 +36,16 @@
             <label asp-for="Message" for="Message" class="mb-3" style="color:white;">Message</label>
             <textarea asp-for="Message" class="form-control form-control-contact" rows="5" id="message" name="Message" placeholder="Your Message"></textarea>
         </div>
-        <button type="submit" class="btn button-contact">Submit</button>
+        @if (!string.IsNullOrWhiteSpace(ViewBag.msg))
+        {
+            <input type="submit" value="@ViewBag.msg" class="submit btn button-contact">
+            <input type="submit" value="Göndər" class="submit btn button-contact " style="display:none;">
+        }
+        else
+        {
+            <input type="submit" value="Göndər" class="submit btn button-contact">
+        }
+
     </form>
 </div>
 

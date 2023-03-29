@@ -18,5 +18,7 @@ namespace Movies.BLL.Services.Interfaces
         public Task<List<MovieCDto>> GetMoviesByCategoryIdAsync(int id);
         public Task<MovieCDto> GetMoviesDetailByIdAsync(int id);
         public Task<MovieCDto> GetDetailByIdAsync(int id);
+
+        public MovieCDto UpdateMovie(MovieCDto item);
     }
 }

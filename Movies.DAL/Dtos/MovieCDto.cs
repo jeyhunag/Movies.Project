@@ -24,6 +24,7 @@ namespace Movies.DAL.Dtos
         public string? Director { get; set; }
         public string? Img { get; set; }
         public string? MovieVideo { get; set; }
+
         public string? Trailer { get; set; }
         public bool Top { get; set; }
         public bool isneww { get; set; }

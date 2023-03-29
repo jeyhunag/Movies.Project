@@ -59,15 +59,15 @@
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                <input asp-for="Age" value="" type="text" class="form-control" placeholder="Age">
+                                                <input asp-for="Age"  type="text" class="form-control" placeholder="Age">
+                                            </div>
+                                            <div class="input-group mg-b-pro-edt">
+                                                <span  class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
+                                                <input asp-for="MovieTime"  type="text" class="form-control" placeholder="Movie Time">
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                <input asp-for="MovieTime" value="" type="text" class="form-control" placeholder="Movie Time">
-                                            </div>
-                                            <div class="input-group mg-b-pro-edt">
-                                                <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                <input asp-for="Year" value="" type="text" class="form-control" placeholder="Year">
+                                                <input asp-for="Year"  type="text" class="form-control" placeholder="Year">
                                             </div>
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><i class="icon nalika-favorites" aria-hidden="true"></i></span>
@@ -144,6 +144,7 @@
                                                     <label asp-for="Img" id="plus" class="form-control" for="file" style="font-size:4rem; background-color:transparent; border:none; text-align:center;">
                                                         Img
                                                     </label>
+                                                    
                                                     <input asp-for="Img" name="imageFile" class="input-situation custom-file-input" type="file"
                                                     id="createdImage file" width="500" height="500" style="opacity:0;" />
                                                     <img src="~/@Model.Img" id="createdImage" width="500" height="500" style="display:block;" />

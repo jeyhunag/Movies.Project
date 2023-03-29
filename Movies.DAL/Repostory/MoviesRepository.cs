@@ -52,5 +52,28 @@ namespace Movies.DAL.Repostory
 
             return movieCDto;
         }
+
+
+        public MovieC UpdateMovie(MovieC item)
+        {
+            var dbEntity = _entities.Find(item.Id);
+            item.InsertDate = dbEntity.InsertDate;
+            item.UpdateDate = DateTime.Now;
+            if (string.IsNullOrEmpty(item.Img))
+            {
+                item.Img = dbEntity.Img;
+            }
+            if (string.IsNullOrEmpty(item.MovieVideo))
+            {
+                item.MovieVideo = dbEntity.MovieVideo;
+            }
+            if (string.IsNullOrEmpty(item.Trailer))
+            {
+                item.Trailer = dbEntity.Trailer;
+            }
+            _entities.Update(item);
+            _dbContext.SaveChanges();
+            return item;
+        }
     }
 }

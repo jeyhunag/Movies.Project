@@ -12,5 +12,6 @@ namespace Movies.DAL.Repostory.Interfaces
     {
         public Task<List<MovieC>> GetByCategoryIdAsync(int id);
         public Task<MovieCDto> GetDetailByIdAsync(int id);
+       public  MovieC UpdateMovie(MovieC item);
     }
 }
