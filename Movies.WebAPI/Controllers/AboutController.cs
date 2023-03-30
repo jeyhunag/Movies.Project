@@ -45,7 +45,7 @@ namespace Movies.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<AboutDto>> Create(AboutDto itemDto, IFormFile imageFile)
+        [Consumes("multipart/form-data")]
         {
             if (imageFile != null && imageFile.Length > 0)
             {
