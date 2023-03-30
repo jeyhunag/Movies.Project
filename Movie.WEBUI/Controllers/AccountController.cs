@@ -17,7 +17,7 @@ namespace Movie.WEBUI.Controllers
         private UserManager<AppUser> _userManager;
         private SignInManager<AppUser> _signInManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly string _imgPath = @"~/img/";
+        private readonly string _imgPath = @"img/";
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
             IWebHostEnvironment webHostEnvironment)
         {
@@ -26,6 +26,7 @@ namespace Movie.WEBUI.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
+
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> SignIn(HomeViewModel homeViewModel, SignInViewModel signInViewModel)
@@ -33,32 +34,28 @@ namespace Movie.WEBUI.Controllers
             signInViewModel = homeViewModel.SignInViewModel;
             string UserName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
 
-            //if (ModelState.IsValid)
-            //{
-                var appUser = await _userManager.FindByNameAsync(signInViewModel.UserName);
-                if (appUser == null)
-                {
-                    ModelState.AddModelError("", "Username or password is incorrect");
-                    return View(signInViewModel);
-                }
+            var appUser = await _userManager.FindByNameAsync(signInViewModel.UserName);
+            if (appUser == null)
+            {
+                ModelState.AddModelError("", "Invalid username or password");
+                return View(homeViewModel);
+            }
 
-                var result = await _signInManager.PasswordSignInAsync(appUser, signInViewModel.Password, signInViewModel.RememberMe, false);
+            var result = await _signInManager.PasswordSignInAsync(appUser, signInViewModel.Password, signInViewModel.RememberMe, false);
 
-                if (result.Succeeded)
-                {
-                    string? redirect = Request.Query["returnUrl"];
-                    if (string.IsNullOrWhiteSpace(redirect))
-                        return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Username or password is incorrect");
-                    return View(signInViewModel);
-                }
-            //}
-            return View(homeViewModel);
+            if (result.Succeeded)
+            {
+                string? redirect = Request.Query["returnUrl"];
+                if (string.IsNullOrWhiteSpace(redirect))
+                    return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid username or password");
+                
+            }
+            return RedirectToAction("Index", "Home", homeViewModel);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> SignUp(HomeViewModel homeViewModel, SignUpViewModel model)

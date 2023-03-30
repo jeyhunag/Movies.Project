@@ -372,9 +372,7 @@ footer {
     transition: 0.3s;
 }
 
-.social-icons a:hover {
-    color: red;
-}
+
 
 .modal-content p {
     color: white;

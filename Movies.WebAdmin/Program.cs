@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Movies.DAL.Data;
 using Movies.BLL.Mapping;
 using Movies.WebAdmin.Helper.Extensions;
@@ -49,19 +48,6 @@ namespace Movies.WebAdmin
             builder.Services.AddCookieServices();
 
 
-
-            //builder.Services.Configure<IISServerOptions>(options =>
-            //{
-            //    options.MaxRequestBodySize = 838860800;
-            //});
-
-            //builder.Services.Configure<KestrelServerOptions>(options =>
-            //{
-            //    options.Limits.MaxRequestBodySize = 838860800;
-            //});
-
-
-
             //Importand Logger Extensions
            builder.Services.AddImpotandLogServices();
 
@@ -83,8 +69,6 @@ namespace Movies.WebAdmin
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

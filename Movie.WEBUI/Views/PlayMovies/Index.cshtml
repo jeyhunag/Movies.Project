@@ -1,6 +1,7 @@
 ﻿@model HomeViewModel
 @{
     ViewData["Title"] = "Index";
+    int count = 0;
 }
 
 @section Scripts{
@@ -157,7 +158,40 @@
  
 
     <!--RELATED MOVIES-->
-    <div class="container">
+@*    <div class="container">
+        <div class="RelatedMovies">
+            <h2 class="text-white fw-bolder">RELATED MOVIES</h2>
+            <hr id="hr_color">
+            <div class="images">
+                <div class=" image featured active text-white">
+                    @foreach (var item in Model.GenresCategories)
+                    {
+                        count++;
+                        if (count == 1)
+                        {
+                            <div class="imageJ @item.Name active text-white">
+
+                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
+
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="imageJ @item.Name text-white">
+                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
+                            </div>
+                        }
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+    <!--RELATED MOVIES-->
+   <div class="container">
         <div class="RelatedMovies">
             <h2 class="text-white fw-bolder">RELATED MOVIES</h2>
             <hr id="hr_color">

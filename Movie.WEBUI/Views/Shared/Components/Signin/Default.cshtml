@@ -6,11 +6,12 @@
         <span class="close-button">&times;</span>
         <h2 class="modal-title">Sign In</h2>
         <form class="formModal" asp-controller="account" asp-action="SignIn" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
             <label asp-for="SignInViewModel.UserName" for="username" class="labelModal">Username</label>
-            <input asp-for="SignInViewModel.UserName" type="text" id="username">
+            <input asp-for="SignInViewModel.UserName" type="text" id="username" required data-val-required="Username cannot be empty.">
 
             <label asp-for="SignInViewModel.Password" for="password" class="labelModal">Password</label>
-            <input asp-for="SignInViewModel.Password" type="password" id="password">
+            <input asp-for="SignInViewModel.Password" type="password" id="password" required data-val-required="Password cannot be empty.">
             <span asp-validation-for="SignInViewModel.Password" class="text-danger"></span>
 
             <div class="form-group">
@@ -21,10 +22,15 @@
             <button type="submit" class="btn-signin">Sign In</button>
         </form>
         <p>Don't have an account? <a href="#" class="sign-up">Sign Up</a></p>
-        <div class="social-icons">
+        <div class="social-icons" style="margin-top:-7px;">
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
         </div>
     </div>
 </div>
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}

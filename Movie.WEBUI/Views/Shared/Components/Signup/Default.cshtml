@@ -6,18 +6,19 @@
         <span class="close-button-sigup">&times;</span>
         <h2 class="modal-title-sigup">Sign Up</h2>
         <form class="formModal" asp-controller="account" asp-action="SignUp" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
             <label asp-for="SignUpViewModel.UserName" class="labelModal-signup">Username</label>
-            <input asp-for="SignUpViewModel.UserName" type="text" id="username"  required>
+            <input asp-for="SignUpViewModel.UserName" type="text" id="username" required data-val-required="Username cannot be empty.">
 
             <label asp-for="SignUpViewModel.Email" class="labelModal-signup">Email</label>
-            <input asp-for="SignUpViewModel.Email" type="text" required>
+            <input asp-for="SignUpViewModel.Email" type="text" required data-val-required="Email cannot be empty.">
 
             <label asp-for="SignUpViewModel.Password" class="labelModal-signup">Password</label>
-            <input asp-for="SignUpViewModel.Password" type="password" id="password" required>
+            <input asp-for="SignUpViewModel.Password" type="password" id="password" required data-val-required="password cannot be empty.">
             <span asp-validation-for="SignUpViewModel.Password" class="text-danger"></span>
 
             <label asp-for="SignUpViewModel.PasswordConfirm" class="changePassword-signup">Confirm Password</label>
-            <input asp-for="SignUpViewModel.PasswordConfirm" type="password"  required>
+            <input asp-for="SignUpViewModel.PasswordConfirm" type="password" required data-val-required="password confirm cannot be empty.">
             <span asp-validation-for="SignUpViewModel.Password" class="text-danger"></span>
 
 
@@ -29,3 +30,8 @@
         </form>
     </div>
 </div>
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -73,6 +73,10 @@ namespace Movies.Controllers
 
                 if (videoFile != null && videoFile.Length > 0)
                 {
+                    if (videoFile == null || videoFile.Length == 0)
+                    {
+                        return BadRequest("Invalid file.");
+                    }
                     var videoPath = _videoPath + videoFile.FileName;
                     var fullPath = Path.Combine(_webHostEnvironment.WebRootPath, videoPath);
                     using (var stream = new FileStream(fullPath, FileMode.Create))
