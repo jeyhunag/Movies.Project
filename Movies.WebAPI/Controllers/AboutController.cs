@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Movies.BLL.Services.Interfaces;
 using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Movies.WebAPI.Controllers
 {
@@ -45,7 +47,7 @@ namespace Movies.WebAPI.Controllers
         }
 
         [HttpPost]
-        [Consumes("multipart/form-data")]
+        public async Task<ActionResult<AboutDto>> Create([FromForm] AboutDto itemDto, [FromForm] IFormFile imageFile)
         {
             if (imageFile != null && imageFile.Length > 0)
             {
@@ -63,7 +65,7 @@ namespace Movies.WebAPI.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult<AboutDto> Update(int id, [FromBody] AboutDto obj, IFormFile imageFile)
+        public ActionResult<AboutDto> Update(int id, AboutDto obj, IFormFile imageFile)
         {
             if (id == 0 || id != obj.Id)
             {

@@ -17,10 +17,12 @@
         .about-text p{
             text-align:justify;
         }
+
     </style>
 }
 @foreach (var item in Model.Abouts)
 {
+
     <section id="about">
         <div class="about-content mt-5">
             <img src="~/@item.Img" alt="#" style="margin-top: 40px;">
@@ -33,3 +35,4 @@
         </div>
     </section>
 }
+

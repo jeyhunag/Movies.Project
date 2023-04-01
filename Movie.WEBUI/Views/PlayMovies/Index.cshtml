@@ -79,144 +79,98 @@
 }
 <main>
 
-        <video controls>
-            <source src="~/@Model.MovieC.MovieVideo" type="video/mp4">
-           
-        </video>
-        <div class="container PMovies">
-            <div class="MoviesFoto">
-                <img src="~/@Model.MovieC.Img" alt="foto" class="img-fluid">
+    <video controls>
+        <source src="~/@Model.MovieC.MovieVideo" type="video/mp4">
+
+    </video>
+    <div class="container PMovies">
+        <div class="MoviesFoto">
+            <img src="~/@Model.MovieC.Img" alt="foto" class="img-fluid">
+        </div>
+        <div class="text mt-5">
+            <h1>@Model.MovieC.Name</h1>
+            <div class="SpanMovies my-5">
+                <span><i class="bi bi-person-fill"></i>@Model.MovieC.Age</span>
+                <span><i class="bi bi-clock"></i>@Model.MovieC.MovieTime</span>
+                <span><i class="bi bi-emoji-smile"></i>@Model.MovieC.Year</span>
+                <span><i class="bi bi-activity"></i>@Model.MovieC.GenresCategoryId</span>
+                <span><i class="bi bi-globe"></i>@Model.MovieC.CountryCategoryId</span>
             </div>
-            <div class="text mt-5">
-                <h1>@Model.MovieC.Name</h1>
-                <div class="SpanMovies my-5">
-                    <span><i class="bi bi-person-fill"></i>@Model.MovieC.Age</span>
-                    <span><i class="bi bi-clock"></i>@Model.MovieC.MovieTime</span>
-                    <span><i class="bi bi-emoji-smile"></i>@Model.MovieC.Year</span>
-                    <span><i class="bi bi-activity"></i>@Model.MovieC.GenresCategoryId</span>
-                    <span><i class="bi bi-globe"></i>@Model.MovieC.CountryCategoryId</span>
-                </div>
-                <div class="MoviesP">
-                    <p>@Model.MovieC.Description</p>
-                    <h4 class="my-5">Director:@Model.MovieC.Director</h4>
-                </div>
-                <div class="BMovies">
-                    <button type="button" class="btn px-5 "><i class="bi bi-play-fill me-2 "></i>Play</button>
-                    <button type="button" class="btn px-5"><i class="bi bi-plus me-2"></i>MY List</button>
-                    <button type="button" class="btn px-5" data-bs-toggle="modal" data-bs-target="#trailer">
-                        <i class="bi bi-camera-video-fill me-2"></i>
-                        Trailer
-                    </button>
-                    <button type="button" class="btn px-4" data-bs-toggle="modal" data-bs-target="#myModal">
-                        <i class="bi bi-share-fill me-2"></i>
-                        Share
-                    </button>
+            <div class="MoviesP">
+                <p>@Model.MovieC.Description</p>
+                <h4 class="my-5">Director:@Model.MovieC.Director</h4>
+            </div>
+            <div class="BMovies">
+                <button type="button" class="btn px-5 "><i class="bi bi-play-fill me-2 "></i>Play</button>
+                <button type="button" class="btn px-5"><i class="bi bi-plus me-2"></i>MY List</button>
+                <button type="button" class="btn px-5" data-bs-toggle="modal" data-bs-target="#trailer">
+                    <i class="bi bi-camera-video-fill me-2"></i>
+                    Trailer
+                </button>
+                <button type="button" class="btn px-4" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <i class="bi bi-share-fill me-2"></i>
+                    Share
+                </button>
 
-                    <!-- The Modal Share-->
-                    <div class="modal modalPlayMovies" id="myModal">
-                        <div class="modal-dialog">
-                            <div class=" modal-content-playMovies">
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title modal-title-playmovies fw-bolder text-white">Share</h4>
-                                    <button type="button" class="btn-close btn-play-close" data-bs-dismiss="modal">
-                                    </button>
-                                </div>
+                <!-- The Modal Share-->
+                <div class="modal modalPlayMovies" id="myModal">
+                    <div class="modal-dialog">
+                        <div class=" modal-content-playMovies">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title modal-title-playmovies fw-bolder text-white">Share</h4>
+                                <button type="button" class="btn-close btn-play-close" data-bs-dismiss="modal">
+                                </button>
+                            </div>
 
-                                <!-- Modal body -->
-                                <div class="modal-body-icon d-flex justify-content-around ">
-                                    <a class="my-5"><i class="bi bi-facebook "></i></a>
-                                    <a class="my-5"><i class="bi bi-twitter"></i></a>
-                                    <a class="my-5"><i class="bi bi-telegram"></i></a>
-                                    <a class="my-5"><i class="bi bi-instagram"></i></a>
-                                </div>
+                            <!-- Modal body -->
+                            <div class="modal-body-icon d-flex justify-content-around ">
+                                <a class="my-5"><i class="bi bi-facebook "></i></a>
+                                <a class="my-5"><i class="bi bi-twitter"></i></a>
+                                <a class="my-5"><i class="bi bi-telegram"></i></a>
+                                <a class="my-5"><i class="bi bi-instagram"></i></a>
                             </div>
                         </div>
                     </div>
-                    <!-- The Modal Trailer-->
-                    <div class="modal" id="trailer">
-                        <div class="modal-dialog">
-                            <div class="modal-content modal-content-playMovies">
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title modal-title-playmovies fw-bolder text-white">Trailer</h4>
-                                    <button type="button" class="btn-close btn-play-close" data-bs-dismiss="modal"></button>
-                                </div>
+                </div>
+                <!-- The Modal Trailer-->
+                <div class="modal" id="trailer">
+                    <div class="modal-dialog">
+                        <div class="modal-content modal-content-playMovies">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title modal-title-playmovies fw-bolder text-white">Trailer</h4>
+                                <button type="button" class="btn-close btn-play-close" data-bs-dismiss="modal"></button>
+                            </div>
 
-                                <!-- Modal body -->
-                                <div class=" modal-body-playmovies">
-                                    <video controls>
-                                        <source src="~/@Model.MovieC.Trailer" type="video/mp4">
-                                    </video>
-                                </div>
+                            <!-- Modal body -->
+                            <div class=" modal-body-playmovies">
+                                <video controls>
+                                    <source src="~/@Model.MovieC.Trailer" type="video/mp4">
+                                </video>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
- 
-
-    <!--RELATED MOVIES-->
-@*    <div class="container">
-        <div class="RelatedMovies">
-            <h2 class="text-white fw-bolder">RELATED MOVIES</h2>
-            <hr id="hr_color">
-            <div class="images">
-                <div class=" image featured active text-white">
-                    @foreach (var item in Model.GenresCategories)
-                    {
-                        count++;
-                        if (count == 1)
-                        {
-                            <div class="imageJ @item.Name active text-white">
-
-                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
-
-
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="imageJ @item.Name text-white">
-                                @await Component.InvokeAsync("Movie", new{categoryId = item.Id})
-                            </div>
-                        }
-
-                    }
-
-                </div>
-            </div>
-        </div>
-    </div>*@
-
-    <!--RELATED MOVIES-->
-   <div class="container">
-        <div class="RelatedMovies">
-            <h2 class="text-white fw-bolder">RELATED MOVIES</h2>
-            <hr id="hr_color">
-            <div class="images">
-                <div class=" image featured active text-white">
-                    <div class="img-div">
-                        <div>
-                            <img src="~/Img/erik-mclean-7sgU1jV8-iw-unsplash.jpg" alt="" id="image" class="img-fluid">
-                            <div class="icon-container me-2">
-                                <a href=""><i class="bi bi-play-circle "></i></a>
-                                <a href=""><i class="bi bi-plus-circle-dotted"></i></a>
-                                <a href=""><i class="bi bi-info-circle"></i></a>
-                            </div>
-                        </div>
-                        <h4 class="text-white">movie</h4>
-                        <p class="text-white">2022</p>
-                        <p class="mx-2 text-white">+18</p>
-                        <p class="text-white">Action</p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
     </div>
+
+
+    <!--RELATED MOVIES-->
+    <div class="container">
+        <div class="RelatedMovies">
+            <h2 class="text-white fw-bolder">RELATED MOVIES</h2>
+            <hr id="hr_color">
+            <div class="images">
+                <div class=" image featured active text-white" style="justify-content: flex-start">
+                        @await Component.InvokeAsync("Movie", new{categoryId = Model.MovieC.GenresCategoryId})                        
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </main>
 
