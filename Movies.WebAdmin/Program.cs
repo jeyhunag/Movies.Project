@@ -13,15 +13,22 @@ using Movies.WebAdmin.Helper.IdentityExtensions;
 using Movies.WebAdmin.Helper.CookieExtensions;
 using Movies.WebAdmin.Provider;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace Movies.WebAdmin
 {
     public class Program
     {
-
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Configure Kestrel server limits
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.Limits.MaxRequestBodySize = 314572800; // 300 MB in bytes
+            });
+
             builder.Host.UseSerilog();
 
             //Boolean 
@@ -29,17 +36,15 @@ namespace Movies.WebAdmin
             {
                 cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());
             });
-         
 
             //Fluent Validations Extension
             builder.Services.AddFluentServices();
-            
+
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
-            
 
             //Identity AppRole,AppUser Security 
             builder.Services.AddIdentityServices();
@@ -47,9 +52,8 @@ namespace Movies.WebAdmin
             //Cookie Service
             builder.Services.AddCookieServices();
 
-
             //Importand Logger Extensions
-           builder.Services.AddImpotandLogServices();
+            builder.Services.AddImpotandLogServices();
 
             //Mapping
             builder.Services.AddAutoMapper(typeof(CustomMapping));
@@ -60,6 +64,11 @@ namespace Movies.WebAdmin
             //Generic Repostory Extensions
             builder.Services.AddRepositories();
 
+            // Configure FormOptions for file uploads
+            builder.Services.Configure<FormOptions>(options =>
+            {
+                options.MultipartBodyLengthLimit = 314572800; // 300 MB in bytes
+            });
 
             var app = builder.Build();
             // Configure the HTTP request pipeline.
@@ -82,7 +91,6 @@ namespace Movies.WebAdmin
                 pattern: "{controller=Home}/{action=LogIn}/{id?}");
 
             app.Run();
-
         }
     }
 }
