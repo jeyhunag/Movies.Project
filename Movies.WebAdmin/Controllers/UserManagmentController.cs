@@ -6,6 +6,9 @@ using Movies.DAL.DbModel;
 using Movies.WebAdmin.ViewModels;
 using System.Text;
 
+/// <summary>
+/// A controller for managing users and roles in the Movies.WebAdmin application.
+/// </summary>
 namespace Movies.WebAdmin.Controllers
 {
     [Authorize(Roles = "Admin")]
@@ -16,6 +19,12 @@ namespace Movies.WebAdmin.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly string _imgPath = @"img/";
 
+        /// <summary>
+        /// Initializes a new instance of the UserManagmentController class.
+        /// </summary>
+        /// <param name="userManager">An instance of UserManager for managing users.</param>
+        /// <param name="roleManager">An instance of RoleManager for managing roles.</param>
+        /// <param name="webHostEnvironment">An instance of IWebHostEnvironment for managing the hosting environment.</param>
         public UserManagmentController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
@@ -25,6 +34,10 @@ namespace Movies.WebAdmin.Controllers
 
 
         #region UserOperation
+        /// <summary>
+        /// Displays a list of users.
+        /// </summary>
+        /// <returns>A view with a list of users.</returns>
         public IActionResult UserIndex()
         {
 
@@ -52,12 +65,23 @@ namespace Movies.WebAdmin.Controllers
             return View(viewModels);
         }
 
+        /// <summary>
+        /// Displays the form for creating a new user.
+        /// </summary>
+        /// <returns>A view with the form for creating a new user.</returns>
         public IActionResult UserCreate()
         {
 
             return View();
 
         }
+
+        /// <summary>
+        /// Handles the submission of the form for creating a new user.
+        /// </summary>
+        /// <param name="viewModel">A UserViewModel containing the data for the new user.</param>
+        /// <param name="imageFile">An IFormFile containing the user's profile picture.</param>
+        /// <returns>A redirection to the user list on success, the form view with errors otherwise.</returns>
         [HttpPost]
         public async Task<IActionResult> UserCreate(UserViewModel viewModel, IFormFile imageFile)
         {
@@ -100,6 +124,12 @@ namespace Movies.WebAdmin.Controllers
             return View(viewModel);
 
         }
+
+        /// <summary>
+        /// Displays the form for updating an existing user.
+        /// </summary>
+        /// <param name="id">The ID of the user to update.</param>
+        /// <returns>A view with the form for updating the user, NotFound if the user is not found.</returns>
         public async Task<IActionResult> UserUpdate(string id)
         {
             AppUser user = await _userManager.FindByIdAsync(id);
@@ -125,6 +155,12 @@ namespace Movies.WebAdmin.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Handles the submission of the form for updating an existing user.
+        /// </summary>
+        /// <param name="viewModel">A UserViewModel containing the updated data for the user.</param>
+        /// <param name="imageFile">An IFormFile containing the updated profile picture for the user.</param>
+        /// <returns>A redirection to the user list on success, the form view with errors otherwise.</returns>
         [HttpPost]
         public async Task<IActionResult> UserUpdate(UserViewModel viewModel, IFormFile imageFile)
         {
@@ -172,6 +208,11 @@ namespace Movies.WebAdmin.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Handles the request to delete a user.
+        /// </summary>
+        /// <param name="id">The ID of the user to delete.</param>
+        /// <returns>A redirection to the user list on success, NotFound if the user is not found.</returns>
         public async Task<IActionResult> UserDelete(string id)
         {
             AppUser user = await _userManager.FindByIdAsync(id);
@@ -190,6 +231,12 @@ namespace Movies.WebAdmin.Controllers
         #endregion
 
         #region RoleOperation
+
+        /// <summary>
+        /// Retrieves the roles of a user.
+        /// </summary>
+        /// <param name="id">The ID of the user whose roles are to be retrieved.</param>
+        /// <returns>A string containing the roles of the user separated by semicolons.</returns>
         public async Task<string> UserRole(string id)
         {
 
@@ -205,7 +252,10 @@ namespace Movies.WebAdmin.Controllers
         }
 
 
-
+        /// <summary>
+        /// Displays a list of roles.
+        /// </summary>
+        /// <returns>A view with a list of roles.</returns>
         public IActionResult RoleIndex()
         {
 
@@ -225,12 +275,23 @@ namespace Movies.WebAdmin.Controllers
 
             return View(viewModels);
         }
+
+        /// <summary>
+        /// Displays the form for creating a new role.
+        /// </summary>
+        /// <returns>A view with the form for creating a new role.</returns>
         public IActionResult RoleCreate()
         {
 
             return View();
 
         }
+
+        /// <summary>
+        /// Handles the submission of the form for creating a new role.
+        /// </summary>
+        /// <param name="viewModel">A RoleViewModel containing the data for the new role.</param>
+        /// <returns>A redirection to the role list on success, the form view with errors otherwise.</returns>
         [HttpPost]
         public async Task<IActionResult> RoleCreate(RoleViewModel viewModel)
         {
@@ -252,7 +313,11 @@ namespace Movies.WebAdmin.Controllers
 
         }
 
-
+        /// <summary>
+        /// Displays the form for assigning a role to a user.
+        /// </summary>
+        /// <param name="Id">The ID of the user to whom a role is to be assigned.</param>
+        /// <returns>A view with the form for assigning a role to the user.</returns>
         public async Task<IActionResult> RoleAssign(string Id)
         {
             AppUser user = await _userManager.FindByIdAsync(Id);
@@ -279,6 +344,11 @@ namespace Movies.WebAdmin.Controllers
 
         }
 
+        /// <summary>
+        /// Handles the submission of the form for assigning a role to a user.
+        /// </summary>
+        /// <param name="viewModel">A UserRoleViewModel containing the user ID and role name to assign.</param>
+        /// <returns>A redirection to the user list on success, the form view with errors otherwise.</returns>
         [HttpPost]
         public async Task<IActionResult> RoleAssign(UserRoleViewModel viewModel)
         {
@@ -297,6 +367,11 @@ namespace Movies.WebAdmin.Controllers
 
         }
 
+        /// <summary>
+        /// Displays the form for updating an existing role.
+        /// </summary>
+        /// <param name="id">The ID of the role to update.</param>
+        /// <returns>A view with the form for updating the role, NotFound if the role is not found.</returns>
         public async Task<IActionResult> RoleUpdate(string id)
         {
             AppRole role = await _roleManager.FindByIdAsync(id);
@@ -314,6 +389,11 @@ namespace Movies.WebAdmin.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Handles the submission of the form for updating an existing role.
+        /// </summary>
+        /// <param name="viewModel">A RoleViewModel containing the updated data for the role.</param>
+        /// <returns>A redirection to the role list on success, the form view with errors otherwise.</returns>
         [HttpPost]
         public async Task<IActionResult> RoleUpdate(RoleViewModel viewModel)
         {
@@ -345,6 +425,11 @@ namespace Movies.WebAdmin.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Handles the request to delete a role.
+        /// </summary>
+        /// <param name="id">The ID of the role to delete.</param>
+        /// <returns>A redirection to the role list on success, NotFound if the role is not found.</returns>
         [HttpGet]
         public async Task<IActionResult> RoleDelete(string id)
         {

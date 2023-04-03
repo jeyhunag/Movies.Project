@@ -13,6 +13,13 @@ namespace Movies.WebAdmin.Controllers
         private readonly ILogger<HomeController> _logger;
         private UserManager<AppUser> _userManager;
         private SignInManager<AppUser> _signInManager;
+
+        /// <summary>
+        /// Initializes a new instance of the HomeController class.
+        /// </summary>
+        /// <param name="logger">The logger for HomeController.</param>
+        /// <param name="userManager">The user manager for authentication.</param>
+        /// <param name="signInManager">The sign-in manager for authentication.</param>
         public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _logger = logger;
@@ -20,16 +27,32 @@ namespace Movies.WebAdmin.Controllers
             _signInManager = signInManager;
         }
 
+        /// <summary>
+        /// Displays the home page.
+        /// </summary>
+        /// <returns>The home page view.</returns>
         public IActionResult Index()
         {
             return View();
         }
+
+        /// <summary>
+        /// Displays the login page.
+        /// </summary>
+        /// <param name="ReturnUrl">The URL to return to after successful login.</param>
+        /// <returns>The login view.</returns>
         public IActionResult LogIn(string ReturnUrl)
         {
             TempData["ReturnUrl"] = ReturnUrl;
 
             return View();
         }
+
+        /// <summary>
+        /// Handles the login POST request.
+        /// </summary>
+        /// <param name="loginViewModel">The login data from the view model.</param>
+        /// <returns>A redirection to the specified return URL or the home page on success, or the login view with errors on failure.</returns>
         [HttpPost]
         public async Task<IActionResult> LogIn(LoginViewModel loginViewModel)
         {
@@ -85,23 +108,40 @@ namespace Movies.WebAdmin.Controllers
             return View(loginViewModel);
         }
 
+        /// <summary>
+        /// Displays the access denied page.
+        /// </summary>
+        /// <returns>The access denied view.</returns>
         public IActionResult AccessDenied()
         {
 
             return View();
         }
 
+        /// <summary>
+        /// Logs out the user.
+        /// </summary>
+        /// <returns>A redirection to the home page.</returns>
         [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        /// <summary>
+        /// Displays the privacy page.
+        /// </summary>
+        /// <returns>The privacy view.</returns>
         public IActionResult Privacy()
         {
             return View();
         }
 
+        /// <summary>
+        /// Displays the error page.
+        /// </summary>
+        /// <returns>The error view with error details.</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
