@@ -1,7 +1,6 @@
 ﻿@model HomeViewModel
 @{
     ViewData["Title"] = "Index";
-    int count = 0;
 }
 
 @section Scripts{
@@ -50,7 +49,6 @@
                 width: 100% !important;
                 height: 100% !important;
             }
-
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
@@ -163,14 +161,11 @@
             <h2 class="text-white fw-bolder">RELATED MOVIES</h2>
             <hr id="hr_color">
             <div class="images">
-                <div class=" image featured active text-white" style="justify-content: flex-start">
-                        @await Component.InvokeAsync("Movie", new{categoryId = Model.MovieC.GenresCategoryId})                        
+                <div class=" image featured active text-white">
+                        @await Component.InvokeAsync("Movie", new{categoryId = Model.MovieC.GenresCategoryId})                    
                 </div>
             </div>
         </div>
     </div>
-
-
-
 </main>
 

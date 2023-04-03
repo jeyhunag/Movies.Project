@@ -53,11 +53,9 @@ namespace Movies.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(MovieCDto movie, IFormFile imageFile, IFormFile videoFile, IFormFile trailerFile)
         {
-            ModelState.Remove("Img");
-            ModelState.Remove("MovieVideo");
-            ModelState.Remove("Trailer");
-            if (ModelState.IsValid)
-            {
+
+            //if (ModelState.IsValid)
+            //{
 
                 if (imageFile != null && imageFile.Length > 0)
                 {
@@ -103,7 +101,7 @@ namespace Movies.Controllers
 
                 TempData["success"] = "Movie added successfully.";
                 return RedirectToAction("Index");
-            }
+            //}
 
             return View(movie);
         }
