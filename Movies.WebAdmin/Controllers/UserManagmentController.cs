@@ -18,7 +18,7 @@ namespace Movies.WebAdmin.Controllers
         private RoleManager<AppRole> _roleManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly string _imgPath = @"img/";
-
+        
         /// <summary>
         /// Initializes a new instance of the UserManagmentController class.
         /// </summary>
@@ -32,7 +32,7 @@ namespace Movies.WebAdmin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-
+        
         #region UserOperation
         /// <summary>
         /// Displays a list of users.

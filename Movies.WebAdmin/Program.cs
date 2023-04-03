@@ -21,6 +21,7 @@ namespace Movies.WebAdmin
     {
         public static void Main(string[] args)
         {
+          
             var builder = WebApplication.CreateBuilder(args);
 
             // Configure Kestrel server limits

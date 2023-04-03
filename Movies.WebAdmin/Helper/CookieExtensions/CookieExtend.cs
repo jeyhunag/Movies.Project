@@ -8,12 +8,13 @@ namespace Movies.WebAdmin.Helper.CookieExtensions
     {
         public static IServiceCollection AddCookieServices(this IServiceCollection services)
         {
+            
             CookieBuilder cookieBuilder = new CookieBuilder();
             cookieBuilder.Name = "Movie";
             cookieBuilder.HttpOnly = false;
             cookieBuilder.SameSite = SameSiteMode.Lax;
             cookieBuilder.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-
+            
             services.ConfigureApplicationCookie(opts =>
             {
 

@@ -10,6 +10,7 @@ namespace Movies.WebAdmin.Controllers
     /// </summary>
     public class TrandsController : Controller
     {
+       
         private readonly IGenericService<TrandCategoryDto, Trends> _service;
 
         /// <summary>
