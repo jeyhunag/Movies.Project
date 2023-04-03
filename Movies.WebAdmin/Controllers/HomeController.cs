@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Movies.DAL.DbModel;
 using Movies.WebAdmin.Models;
@@ -90,6 +91,12 @@ namespace Movies.WebAdmin.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult Privacy()
         {
             return View();

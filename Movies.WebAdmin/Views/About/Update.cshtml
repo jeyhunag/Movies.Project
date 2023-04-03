@@ -61,7 +61,6 @@
     <h2 class="text-light">Create Image</h2>
 
     <form method="post" asp-action="Update" enctype="multipart/form-data">
-        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="row">
             <div style="margin-top:75px; margin-left:190px">
                 <div class="create-account-sign">
@@ -80,7 +79,7 @@
 
 
                 <div class="col-md-6">
-
+                    <div asp-validation-summary="All" class="text-danger"></div>
 
                     <div class="form-group formC">
                        

@@ -101,7 +101,7 @@ namespace Movies.Controllers
 
                 await _movieService.AddAsync(movie);
 
-
+                TempData["success"] = "Movie added successfully.";
                 return RedirectToAction("Index");
             }
 
