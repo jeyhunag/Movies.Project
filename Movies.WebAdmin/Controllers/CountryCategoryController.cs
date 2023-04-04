@@ -10,7 +10,7 @@ namespace Movies.WebAdmin.Controllers
     /// </summary>
     public class CountryCategoryController : Controller
     {
-      
+
         private readonly IGenericService<CountryCategoryDto, CountryCategory> _service;
 
         /// <summary>

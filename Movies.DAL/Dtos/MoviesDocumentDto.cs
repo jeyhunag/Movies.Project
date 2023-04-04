@@ -10,6 +10,6 @@ namespace Movies.DAL.Dtos
     public class MoviesDocumentDto : BaseDto
     {
         public int MovieCId { get; set; }
-        public string DocumentUrl { get; set; }
+        public string? DocumentUrl { get; set; }
     }
 }

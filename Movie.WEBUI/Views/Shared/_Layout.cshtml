@@ -23,12 +23,13 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-   
+    
     <link rel="stylesheet" href="~/css/style.css" />
    
     <link rel="icon" href="~/Img/Minimalist White Black Cinematography Business Logo.gif" type="img">
     <title> Movies-CO</title>
     <style>
+
         #topmyBtn {
             display: none;
             position: fixed;
@@ -147,6 +148,7 @@
                 </li>
             </ul>
         </nav>
+        <div class="loader"></div>
     </header>
     <main>
         @RenderBody()
@@ -196,7 +198,7 @@
     </footer>
 
     <button onclick="topFunction()" id="topmyBtn" title="Go to top"><i class="bi bi-arrow-up px-1"></i></button>
-
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
             integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
@@ -211,6 +213,17 @@
     <script src="~/js/Index.js"></script>
 
     <script>
+        //Loader pageden page kecid etmek
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".loader");
+
+            loader.classList.add("loader-hidden")
+
+            loader.addEventListener("transitionend", () => {
+                document.body.removeChild("loader");
+            })
+        })
+
         let mybutton = document.getElementById("topmyBtn");
 
         // When the user scrolls down 20px from the top of the document, show the button

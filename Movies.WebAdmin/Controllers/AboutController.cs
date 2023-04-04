@@ -44,7 +44,7 @@ namespace Movies.WebAdmin.Controllers
         /// </summary>
         /// <returns>A view for creating a new about entry.</returns>
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public  IActionResult Create()
         {
             return View();
         }
@@ -156,6 +156,7 @@ namespace Movies.WebAdmin.Controllers
         /// </summary>
         /// <param name="id">The ID of the about entry to delete.</param>
         /// <returns>A view for deleting the about entry.</returns>
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var about = await _service.GetByIdAsync(id);

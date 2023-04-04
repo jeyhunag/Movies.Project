@@ -125,5 +125,6 @@ namespace Movies.DAL.Dtos
         /// Gets or sets the optional list of language category DTOs associated with the movie.
         /// </summary>
         public List<LanguageCategoryDto>? LanguageCategoryDtos { get; set; }
+        public List<CountryCategoryDto> CountryCategoryDtos { get; set; }
     }
 }
