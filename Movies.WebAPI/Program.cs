@@ -18,7 +18,7 @@ namespace Movies.WebAPI
 
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("RemoteConnectionString"));
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
             // Add services to the container.
