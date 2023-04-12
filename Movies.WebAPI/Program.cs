@@ -56,6 +56,7 @@ namespace Movies.WebAPI
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+               
             }
 
             app.UseHttpsRedirection();
