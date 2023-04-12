@@ -71,7 +71,7 @@
                 var user = await UserManager.FindByIdAsync(userId);
                 if (!string.IsNullOrEmpty(user.Img))
                 {
-                    <img src="@user.Img" alt="Profile Picture" class="dropbtn" onclick="myFunction()" style="width: 25px; height: 25px; object-fit: cover; border-radius: 50%;" />
+                    <img src="/@user.Img" alt="#" class="dropbtn" style="width: 25px; height: 25px; object-fit: cover; border-radius: 50%;" onclick="myFunction()" />
                 }
                 else
                 {
