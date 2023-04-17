@@ -4,13 +4,30 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css"
+          integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    @{
-        await Html.RenderPartialAsync("ValidationAddcssPartial");
-    }
-    
-    <link rel="stylesheet" href="~/css/style.css" />
-    <link rel="icon" href="~/Img/Minimalist White Black Cinematography Business Logo.gif" type="img">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+          integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.css"
+          integrity="sha512-riTSV+/RKaiReucjeDW+Id3WlRLVZlTKAJJOHejihLiYHdGaHV7lxWaCfAvUR0ErLYvxTePZpuKZbrTbwpyG9w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    @* @{
+    await Html.RenderPartialAsync("ValidationAddcssPartial");
+    }*@
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="/Img/Minimalist White Black Cinematography Business Logo.gif" type="image/gif">
     <title> Moviespipe</title>
     <style>
 
@@ -34,23 +51,22 @@
                 background-color: #555;
             }
 
-            .pagination{
+        .pagination {
             width: 100%;
             display: flex;
             justify-content: center;
-            }
+        }
 
-            .pagination > li {             
+            .pagination > li {
                 margin: 1%;
             }
 
                 .pagination > li > a,
                 .pagination > li > a.disabled,
                 .pagination > li > a.active {
-                color: white !important;
-                text-decoration: none !important;
-            }
-            
+                    color: white !important;
+                    text-decoration: none !important;
+                }
     </style>
     @RenderSection("addcss",false)
 </head>
@@ -61,10 +77,10 @@
     <header>
         <div class="logoicons">
             <a asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="~/Img/moviec-low-resolution-logo-color-on-transparent-background (2).png" alt="logo" style="width: 120px; height: 30px;">
+                <img src="~/Img/moviec-low-resolution-logo-color-on-transparent-background (2).png" alt="logo">
             </a>
         </div>
-        <div class="dropdown">
+        <div class="dropdown headerIcon">
             @if (User.Identity.IsAuthenticated)
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -176,7 +192,7 @@
                 </ul>
             </div>
             <div class="logoIcon">
-                <img src="~/Img/moviec-low-resolution-logo-color-on-transparent-background (2).png" alt="logo">
+                <img src="/Img/moviec-low-resolution-logo-color-on-transparent-background (2).png" alt="logo">
             </div>
         </div>
     </footer>
@@ -184,11 +200,26 @@
     <button onclick="topFunction()" id="topmyBtn" title="Go to top"><i class="bi bi-arrow-up px-1"></i></button>
 
 
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
-    
+    @*   @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+            integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+            integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
     <script>
+
+
         //Loader pageden page kecid etmek
         window.addEventListener("load", () => {
             const loader = document.querySelector(".loader");

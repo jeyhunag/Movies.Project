@@ -7,9 +7,6 @@ namespace Movies.WebAdmin.Helper.LogExtensions
     {
         public static IServiceCollection AddImpotandLogServices(this IServiceCollection services)
         {
-            //Log.Logger = new LoggerConfiguration().MinimumLevel.Error()
-            //    .WriteTo.File(@"Log/important-logs.txt", rollingInterval: RollingInterval.Day)
-            //    .CreateLogger();
 
             Log.Logger = new LoggerConfiguration()
                .MinimumLevel.Information()

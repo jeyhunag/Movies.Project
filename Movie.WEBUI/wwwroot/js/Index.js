@@ -1,6 +1,6 @@
-Accaunt = document.querySelector(".Accaunt");
+ Accaunt = document.querySelector(".Accaunt");
 Accaunt.onclick = function () {
-    navBar = document.querySelector(".nav-bar");
+     navBar = document.querySelector(".nav-bar");
     navBar.classList.toggle("active")
 
 }
@@ -11,10 +11,10 @@ function myFunction() {
 
 window.onclick = function (event) {
     if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
+        let dropdowns = document.getElementsByClassName("dropdown-content");
+        let i;
         for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
+            let openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show')) {
                 openDropdown.classList.remove('show');
             }
@@ -22,15 +22,15 @@ window.onclick = function (event) {
     }
 }
 
-//todo Navbar Pages dropdown
+// Navbar Pages dropdown
 
 document.querySelector('#pages').addEventListener('click', function (event) {
     event.preventDefault();
-    var dropdown = this.parentElement.querySelector('.dropdown-menu');
+    let dropdown = this.parentElement.querySelector('.dropdown-menu');
     dropdown.classList.toggle('show');
 });
 
-//todo Navbar Pages dropdown active onclick color
+// Navbar Pages dropdown active onclick color
 
 document.querySelectorAll('.nav-item a').forEach(function (link) {
     link.addEventListener('click', function () {
@@ -40,7 +40,7 @@ document.querySelectorAll('.nav-item a').forEach(function (link) {
         this.classList.add('active');
     });
 });
-//todo Header carusel
+// Header carusel
 
 $('.hero-slider').owlCarousel({
     loop: true,
@@ -56,8 +56,8 @@ $('.hero-slider').owlCarousel({
 $(document).ready(function () {
     $('ul > li').click(function () {
 
-        var cat = $(this).data("category");
-        var findedImages = $('.image').hasClass(`${cat}`)
+        let cat = $(this).data("category");
+        let findedImages = $('.image').hasClass(`${cat}`)
 
         if (findedImages == true) {
 
@@ -70,7 +70,7 @@ $(document).ready(function () {
 });
 
 
-//todo  P0PULAR MOVIES
+//  P0PULAR MOVIES
 
 $(".carousel").owlCarousel({
     margin: 20,
@@ -95,7 +95,7 @@ $(".carousel").owlCarousel({
     }
 });
 
-//todo  TOP 10 BOX OFFICE Carusel
+//  TOP 10 BOX OFFICE Carusel
 
 $(".boxoffice").owlCarousel({
     margin: 20,
@@ -117,7 +117,7 @@ $(".boxoffice").owlCarousel({
     }
 });
 
-//todo  TRENDING NOW Carusel
+//  TRENDING NOW Carusel
 
 $(".trendingNow").owlCarousel({
     margin: 20,
@@ -139,7 +139,7 @@ $(".trendingNow").owlCarousel({
     }
 });
 
-//todo  SUGGESTED FOR YOU Carusel
+//  SUGGESTED FOR YOU Carusel
 
 $(".suggestedFor").owlCarousel({
     margin: 20,
@@ -160,7 +160,7 @@ $(".suggestedFor").owlCarousel({
         },
     }
 });
-//todo  TOP 10 BOX OFFICE
+//  TOP 10 BOX OFFICE
 
 var swiper = new Swiper(".mySwiper", {
     effect: "coverflow",
@@ -179,11 +179,11 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
-//todo JS code to open and close the modal Sign In
+// JS code to open and close the modal Sign In
 
-var modalsignin = document.getElementsByClassName("modal-overlay")[0];
-var btnsignin = document.getElementById("open-modal");
-var spansignin = document.getElementsByClassName("close-button")[0];
+let modalsignin = document.getElementsByClassName("modal-overlay")[0];
+let btnsignin = document.getElementById("open-modal");
+let spansignin = document.getElementsByClassName("close-button")[0];
 
 btnsignin.onclick = function () {
     modalsignin.style.display = "block";
@@ -199,11 +199,11 @@ window.onclick = function (event) {
     }
 }
 
-//todo JS code to open and close the modal Sign Up
+// JS code to open and close the modal Sign Up
 
-var modal = document.getElementsByClassName("modal-overlay-sigup")[0];
-var btn = document.getElementById("open-modal-signup");
-var span = document.getElementsByClassName("close-button-sigup")[0];
+let modal = document.getElementsByClassName("modal-overlay-sigup")[0];
+let btn = document.getElementById("open-modal-signup");
+let span = document.getElementsByClassName("close-button-sigup")[0];
 
 btn.onclick = function () {
     modal.style.display = "block";
@@ -219,7 +219,7 @@ window.onclick = function (event) {
     }
 }
 
-//todo sekilin uzerine maus geldikde sekilin olcusunu deyismek ucun  
+// sekilin uzerine maus geldikde sekilin olcusunu deyismek ucun  
 
 $(document).ready(function () {
     $('.img-div div').hover(function () {

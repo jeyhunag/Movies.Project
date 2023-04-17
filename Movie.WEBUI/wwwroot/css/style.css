@@ -34,7 +34,10 @@ header {
     left: 0;
     z-index: 9999;
 }
-
+.logoicons img {
+    width: 120px;
+    height: 30px;
+}
 body {
     background-color: #202020;
 }
@@ -703,7 +706,8 @@ p .sign-up:hover {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
+
     .modal-title {
         font-size: 20px;
     }
@@ -721,8 +725,30 @@ p .sign-up:hover {
         align-items: flex-start;
     }
 
-    .form-group a {
-        margin-left: 0;
-        margin-top: 10px;
+        .form-group a {
+            margin-left: 0;
+            margin-top: 10px;
+        }
+
+    .logoicons img {
+        width: 0px;
+    }
+
+    .headerIcon {
+        margin-left: -430px;
+    }
+
+    .search-box {
+        margin-left: -390px;
+        width: 180px;
+    }
+
+    .logoicons img {
+        width: 0px;
+        height: 0px;
+    }
+
+    .Accaunt {
+        transform: translateX(-27rem);
     }
 }
