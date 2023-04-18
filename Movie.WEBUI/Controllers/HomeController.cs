@@ -31,6 +31,7 @@ namespace Movie.WEBUI.Controllers
 
             return View();
         }
+
         public IActionResult Privacy()
 		{
 			return View();

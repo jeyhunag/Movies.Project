@@ -694,7 +694,7 @@ p .sign-up:hover {
 }
 
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .modal-content {
         width: 90%;
         height: auto;
@@ -706,7 +706,7 @@ p .sign-up:hover {
     }
 }
 
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
 
     .modal-title {
         font-size: 20px;

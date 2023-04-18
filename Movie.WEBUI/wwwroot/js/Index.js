@@ -1,6 +1,6 @@
- Accaunt = document.querySelector(".Accaunt");
+Accaunt = document.querySelector(".Accaunt");
 Accaunt.onclick = function () {
-     navBar = document.querySelector(".nav-bar");
+    navBar = document.querySelector(".nav-bar");
     navBar.classList.toggle("active")
 
 }
@@ -162,7 +162,7 @@ $(".suggestedFor").owlCarousel({
 });
 //  TOP 10 BOX OFFICE
 
-var swiper = new Swiper(".mySwiper", {
+let swiper = new Swiper(".mySwiper", {
     effect: "coverflow",
     grabCursor: true,
     centeredSlides: true,
@@ -219,7 +219,7 @@ window.onclick = function (event) {
     }
 }
 
-// sekilin uzerine maus geldikde sekilin olcusunu deyismek ucun  
+//let sekilin uzerine maus geldikde sekilin olcusunu deyismek ucun  
 
 $(document).ready(function () {
     $('.img-div div').hover(function () {
@@ -238,5 +238,4 @@ $(document).ready(function () {
         $(this).removeClass("active");
     });
 });
-
 
