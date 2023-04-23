@@ -16,7 +16,7 @@ namespace Movie.WEBUI
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("RemoteConnectionString"));
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 

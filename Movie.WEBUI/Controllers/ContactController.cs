@@ -57,7 +57,6 @@ namespace Movie.WEBUI.Controllers
                 SmtpClient smtpClient = new SmtpClient(host, port);
                 smtpClient.Credentials = new NetworkCredential(username, password);
                 smtpClient.EnableSsl = true;
-
                 smtpClient.Send(mail);
 
                 ViewBag.msg = "Sizin müraciətiniz uğurla göndərildi.";
