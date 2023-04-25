@@ -5,9 +5,12 @@ using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Movies.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Operator")]
     /// <summary>
     /// Controller for handling contact-related actions.
     /// </summary>

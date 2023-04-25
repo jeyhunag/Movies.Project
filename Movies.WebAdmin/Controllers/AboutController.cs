@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -6,9 +7,11 @@ using Movies.BLL.Services.Interfaces;
 using Movies.DAL.Data;
 using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
+using System.Data;
 
 namespace Movies.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Operator")]
     /// <summary>
     /// Controller for handling about-related actions.
     /// </summary>

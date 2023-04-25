@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Movies.BLL.Services.Interfaces;
 using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
+using System.Data;
 
 namespace Movies.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Operator")]
     /// <summary>
     /// The TrandsController is responsible for handling trend category-related actions.
     /// </summary>

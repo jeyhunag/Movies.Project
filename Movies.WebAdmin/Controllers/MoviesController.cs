@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using Movies.DAL.Data;
 using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
 using System;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +18,7 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace Movies.Controllers
 {
+    [Authorize(Roles = "Operator")]
     /// <summary>
     /// Controller for Movie-related actions.
     /// </summary>

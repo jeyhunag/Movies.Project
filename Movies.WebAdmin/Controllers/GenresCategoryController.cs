@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Movies.BLL.Services;
 using Movies.BLL.Services.Interfaces;
 using Movies.DAL.DbModel;
 using Movies.DAL.Dtos;
 using Serilog;
+using System.Data;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace Movies.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Operator")]
     /// <summary>
     /// The GenresCategoryController is responsible for handling genre category-related actions.
     /// </summary>
